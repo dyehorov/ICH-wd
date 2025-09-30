@@ -28,6 +28,7 @@
 
 .list {
   list-style-position: inside;
+  font-weight: bold;
 }
 
 .list-item {
