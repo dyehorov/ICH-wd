@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.parent {
+  height: 300px;
+  width: 300px;
+  background-color: green;
+}
+
+.child {
+  height: 200px;
+  width: 200px;
+  background-color: yellow;
+}
+
+.grandchild {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+}
+
+.box {
+  height: 200px;
+  width: 300px;
+  margin: 20px 0;
+  padding: 10px 0;
+  background-color: blue;
+}
+
+.circle {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: violet;
+  border: 2px red solid;
+}
+
+.border-style {
+  height: 200px;
+  width: 300px;
+  border-width: 2px;
+  border-color: red;
+  border-right-style: dotted;
+  border-bottom-style: solid;
+  border-left-style: dashed;
+  border-top-style: double;
+}
