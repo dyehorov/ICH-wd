@@ -18,8 +18,9 @@
   margin-bottom: 7px;
 }
 
-.name {
+.user-name {
   margin-bottom: 15px;
+  font-size: 32px;
 }
 
 .list-title {
