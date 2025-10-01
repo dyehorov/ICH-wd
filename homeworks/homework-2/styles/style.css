@@ -1,0 +1,24 @@
+li {
+  padding: 10px;
+  margin: 10px;
+}
+
+.first-item {
+  background-color: aqua;
+}
+
+.second-item {
+  background-color: darkgreen;
+}
+
+.third-item {
+  background-color: violet;
+}
+
+.fourth-item {
+  background-color: gold;
+}
+
+.fifth-item {
+  background-color: red;
+}
