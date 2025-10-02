@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  min-height: 400px;
+  background-color: tan;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+img {
+  width: 250px;
+  height: 200px;
+  margin: 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.second-container {
+  height: 50vh;
+  width: 75vw;
+  border: 2px solid green;
+  margin: 20px auto;
+}
+
+.text {
+  text-align: center;
+  width: 90vw;
+  height: 80vh;
+  background-color: cornflowerblue;
+  margin: 20px auto;
+}
