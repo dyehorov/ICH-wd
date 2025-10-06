@@ -1,0 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.parent {
+  display: flex;
+  width: 500px;
+  height: 250px;
+  border: 2px solid green;
+  justify-content: center;
+  align-items: center;
+  /* justify-content: end;
+  align-items: end; */
+}
+
+.box {
+  width: 45px;
+  height: 45px;
+  background-color: blue;
+}
