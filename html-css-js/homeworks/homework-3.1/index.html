@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <form class="form">
+        <div class="form__upper">
+          <fieldset>
+            <legend>Имя</legend>
+            <input type="text" name="lastName" placeholder="Фамилия" required />
+            <input type="text" name="firstName" placeholder="Имя" required />
+          </fieldset>
+        </div>
+        <div class="form__lower">
+          <fieldset>
+            <legend>Пол</legend>
+            <div>
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                required
+              />
+              <label for="male">Мужской</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+                required
+              />
+              <label for="female">Женский</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="none"
+                name="gender"
+                value="none"
+                required
+              />
+              <label for="none">Не хочу говорить</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Получать рассылку по</legend>
+            <div>
+              <input type="checkbox" id="email" name="email" value="email" />
+              <label for="email">Email</label>
+            </div>
+            <div>
+              <input type="checkbox" id="sms" name="sms" value="sms" />
+              <label for="sms">SMS</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form__button">
+          <input type="submit" value="Отправить" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
