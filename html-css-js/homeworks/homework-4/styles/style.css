@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 2000px;
+}
+
+.container {
+  padding: 50px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heading {
+  background-color: palevioletred;
+  position: sticky;
+  top: 0;
+}
