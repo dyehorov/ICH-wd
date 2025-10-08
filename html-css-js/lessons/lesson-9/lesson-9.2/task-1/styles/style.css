@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.parent {
+  position: relative;
+  height: 100vh;
+}
+
+.child {
+  width: 200px;
+  height: 100px;
+  background-color: darkorange;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.box-1 {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+}
+
+.box-2 {
+  position: absolute;
+  left: 70%;
+  top: 30%;
+}
+
+.box-3 {
+  position: absolute;
+  left: 40%;
+  top: 70%;
+}
