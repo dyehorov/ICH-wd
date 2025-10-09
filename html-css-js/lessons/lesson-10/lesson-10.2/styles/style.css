@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 20px;
+}
+
+h1::before {
+  content: "Before-";
+}
+
+h1::after {
+  content: "-After";
+}
+
+button {
+  cursor: pointer;
+}
+
+button::after {
+  content: "-next";
+  opacity: 0;
+  position: absolute;
+}
+
+button:active {
+  animation: buttonClick 2s forwards;
+}
+
+button:active::after {
+  animation: showAfter 1s forwards 2s;
+}
+
+@keyframes buttonClick {
+  0% {
+    padding-right: 0px;
+  }
+  100% {
+    padding-right: 30px;
+  }
+}
+
+@keyframes showAfter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

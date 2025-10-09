@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+}
+
+.form {
+  padding: 10px;
+  width: 320px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.submit {
+  background-color: #1cbc11;
+  height: 35px;
+}
+
+.submit:hover {
+  background-color: #14a20a;
+}

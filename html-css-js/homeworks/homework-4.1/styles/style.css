@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 20px;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px;
+  background-color: #426cf1;
+  border: 1px solid #426cf1;
+  border-radius: 7px;
+  color: #fff;
+  transition: padding-right 2s linear;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #426cf1;
+  transition: 1s;
+}
+
+button::after {
+  content: "- кнопка нажата";
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.2s linear;
+}
+
+button:active {
+  padding-right: 105px;
+}
+
+button:active::after {
+  opacity: 1;
+  transition-duration: 0.5s;
+  transition-delay: 0.7s;
+}

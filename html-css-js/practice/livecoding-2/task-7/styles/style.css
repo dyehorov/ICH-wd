@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+  text-align: center;
+  background-color: darkgray;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.submit {
+  background-color: salmon;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid salmon;
+}
+
+.form input {
+  padding: 5px;
+}
