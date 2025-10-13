@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 10vh auto;
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  grid-template-rows: repeat(3, 200px);
+  background-color: #ffc1cb;
+  row-gap: 40px;
+  column-gap: 70px;
+  padding-bottom: 30px;
+}
+
+.container > div {
+  background-color: #87cfec;
+  border-radius: 10px;
+  padding: 10px;
+}
