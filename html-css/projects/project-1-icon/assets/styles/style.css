@@ -113,7 +113,7 @@ body {
 }
 
 .project-card {
-  background-image: url("/html-css/projects/project-1/assets/images/project.jpg");
+  background-image: url("/html-css/projects/project-1-icon/assets/images/project.jpg");
   aspect-ratio: 1.16/1;
   background-size: cover;
   position: relative;
