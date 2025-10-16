@@ -1,0 +1,63 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 10vh auto;
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  background-color: #444444;
+  padding: 10px;
+  color: #fff;
+}
+
+.list a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.main-list {
+  display: flex;
+}
+
+.list li:hover {
+  background-color: #333;
+  cursor: pointer;
+}
+
+.item-with-list {
+  position: relative;
+}
+
+.item-with-list:hover {
+  background-color: #444;
+  .sub-list {
+    display: block;
+  }
+}
+
+.sub-list {
+  display: none;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 38px;
+
+  li {
+    background-color: #333;
+  }
+}
