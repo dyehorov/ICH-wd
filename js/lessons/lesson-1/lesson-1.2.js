@@ -1,3 +1,14 @@
+/*  
+
+string       "hello" , 'aaaa', `sdaddaa`
+number       45 56 -56 6.55 0
+boolean      true false
+undefined    undefined
+null         null
+
+
+*/
+
 // Boolean принимает 2 значения - true or false. В оснвном мы получаем булевой тип данных из операций. Boolean будет всегда результатом сравнения
 
 let isAdmin = false;

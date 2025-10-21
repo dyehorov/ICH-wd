@@ -4,10 +4,55 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   /* max-width: 2560px;
   margin: 0 auto; */
+}
+
+/* ===== Utility Classes ===== */
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-white {
+  color: #fff;
+}
+
+/* Buttons */
+.btn {
+  background-color: #00a4e5;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn:hover {
+  background-color: #0288bd;
 }
 
 .container {
@@ -16,15 +61,44 @@ body {
   margin: 0 auto;
 }
 
+/* Titles */
+.section-title {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #48555b;
+  letter-spacing: 2.31px;
+}
+
+/* White background and light border*/
+.card-style {
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+
+.text-small {
+  font-size: 13px;
+  line-height: 23px;
+  color: #48555b;
+  letter-spacing: 0.2px;
+}
+
+.links {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* =====End of utility classes===== */
+
+/* ====================================
+    HEADER
+   ==================================== */
+
 .header {
   margin-bottom: 58px;
 }
 
 .header__top {
-  background: url("../images/hero_bg.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: url("../images/hero_bg.jpg") no-repeat center / cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,10 +110,10 @@ body {
 
 .header__top-logo {
   width: 7%;
+}
 
-  img {
-    width: 100%;
-  }
+.header__top-logo img {
+  width: 100%;
 }
 
 .header__top-slogan {
@@ -50,34 +124,27 @@ body {
 .slogan-main {
   font-family: "Bebas Neue", sans-serif;
   font-size: 60px;
-  text-transform: uppercase;
-  color: #fff;
   letter-spacing: 5.71px;
   font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .slogan-sub {
-  color: #fff;
   font-size: 16px;
-}
-
-.links {
-  text-decoration: none;
   color: #fff;
 }
 
-.header__top-scroll {
-  a {
-    font-size: 11px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-decoration: none;
-  }
+.header__top-scroll a {
+  font-size: 11px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-decoration: none;
+}
 
-  a:hover {
-    color: #00a4e5;
-  }
+.header__top-scroll a:hover {
+  color: #00a4e5;
 }
 
 .header__bottom {
@@ -110,25 +177,20 @@ body {
   letter-spacing: 1.1px;
 }
 
-.header__botom-nav-links:hover {
+.header__bottom-nav-links:hover {
   color: #00a4e5;
 }
 
-.title {
-  font-size: 18px;
-  text-transform: uppercase;
-  color: #48555b;
-  letter-spacing: 2.31px;
-}
-
+/* =========================================================
+   OUR STORY
+========================================================= */
 .our-story {
   margin-bottom: 117px;
 }
 
 .our-story-title {
   width: 15%;
-  margin: 0 auto;
-  margin-bottom: 40px;
+  margin: 0 auto 40px;
   text-align: center;
   position: relative;
 }
@@ -161,17 +223,17 @@ body {
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 0.2px;
+}
 
-  span {
-    color: #00a4e5;
-  }
+.main-text span {
+  color: #00a4e5;
 }
 
 .sub-text {
   font-size: 13px;
+  line-height: 23px;
   color: #48555b;
   letter-spacing: 0.2px;
-  line-height: 23px;
 }
 
 .our-story-images {
@@ -200,11 +262,18 @@ body {
   position: absolute;
   color: #fff;
   font-size: 24px;
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
   width: 40%;
   top: 15px;
   left: 14px;
+}
+
+/* =========================================================
+   CAPABILITIES
+========================================================= */
+.capabilities {
+  margin-bottom: 115px;
 }
 
 .capabilities-header {
@@ -243,24 +312,24 @@ body {
 
 .capabilities-header-button {
   background-color: #00a4e5;
-  width: 100%;
-  max-width: 150px;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  max-width: 150px;
+  width: 100%;
 }
 
 .capabilities-header-button:hover {
   background-color: #0288bd;
 }
 
-.header-btn {
-  display: inline-block;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
+/* =========================================================
+   CARDS
+========================================================= */
 .capabilities-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -268,8 +337,9 @@ body {
 }
 
 .card {
-  padding: 38px 20px;
   border: 1px solid #e6e6e6;
+  background-color: #fff;
+  padding: 38px 20px;
 }
 
 .card-image {
@@ -290,4 +360,226 @@ body {
   line-height: 23px;
   letter-spacing: 0.19px;
   color: #49555b;
+}
+
+/* =========================================================
+   GET IN TOUCH
+========================================================= */
+.get-in-touch {
+  background: url("../images/get-in-touch.png") bottom no-repeat;
+  background-size: cover;
+  height: 50vh;
+}
+
+.get-in-touch-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+.get-in-touch-title {
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: 0.15px;
+  color: #48555b;
+  width: 37%;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.get-in-touch-btn {
+  background-color: #00a4e5;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 150px;
+  width: 100%;
+  font-size: 13px;
+  padding: 11px 26px;
+}
+
+.get-in-touch-btn:hover {
+  background-color: #0288bd;
+}
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+.newsletter {
+  padding: 30px 0;
+  background-color: #171819;
+}
+
+.newsletter-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+}
+
+.newsletter-title {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.85px;
+  color: #fff;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.email-input {
+  flex: 1;
+  padding: 11px 16px;
+  border: 1px solid #fff;
+}
+
+.submit-btn {
+  background-color: #00a4e5;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 49px;
+  border: 1px solid #00a4e5;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+  background-color: #0288bd;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+#footer {
+  background-color: #141a20;
+}
+
+.upper-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 60px;
+  color: #fff;
+  padding: 50px 0;
+}
+
+.upper-footer > div {
+  width: 100%;
+  max-width: 300px;
+}
+
+.company {
+  justify-content: space-between;
+}
+
+.footer-links-nav {
+  display: flex;
+  gap: 34px;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-titles {
+  font-size: 11px;
+  letter-spacing: 0.85px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  margin-bottom: 15px;
+}
+
+.footer-desctiption {
+  font-size: 11px;
+  line-height: 19px;
+  letter-spacing: 0.85px;
+}
+
+.footer-links {
+  font-size: 11px;
+  line-height: 25px;
+  letter-spacing: 0.85px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.footer-links:hover {
+  color: #00a4e5;
+}
+
+.upper-footer {
+  align-items: stretch;
+}
+
+.upper-footer .contact-us {
+  width: 100%;
+  max-width: 141px;
+  justify-content: space-between;
+}
+
+.upper-footer .socials {
+  width: 100%;
+  max-width: 87px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-icons {
+  color: #fff;
+  margin-top: 30px;
+}
+
+.company {
+  flex: 1;
+}
+
+.contact-us-content {
+  gap: 13px;
+
+  address {
+    font-style: normal;
+    text-indent: none;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.85px;
+    margin-bottom: "Open Sans", sans-serif;
+  }
+
+  .footer-links {
+    text-transform: none;
+    font-weight: normal;
+  }
+}
+
+.copyright {
+  padding: 22px 0;
+  background-color: #171819;
+}
+
+.copyright-text {
+  text-align: center;
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.85px;
 }
