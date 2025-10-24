@@ -15,6 +15,56 @@ Symbol (primitive)
 // They are called reference types because they store memory references, not actual data.
 
 
+============Variable Declarations============
+
+var
+- Function-scoped.
+- Can be redeclared and reassigned.
+- Hoisted and initialized with `undefined`.
+- Not recommended in modern JavaScript               !!!!!!!!!!
+
+let
+- Block-scoped.
+- Can be reassigned but not redeclared in the same scope.
+- Hoisted but not initialized (in temporal dead zone until declaration).
+- Recommended for variables that change.
+
+const
+- Block-scoped.
+- Cannot be reassigned or redeclared.
+- Hoisted but not initialized.
+- Use for constants or references that should not change.
+
+============Scope Examples============
+
+// Function scope (var)
+function testVar() {
+  if (true) {
+    var x = 10;
+  }
+  console.log(x); // ✅ Works — var ignores block scope, but cannot go out of the function 
+}
+
+// Block scope (let / const)
+function testLetConst() {
+  if (true) {
+    let y = 20;
+    const z = 30;
+  }
+  console.log(y); // ❌ ReferenceError
+  console.log(z); // ❌ ReferenceError
+}
+
+============Usage in Loops============
+
+// for...in / for...of can use const or let
+for (const key in obj) { console.log(key); }
+for (const item of array) { console.log(item); }
+
+// Use let if variable is reassigned inside the loop
+for (let i = 0; i < 5; i++) { console.log(i); }
+
+
 ===========Type Coersion========
 
 String(123)    "123"
