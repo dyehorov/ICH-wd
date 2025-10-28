@@ -82,27 +82,59 @@ const students = [
   { name: "Сarl", age: 21, grades: { math: 2, physics: 3, literature: 3 } },
 ];
 
-function giveStudentOlder20(students) {
-  let studentsOlder20 = [];
-  for (let key of students) {
-    if (key.age > 20) {
-      studentsOlder20.push(key);
-    }
-  }
-  return studentsOlder20;
+function isStudentAgeGreaterThan20(student) {
+  return student?.age ?? 0 > 20;
 }
 
-function giveStudentWithGPAHigher4(students) {
-  let studentWithGPAHigher4 = [];
-  for (let key of students) {
-    if (
-      (key.grades.math + key.grades.physics + key.grades.literature) / 3 >
-      4
-    ) {
-      studentWithGPAHigher4.push(key);
-    }
+function isStudentAvgGpaGreaterThan4(student) {
+  if (!student) {
+    return false;
   }
-  return studentWithGPAHigher4;
+
+  return (
+    (student.grades.math + student.grades.physics + student.grades.literature) /
+      3 >
+    4
+  );
 }
 
-console.log(giveStudentWithGPAHigher4(giveStudentOlder20(students)));
+function isValidStudent(student) {
+  return (
+    isStudentAgeGreaterThan20(student) && isStudentAvgGpaGreaterThan4(student)
+  );
+}
+
+console.log(students.filter(isValidStudent));
+
+const obj = { a: 4 };
+
+function abc(obj) {
+  const newObj = { ...obj };
+  newObj.a = 5;
+
+  return newObj;
+}
+
+// class A {
+//   constructor(parameters) {
+
+//   }
+//   strudents = []
+
+//   filter() {
+//     return this.strudents.filter()
+//   }
+// }
+
+// class B {
+//   highOrderFilterFn = (f) => {
+//     return f()
+//   }
+// }
+
+// b = new B()
+// a = new A()
+
+// b.highOrderFilterFn(a.filter)
+
+// b.highOrderFilterFn(() => a.filter())

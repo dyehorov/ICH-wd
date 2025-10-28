@@ -1,0 +1,2 @@
+
+    average += key.score;

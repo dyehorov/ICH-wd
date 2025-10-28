@@ -319,4 +319,230 @@ const school = {
 - Both are non-primitive, reference types.
 - Objects can contain arrays, and arrays can contain objects.
 - Use objects for structured data, arrays for ordered data.
+
+
+
+=================Functions=================
+
+Definition:
+Functions are reusable blocks of code.
+In JavaScript, functions are *first-class citizens*:
+- can be passed as arguments
+- can be returned from other functions
+- can be stored in variables
+- can be object properties
+
+=================Function Declaration=================
+Syntax:
+function name(param1, param2, ...) {
+  // code block
+  return value;
+}
+
+Example:
+function hello(name) {
+  return `Hello, ${name}!`;
+}
+
+- function declarations are hoisted (can be used before defined)
+- can be called before their definition
+
+=================Function Expression=================
+A function can also be created as an expression (anonymous or named):
+
+const hello = function(name) {
+  return `Hello, ${name}`;
+};
+
+- not hoisted (cannot be used before defined)
+- can be passed as a callback
+
+=================Arrow Functions=================
+const hello = (name) => `Hello, ${name}`;
+
+- shorter syntax
+- no own this / arguments
+- best for callbacks and short logic
+
+=================Calling Functions=================
+Declaring a function doesn’t execute it — you must *call* it:
+hello("JS"); // function call
+
+=================Return=================
+`return` sends a value back from the function:
+function sum(a, b) {
+  return a + b;
+}
+
+=================Scope=================
+- Variables declared inside a function are local.
+- A function can access global variables, but globals cannot access locals.
+
+Example:
+let x = 10;
+function show() {
+  let y = 5;
+  console.log(x); // 10 (global)
+  console.log(y); // 5 (local)
+}
+console.log(y); // ❌ error (not defined)
+
+=================Functions in Objects=================
+Functions stored in objects are called *methods*.
+
+const car = {
+  start() { console.log("Car started"); },
+  stop() { console.log("Car stopped"); }
+};
+
+car.start(); // method call
+
+=================Recursion=================
+Recursion = when a function calls itself.
+
+Example:
+function countdown(n) {
+  if (n <= 0) return;
+  console.log(n);
+  countdown(n - 1);
+}
+
+countdown(5); // 5, 4, 3, 2, 1
+
+⚠️ Always include a base case (exit condition) to avoid infinite loops.
+
+=================Practice Ideas=================
+1. greet() → logs "Hello, world!"
+2. square() → asks for a number, prints its square
+3. isEven() → checks if a number is even
+4. concatenate() → merges two strings and logs the result
+
+
+=================Function Naming=================
+
+Rule:
+Function names should describe an *action* (verbs).
+Use short, clear, meaningful names that show what the function does.
+
+Common prefixes:
+get...(), set...(), calc...(), create...(), check...(), update...(), remove...()
+
+Example:
+function showMessage() {}
+function getUserName() {}
+function calcSum() {}
+
+=================Object Methods (ES6 Short Syntax)=================
+
+Since ES6, you can define methods in objects using a shorter syntax.
+
+Old way:
+const user = {
+  sayHello: function(name) {
+    return `Hello, ${name}`;
+  }
+};
+
+New ES6 way:
+const user = {
+  sayHello(name) {
+    return `Hello, ${name}`;
+  }
+};
+
+
+=================Arrow Functions=================
+
+Arrow functions = shorter way to write functions (introduced in ES6).
+
+Syntax:
+const name = (param1, param2) => expression;
+
+Example:
+const sum = (a, b) => a + b;
+
+Rules:
+- No own `this` (inherits from outer scope).
+- If only one parameter → parentheses optional.
+- If only one expression → `{}` and `return` can be omitted.
+
+Examples:
+const square = n => n * n;
+const greet = () => console.log("Hello!");
+const multiply = (a, b) => a * b;
+
+Usage:
+Perfect for callbacks in methods like:
+map(), filter(), reduce()
+
+Example:
+const numbers = [1, 2, 3];
+const doubled = numbers.map(n => n * 2);
+
+=================Practice=================
+1. square(n) → returns n²  
+2. isEven(num) → returns true if even, else false  
+3. concatenate(a, b) → returns joined string
+
+=================Function Parameters=================
+
+Default parameters:
+If a value is not passed, the parameter is `undefined`.
+You can set a default value directly in the function header.
+
+Example:
+function greet(name = "Guest") {
+  return `Hello, ${name}!`;
+}
+
+Rest parameters:
+Collect multiple arguments into an array.
+
+Example:
+function multiply(factor, ...numbers) {
+  return numbers.map(n => n * factor);
+}
+
+multiply(2, 1, 2, 3); // [2, 4, 6]
+
+=================arguments Object=================
+
+`arguments` is a pseudo-array of all arguments passed to a function.
+
+Example:
+function showArgs() {
+  for (let i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+}
+
+showArgs("JS", "is", "fun");
+// JS
+// is
+// fun
+
+Use `arguments.length` to get the number of passed values.
+
+⚠️ Note:
+- Works only in traditional functions (not arrow functions).
+- Modern alternative: use `...rest` instead.
+
+Example:
+function joinStrings(separator, ...strings) {
+  return strings.join(separator);
+}
+
+joinStrings("-", "one", "two", "three"); // "one-two-three"
+
+=================Test Yourself=================
+What will this output?
+
+function func(x) {
+  let num = x * 2;
+}
+func(5);
+console.log(num);
+
+Answer: ❌ Error (num is not defined, because it's local scope)
+
 */
