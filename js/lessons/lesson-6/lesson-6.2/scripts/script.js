@@ -24,6 +24,7 @@ body.append("first", "second", "third");
 // body.appendChild(myText);
 
 // чтобы удалить надо использовать remove()
+// чтоб удалить дочерний элемент надо использовать removeChild()
 
 body.removeChild(myText);
 

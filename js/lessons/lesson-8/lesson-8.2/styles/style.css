@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.blue-text {
+  color: blue;
+}
+
+.pink-background {
+  background-color: pink;
+}
+
+.active {
+  color: green;
+}
+
+.darkTheme {
+  background-color: black;
+  color: #fff;
+}
