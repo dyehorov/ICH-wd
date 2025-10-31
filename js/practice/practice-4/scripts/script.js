@@ -116,3 +116,10 @@ addOne.addEventListener("click", () => {
 });
 
 /* 7 ** Создайте простой калькулятор с полем ввода для чисел и кнопками операций (сложение, вычитание, умножение, деление) и кнопкой "Вычислить". При вводе чисел и выборе операции, при нажатии на "Вычислить" отобразите результат операции. */
+
+const input = document.querySelector(".input");
+const calculateBtn = document.querySelector(".calculateBtn");
+const add = document.querySelector(".add");
+const minus = document.querySelector(".minus");
+const multiply = document.querySelector(".multiply");
+const divide = document.querySelector(".divide");
