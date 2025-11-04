@@ -123,6 +123,8 @@ const students = [
 
 console.log(findExcellentStudents(students));
 
+//5.Создайте функцию updateStudentAge, которая принимает объект студента и новый возраст, затем обновляет возраст и возвращает измененный объект.
+
 console.log("Задание 5");
 
 function updateStudentAge(student, newAge) {
@@ -191,6 +193,7 @@ function countStudentsByAgeGroup(students) {
       filteredStudentsByAge["24+"]++;
     }
   }
+
   return filteredStudentsByAge;
 }
 
@@ -240,6 +243,7 @@ function findTopStudent(students) {
       topStudent = `Top student is ${element.name}, with average of ${highestAverage}`;
     }
   }
+
   return topStudent;
 }
 

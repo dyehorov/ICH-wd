@@ -129,7 +129,7 @@ registerForm.addEventListener("submit", (event) => {
 
   const isValid = registerFormValidator(username, lastname, login, password);
 
-  console.log(isValid); // isValid возвразает объект
+  console.log(isValid); // isValid возвращает объект
 
   if (isValid) {
     console.log({ data: "success" });

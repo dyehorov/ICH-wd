@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form class="form">
+      <div class="name">
+        <div class="lastName">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" />
+        </div>
+        <div class="firstName">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" name="firstName" />
+        </div>
+      </div>
+      <div class="email-block flex-column">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" />
+      </div>
+      <div class="password-block flex-column">
+        <label for="password">Password*</label>
+        <input type="password" name="password" id="password" />
+      </div>
+      <div class="checkbox-input">
+        <input type="checkbox" id="checkbox" />
+        <label for="checkbox">Subscribe to newsletter</label>
+      </div>
+      <div class="form-buttons">
+        <input type="reset" value="Reset" />
+        <input type="submit" />
+      </div>
+      <p class="form-success">The form has been successfully submitted!</p>
+    </form>
+  </body>
+</html>

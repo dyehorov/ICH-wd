@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px;
+  margin: 10vh auto;
+  display: flex;
+  background-color: antiquewhite;
+  flex-direction: column;
+  padding: 25px;
+  border-radius: 5px;
+  gap: 10px;
+}
+
+#setColorForm {
+  flex-direction: row;
+}
