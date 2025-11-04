@@ -29,9 +29,7 @@ function getAuthentificationMessage(valid) {
 }
 
 function isMessageExist() {
-  if (form.lastElementChild.nodeName === "P") {
-    form.lastElementChild.remove();
-  }
+  return form.lastElementChild.nodeName === "P";
 }
 
 function renderFormMessage(string) {
@@ -51,6 +49,8 @@ form.addEventListener("submit", (event) => {
     checkIfTheLoginCorrect(loginCredentials.login, loginInput) &&
     checkIfThePasswordCorrect(loginCredentials.password, passwordInput);
 
-  isMessageExist();
+  if (isMessageExist()) {
+    form.lastElementChild.remove();
+  }
   renderFormMessage(getAuthentificationMessage(isValid));
 });
