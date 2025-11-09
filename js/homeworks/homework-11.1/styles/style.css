@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 20vh auto;
+  max-width: 350px;
+}
+
+.block {
+  width: 350px;
+  height: 350px;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  font-size: 100px;
+  color: #fff;
+}
+
+.add {
+  font-size: 30px;
+  background-color: burlywood;
+  border: 1px solid burlywood;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.red-color {
+  background-color: red;
+}
