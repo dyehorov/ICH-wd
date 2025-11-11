@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.form {
+  width: 30%;
+  margin: 10vh auto;
+  background-color: cadetblue;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form > p {
+  min-height: 10px;
+}
