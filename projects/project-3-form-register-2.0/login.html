@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/login.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="pop-up-message">
+        <p>
+          We've sent a password reset link to your email. Please check your
+          inbox (spam folder).
+        </p>
+      </div>
+      <form class="form login-form">
+        <h1 class="title">Login</h1>
+        <div class="login-input-container input-container">
+          <input
+            type="text"
+            id="login"
+            name="login"
+            placeholder="Enter your login"
+            required
+          />
+        </div>
+        <div class="password-input-container input-container">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <div class="forgot-password">
+          <a href="#" class="form-links forgot-password-btn"
+            >Forgot your password?</a
+          >
+        </div>
+        <div class="submit-btn">
+          <input type="submit" value="Login" />
+        </div>
+        <div class="form-do-not-have-account">
+          <p>
+            Don't have an account?
+            <a href="./index.html" class="form-links no-account-btn">Signup</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

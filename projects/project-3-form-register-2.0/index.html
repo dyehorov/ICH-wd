@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/registration.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <form class="form registration-form">
+        <h1 class="title">Signup</h1>
+        <div class="email-input-container input-container">
+          <input
+            type="email"
+            id="registration-email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="login-input-container input-container">
+          <input
+            type="text"
+            id="registration-login"
+            name="login"
+            placeholder="Create login"
+            required
+          />
+        </div>
+        <div class="password-input-container input-container">
+          <input
+            type="password"
+            id="registration-password"
+            name="password"
+            placeholder="Create a password"
+            required
+          />
+        </div>
+        <div class="password-repeat-input-container input-container">
+          <input
+            type="password"
+            id="registration-password-check"
+            name="passwordRepeat"
+            placeholder="Confirm your password"
+            required
+          />
+        </div>
+        <div class="phone-repeat-input-container input-container">
+          <input
+            type="tel"
+            id="registration-phone-check"
+            name="phone"
+            placeholder="Enter your phone"
+            required
+          />
+        </div>
+        <div class="submit-btn">
+          <input type="submit" value="Signup" />
+        </div>
+        <div class="form-do-not-have-account">
+          <p>
+            Already have an account?
+            <a href="./login.html" class="form-links account-exist">Login</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
