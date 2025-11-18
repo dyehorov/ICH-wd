@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fffbff;
+  padding: 24px 16px;
+  position: relative;
+  height: 100%;
+}
+
+.to-do-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.current-weekday {
+  font-size: 16px;
+}
+
+.current-date {
+  font-size: 12px;
+}
+
+.search-task {
+  background-color: #e6e2e9;
+  border-radius: 24px;
+  padding: 8px 16px;
+  display: flex;
+}
+
+.search-task:focus-within {
+  outline: 2px solid #ae7bff;
+}
+
+.search-task-input {
+  background-color: #e6e2e9;
+  border: 1px solid #e6e2e9;
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+.search-task-input::placeholder {
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.search-task-input:focus {
+  outline: none;
+}
+
+.filter-buttons {
+  display: flex;
+}
+
+.filter-button {
+  flex-grow: 1;
+  border: 1px solid #79747f;
+  padding: 8px 0;
+  background-color: #fffbff;
+  font-size: 16px;
+  min-width: 130px;
+  cursor: pointer;
+}
+
+.clicked {
+  background-color: #e8def8;
+}
+
+.filter-all {
+  border-radius: 50px 0 0 50px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.filter-completed {
+  border-radius: 0 50px 50px 0;
+}
+
+.add-task-btn {
+  background-color: #eadff7;
+  padding: 17px 20px;
+  border-radius: 16px;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  cursor: pointer;
+}
+
+.focus:focus {
+  outline: 1px solid #ae7bff;
+  z-index: 10;
+}
+
+.to-do-list {
+  list-style-type: none;
+}
+
+.to-do-list-item {
+  background-color: #f7f2fb;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 16px;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.to-do-list-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox {
+  position: relative;
+  cursor: pointer;
+}
+
+.checkmark {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 3px solid #49454f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.checkmark::after {
+  content: "";
+  width: 6px;
+  height: 12px;
+  position: absolute;
+  top: 2px;
+  border-right: 3px solid #381e72;
+  border-bottom: 3px solid #381e72;
+  transform: rotate(45deg) scale(0);
+  transition: 0.2s;
+}
+
+.checkbox input:checked + .checkmark {
+  background-color: #d0bcff;
+  border-color: #d0bcff;
+}
+
+.checkbox input:checked + .checkmark::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.task-date {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.task-text {
+  font-size: 16px;
+}
+
+.task-completed {
+  color: #a09ca1;
+}
+
+.task-completed:last-of-type {
+  text-decoration: line-through;
+}
+
+.create-task-form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f7f2fa;
+  padding: 16px;
+  border-radius: 50px 50px 0 0;
+}
+
+/* .hidden {
+  display: none;
+} */
+
+.create-task-input-wrapper > input {
+  width: 100%;
+  padding: 8px;
+}
+
+.create-task-input-wrapper {
+  margin-bottom: 16px;
+}
+
+.create-task-form .top-handle {
+  width: 32px;
+  height: 4px;
+  background-color: #79747e;
+  border-radius: 1000px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+}
+
+.create-task-form-input {
+  font-size: 16px;
+}
+
+.remind-me {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.create-task-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.switch {
+  width: 52px;
+  height: 34px;
+  background-color: #6750a4;
+  border-radius: 24px;
+  position: relative;
+}
+
+.switch-handler {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  text-align: center;
+  line-height: 24px;
+}
+
+.button {
+  padding: 8px 24px;
+  background-color: #6750a4;
+  border-radius: 24px;
+  color: #fff;
+  border: 1px solid #6750a4;
+  font-size: 16px;
+}
+
+.button:last-child {
+  background-color: #f7f2fb;
+  color: #6750a4;
+}
+
+@media screen and (max-width: 423px) {
+  .filter-button {
+    min-width: 0;
+  }
+}
