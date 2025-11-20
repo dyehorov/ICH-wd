@@ -180,6 +180,12 @@ body {
 
 .task-text {
   font-size: 16px;
+  word-break: break-word;
+}
+
+.task-info {
+  white-space: normal;
+  overflow: visible;
 }
 
 .completed .task-info-text {
@@ -188,6 +194,11 @@ body {
 
 .completed .task-info-text:last-of-type {
   text-decoration: line-through;
+}
+
+.task-edit-button {
+  margin-left: auto;
+  cursor: pointer;
 }
 
 .create-task-form {
@@ -278,4 +289,68 @@ body {
   .filter-button {
     min-width: 0;
   }
+}
+
+.task-edit-input,
+.task-edit-date-input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.task-edit-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.task-edit-save,
+.task-edit-cancel {
+  padding: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+}
+
+.task-edit-save {
+  background-color: #6750a4;
+  color: white;
+}
+
+.task-edit-cancel {
+  background-color: #f2eafa;
+  color: #6750a4;
+}
+
+.to-do-list-item.editing {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.to-do-list-item.editing .task-info {
+  width: 100%;
+  white-space: normal;
+}
+
+.to-do-list-item.editing .task-edit-input,
+.to-do-list-item.editing .task-edit-date-input {
+  width: 100%;
+}
+
+.to-do-list-item.editing .task-edit-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.to-do-list-item.editing > .checkbox,
+.to-do-list-item.editing > .task-edit-button {
+  display: none;
 }

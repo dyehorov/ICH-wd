@@ -125,7 +125,7 @@ createTaskForm.addEventListener("submit", (event) => {
 function formatDateForTask(dateString) {
   const date = new Date(dateString)
 
-  const datePart = date.toLocaleDateString("en-US", {
+  const taskDateart = date.toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
   })
@@ -136,7 +136,7 @@ function formatDateForTask(dateString) {
     hour12: false,
   })
 
-  return `${datePart}, ${timePart}`
+  return `${taskDateart}, ${timePart}`
 }
 
 //========Task Render=========
@@ -175,10 +175,14 @@ function renderTask(id, title, date, completed) {
   taskText.classList.add("task-text", "task-info-text")
   taskText.textContent = title
 
+  const taskEditButton = document.createElement("div")
+  taskEditButton.classList.add("task-edit-button")
+  taskEditButton.innerHTML = `<i class="fa-solid fa-pen task-edit"></i>`
+
   label.append(input, span)
   taskInfoContainer.append(taskDate, taskText)
 
-  listItem.append(label, taskInfoContainer)
+  listItem.append(label, taskInfoContainer, taskEditButton)
 
   toDoList.appendChild(listItem)
 }
@@ -240,22 +244,32 @@ toDoList.addEventListener("change", (event) => {
 const filterButtons = document.querySelector(".filter-buttons")
 
 filterButtons.addEventListener("click", (event) => {
-  const dataButton = event.target.dataset.button
+  const dataButton = event.target
+  const dataButtonDataSet = dataButton.dataset.button
   const tasks = JSON.parse(localStorage.getItem("tasks"))
+  const filterButtons = document.querySelectorAll(".filter-button")
+
+  filterButtons.forEach((item) => {
+    item.classList.remove("clicked", "focus")
+  })
 
   toDoList.innerHTML = ""
 
-  if (dataButton === "Active") {
+  if (dataButtonDataSet === "Active") {
     listTasks(filterActiveTasks(tasks))
+    dataButton.classList.add("clicked")
 
     return
   }
 
-  if (dataButton === "Completed") {
+  if (dataButtonDataSet === "Completed") {
     listTasks(filterCompletedTasks(tasks))
+    dataButton.classList.add("clicked")
 
     return
   }
+
+  dataButton.classList.add("clicked")
 
   listTasks(tasks)
 })
@@ -281,5 +295,75 @@ searchTaskInput.addEventListener("input", (event) => {
 })
 
 function filterTasksByInput(list, searchInput) {
-  return list.filter(({ title }) => title.includes(searchInput))
+  return list.filter(({ title }) => {
+    return title.includes(searchInput)
+  })
 }
+
+//==========Edit Task============
+toDoList.addEventListener("click", (event) => {
+  if (!event.target.classList.contains("task-edit")) return
+
+  const li = event.target.closest(".to-do-list-item")
+  const id = Number(li.dataset.itemId)
+  const task = tasks.find((item) => item.id === id)
+
+  console.log(task)
+
+  li.classList.add("editing")
+
+  const taskText = li.querySelector(".task-text")
+  const taskDate = li.querySelector(".task-date")
+
+  const oldTitle = task.title
+  const oldDate = task.date
+
+  const titleInput = document.createElement("input")
+  titleInput.type = "text"
+  titleInput.value = oldTitle
+  titleInput.className = "task-edit-input"
+
+  const dateInput = document.createElement("input")
+  dateInput.type = "datetime-local"
+  dateInput.value = oldDate
+  dateInput.className = "task-edit-date-input"
+
+  const btnSave = document.createElement("button")
+  btnSave.textContent = "Save"
+  btnSave.className = "task-edit-save"
+
+  const btnCancel = document.createElement("button")
+  btnCancel.textContent = "Cancel"
+  btnCancel.className = "task-edit-cancel"
+
+  const buttonsWrap = document.createElement("div")
+  buttonsWrap.className = "task-edit-buttons"
+  buttonsWrap.append(btnSave, btnCancel)
+
+  taskText.replaceWith(titleInput)
+  taskDate.replaceWith(dateInput)
+  li.querySelector(".task-info").appendChild(buttonsWrap)
+
+  titleInput.focus()
+
+  btnSave.addEventListener("click", () => {
+    task.title = titleInput.value.trim()
+    task.date = dateInput.value
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+
+    taskText.textContent = task.title
+    taskDate.textContent = formatDateForTask(task.date)
+
+    titleInput.replaceWith(taskText)
+    dateInput.replaceWith(taskDate)
+    buttonsWrap.remove()
+    li.classList.remove("editing")
+  })
+
+  btnCancel.addEventListener("click", () => {
+    titleInput.replaceWith(taskText)
+    dateInput.replaceWith(taskDate)
+    buttonsWrap.remove()
+    li.classList.remove("editing")
+  })
+})

@@ -1,0 +1,21 @@
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  gap: 20px;
+  margin: 50px auto;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-todo {
+  cursor: pointer;
+}
