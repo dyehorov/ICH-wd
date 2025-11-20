@@ -74,15 +74,18 @@ const addTaskBtn = document.querySelector(".add-task-btn")
 const createTaskForm = document.querySelector(".create-task-form")
 const closeTaskForm = document.querySelector(".close-task-form")
 const taskDateInput = document.querySelector("input[name='task-date']")
+const overlay = document.querySelector(".overlay")
 
-taskDateInput.setAttribute("min", `${currentDay}`)
+taskDateInput.min = new Date().toISOString().slice(0, 16)
 
 addTaskBtn.addEventListener("click", () => {
   createTaskForm.classList.remove("hidden")
+  overlay.classList.remove("hidden")
 })
 
 closeTaskForm.addEventListener("click", () => {
   createTaskForm.classList.add("hidden")
+  overlay.classList.add("hidden")
   createTaskForm.reset()
 })
 
@@ -101,7 +104,7 @@ createTaskForm.addEventListener("submit", (event) => {
   }
 
   const taskObj = {
-    id: Math.floor(Math.random() * 1_000_000_000),
+    id: Date.now(),
     title: task,
     date: dateInput,
     completed: false,
@@ -109,17 +112,20 @@ createTaskForm.addEventListener("submit", (event) => {
 
   tasks.push(taskObj)
 
-  const orderedTasks = sortListOfTasks([...tasks])
+  tasks.sort((a, b) => getNumbersFromDate(a.date) - getNumbersFromDate(b.date))
 
   if (toDoList.firstElementChild.nodeName === "P") {
     toDoList.removeChild(toDoList.firstElementChild)
   }
 
   toDoList.innerHTML = ""
-  listTasks(orderedTasks)
+  listTasks(tasks)
 
-  localStorage.setItem("tasks", JSON.stringify(orderedTasks))
+  localStorage.setItem("tasks", JSON.stringify(tasks))
   createTaskForm.reset()
+
+  createTaskForm.classList.add("hidden")
+  overlay.classList.add("hidden")
 })
 
 function formatDateForTask(dateString) {
@@ -137,6 +143,12 @@ function formatDateForTask(dateString) {
   })
 
   return `${taskDateart}, ${timePart}`
+}
+
+//========Save and Render tasks========
+
+function saveTasksToLocalStorage(list) {
+  localStorage.setItem("tasks", JSON.stringify(list))
 }
 
 //========Task Render=========
@@ -244,9 +256,17 @@ toDoList.addEventListener("change", (event) => {
 const filterButtons = document.querySelector(".filter-buttons")
 
 filterButtons.addEventListener("click", (event) => {
-  const dataButton = event.target
+  if (toDoList.firstElementChild !== null) {
+    if (toDoList.firstElementChild.nodeName === "P") {
+      return
+    }
+  }
+
+  const dataButton = event.target.closest(".filter-button")
+
+  if (!dataButton) return
+
   const dataButtonDataSet = dataButton.dataset.button
-  const tasks = JSON.parse(localStorage.getItem("tasks"))
   const filterButtons = document.querySelectorAll(".filter-button")
 
   filterButtons.forEach((item) => {
@@ -292,11 +312,15 @@ searchTaskInput.addEventListener("input", (event) => {
   toDoList.innerHTML = ""
 
   listTasks(filterTasksByInput(tasks, searchInput))
+
+  if (toDoList.children.length === 0) {
+    toDoList.innerHTML = "No tasks found"
+  }
 })
 
 function filterTasksByInput(list, searchInput) {
   return list.filter(({ title }) => {
-    return title.includes(searchInput)
+    return title.toLowerCase().includes(searchInput.toLowerCase())
   })
 }
 
@@ -358,6 +382,15 @@ toDoList.addEventListener("click", (event) => {
     dateInput.replaceWith(taskDate)
     buttonsWrap.remove()
     li.classList.remove("editing")
+
+    tasks.sort(
+      (a, b) => getNumbersFromDate(a.date) - getNumbersFromDate(b.date)
+    )
+
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+
+    toDoList.innerHTML = ""
+    listTasks(tasks)
   })
 
   btnCancel.addEventListener("click", () => {

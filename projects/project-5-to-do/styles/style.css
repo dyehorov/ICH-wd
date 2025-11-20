@@ -209,6 +209,7 @@ body {
   background-color: #f7f2fa;
   padding: 16px;
   border-radius: 50px 50px 0 0;
+  z-index: 20;
 }
 
 .hidden {
@@ -352,5 +353,16 @@ body {
 
 .to-do-list-item.editing > .checkbox,
 .to-do-list-item.editing > .task-edit-button {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.overlay.hidden {
   display: none;
 }
