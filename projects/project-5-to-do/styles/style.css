@@ -77,6 +77,10 @@ body {
   cursor: pointer;
 }
 
+.filter-button .clicked {
+  background-color: #e8def8;
+}
+
 .clicked {
   background-color: #e8def8;
 }
@@ -178,16 +182,16 @@ body {
   font-size: 16px;
 }
 
-.task-completed {
+.completed .task-info-text {
   color: #a09ca1;
 }
 
-.task-completed:last-of-type {
+.completed .task-info-text:last-of-type {
   text-decoration: line-through;
 }
 
 .create-task-form {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -196,17 +200,17 @@ body {
   border-radius: 50px 50px 0 0;
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
+
+.create-task-input-wrapper {
+  min-height: 60px;
+}
 
 .create-task-input-wrapper > input {
   width: 100%;
   padding: 8px;
-}
-
-.create-task-input-wrapper {
-  margin-bottom: 16px;
 }
 
 .create-task-form .top-handle {
@@ -262,6 +266,7 @@ body {
   color: #fff;
   border: 1px solid #6750a4;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .button:last-child {

@@ -28,21 +28,29 @@
           ></i>
         </form>
         <div class="filter-buttons">
-          <button class="filter-button filter-all focus">
+          <button class="filter-button filter-all focus" data-button="All">
             <i class="fa-solid fa-check"></i><span>All</span>
           </button>
-          <button class="filter-button filter-active focus">Active</button>
-          <button class="filter-button filter-completed focus">
+          <button
+            class="filter-button filter-active focus"
+            data-button="Active"
+          >
+            Active
+          </button>
+          <button
+            class="filter-button filter-completed focus"
+            data-button="Completed"
+          >
             Completed
           </button>
         </div>
         <ul class="to-do-list">
-          <li class="to-do-list-item">
+          <!-- <li class="to-do-list-item">
             <label class="checkbox">
               <input type="checkbox" class="focus" />
               <span class="checkmark"></span>
             </label>
-            <div class="task">
+            <div class="task-info">
               <p class="task-date task-completed">10 January, 11:30</p>
               <p class="task-text task-completed">Feed my cat</p>
             </div>
@@ -56,7 +64,7 @@
               <p class="task-date">10 January, 11:30</p>
               <p class="task-text">Feed my cat</p>
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
       <div class="add-task-btn"><i class="fa-solid fa-pen"></i></div>
@@ -71,7 +79,13 @@
           />
         </div>
         <div class="create-task-input-wrapper">
-          <input type="datetime-local" class="focus" name="task-date" />
+          <input
+            type="datetime-local"
+            class="focus"
+            name="task-date"
+            required
+          />
+          <span class="error-in-date"></span>
         </div>
         <div class="remind-me">
           <p>Remind me</p>
