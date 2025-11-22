@@ -76,7 +76,13 @@ const waitForTime = (ms) =>
 //Promise.race() - вернет самый первый отработаный промис, не важно зарезолвился или зареджектился
 
 Promise.race([fetchDataPart1(), fetchDataPart2(), fetchDataPart3()]).then(
-  (data) => console.log(data) //
+  (data) => console.log(data)
 )
 
 waitForTime(5000).then((result) => console.log(result))
+
+const log = (username, number) => {
+  console.log("hello", username, number)
+}
+
+setTimeout(log, 100, "Alice", 86)

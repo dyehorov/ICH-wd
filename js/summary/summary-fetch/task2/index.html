@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/script.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/dace3e7454.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <form class="create-post-form">
+        <div class="post-text-input">
+          <textarea name="message" placeholder="What's happening?"></textarea
+          ><br />
+        </div>
+        <div class="bottom-part">
+          <div class="file-input">
+            <label class="upload-photo"
+              ><i class="fa-regular fa-image fa-lg custom-file-input"></i>
+              <input type="file" name="photo" id="upload-photo"
+            /></label>
+          </div>
+          <div class="post-button">
+            <input type="submit" class="postBtn" value="Post" />
+          </div>
+        </div>
+      </form>
+      <ul class="posts-list">
+        <!-- <li class="post-list-item">
+          <span class="post-author-name">Author's name</span>
+          <h2 class="post-title">Title</h2>
+          <p class="post-body">Body</p>
+          <div class="comments">
+            <i class="fa-regular fa-comment fa-sm"></i>
+            <span class="number-of-comments">33</span>
+          </div>
+        </li> -->
+      </ul>
+      <div class="comments-modal-window hidden">
+        <ul class="comments-list">
+          <li class="comment">
+            <span class="comment-author">Author</span>
+            <span class="author-email">Email</span>
+            <p class="comment-name">Comment name</p>
+            <p class="comment-text">Comment text</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
