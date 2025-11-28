@@ -1,8 +1,3 @@
-/*
-
-
-*/
-
 const BASE_URL = "https://jsonplaceholder.typicode.com"
 
 const urls = [
@@ -45,16 +40,19 @@ function createPostCard(author, id, title, body, commentsCount) {
   return li
 }
 
-function getPosts() {
-  return fetch(`${BASE_URL}/posts`).then((response) => response.json())
+async function getPosts() {
+  const response = await fetch(`${BASE_URL}/posts`)
+  return await response.json()
 }
 
-function getUsers() {
-  return fetch(`${BASE_URL}/users`).then((response) => response.json())
+async function getUsers() {
+  const response = await fetch(`${BASE_URL}/users`)
+  return await response.json()
 }
 
-function getComments() {
-  return fetch(`${BASE_URL}/comments`).then((response) => response.json())
+async function getComments() {
+  const response = await fetch(`${BASE_URL}/comments`)
+  return await response.json()
 }
 
 Promise.all([getComments(), getPosts(), getUsers()])
@@ -69,7 +67,7 @@ Promise.all([getComments(), getPosts(), getUsers()])
       return accum
     }, {})
 
-    postsList.addEventListener("click", (event) => {
+    postsList.addEventListener("click", event => {
       if (!event.target.classList.contains("comment-icon")) return
 
       commentsModalWindow.classList.remove("hidden")
@@ -87,7 +85,7 @@ Promise.all([getComments(), getPosts(), getUsers()])
       return accum
     }, {})
 
-    return posts.map((post) => {
+    return posts.map(post => {
       return {
         ...post,
         userId: post.userId,
@@ -99,8 +97,8 @@ Promise.all([getComments(), getPosts(), getUsers()])
       }
     })
   })
-  .then((posts) => {
-    posts.forEach((post) => {
+  .then(posts => {
+    posts.forEach(post => {
       postsList.appendChild(
         createPostCard(
           post.user.name,
@@ -136,7 +134,7 @@ function renderComments(comments) {
   const list = document.querySelector(".comments-list")
   list.innerHTML = ""
 
-  comments.forEach((comment) => {
+  comments.forEach(comment => {
     list.appendChild(createComment(comment.name, comment.body))
   })
 }

@@ -57,12 +57,12 @@ const promise1 = new Promise((resolve, reject) => {
 console.log(promise1)
 
 promise1
-  .then((user) => {
+  .then(user => {
     console.log(`User name: ${user.name}`)
 
     return user
   })
-  .then((user) => {
+  .then(user => {
     console.log(`User age: ${user.age}`)
   })
   .catch(() => {

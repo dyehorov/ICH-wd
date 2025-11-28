@@ -3,3 +3,70 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  background-color: aliceblue;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1206px;
+}
+
+.filter-container {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.filter-buttons button {
+  padding: 4px 16px;
+  background-color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.todoList {
+  list-style-type: none;
+}
+
+.todo-list-item {
+  background-color: cadetblue;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+}
+
+.todo-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.completed {
+  background-color: rgb(91, 182, 112);
+}
+
+.statistics {
+  position: fixed;
+  bottom: 0;
+  right: 24px;
+  display: flex;
+}
+
+.statistics p {
+  padding: 4px 8px;
+}
+
+.all-tasks {
+  background-color: dodgerblue;
+}
+
+.completed-tasks {
+  background-color: green;
+}
+
+.left-tasks {
+  background-color: red;
+}

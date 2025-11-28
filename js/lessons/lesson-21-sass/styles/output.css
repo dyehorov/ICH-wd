@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main p {
+  color: blue;
+  font-size: 20px;
+}
+main a {
+  font-size: 20px;
+}
+main i,
+main b {
+  color: red;
+}
+
+/*# sourceMappingURL=output.css.map */

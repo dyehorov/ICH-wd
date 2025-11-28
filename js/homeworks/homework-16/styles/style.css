@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f4f6f8;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  max-width: 1206px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.user-cards {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.card {
+  background: #ffffff;
+  width: 280px;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.username {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.user-city,
+.user-company-name,
+.user-email,
+.user-phone {
+  margin: 5px 0;
+}
+
+.user-id {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 4px 10px;
+  background: #eef2f6;
+  color: #475569;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.user-company-name {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.user-email {
+  color: #047857;
+  font-weight: 600;
+}
+
+.user-phone {
+  color: #7c3aed;
+  font-weight: 600;
+}

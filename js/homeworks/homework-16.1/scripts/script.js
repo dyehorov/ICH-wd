@@ -1,5 +1,3 @@
-// 1. Используя синтаксис try/catch, отправить запрос на https://jsonplaceholder.typicode.com/posts?userId=1, в блоке catch сделать вывод консоль сообщения об ошибке. Для проверки блока catch сделать намеренную ошибку в url запроса.
-
 const url = "https://jsonplaceholder.typicode.com/posts?userId=1"
 
 async function fetchData(url) {
@@ -19,8 +17,6 @@ async function fetchData(url) {
 }
 
 fetchData(url)
-
-// 2. Написать функцию, которая делит одно число на другое, обрабатывая возможные ошибки деления на ноль.
 
 function division(num1, num2) {
   try {

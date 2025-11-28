@@ -4,8 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/style.css" />
-    <script src="./scripts/script.js"></script>
+    <script src="./scripts/script.js" defer></script>
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="filter-container">
+        <div class="filter-buttons">
+          <button data-filter="All">All</button>
+          <button data-filter="Active">Active</button>
+          <button data-filter="Completed">Completed</button>
+        </div>
+        <form class="filter-select">
+          <label for="filter-by-user">Choose user:</label>
+          <select id="filter-by-user" name="filter-by-user">
+            <option value="All">All</option>
+          </select>
+        </form>
+      </div>
+      <ul class="todoList"></ul>
+      <div class="statistics">
+        <p class="all-tasks">Всего задач: X</p>
+        <p class="completed-tasks">Выполнено: Y (Z%)</p>
+        <p class="left-tasks">Осталось: K</p>
+      </div>
+    </div>
+  </body>
 </html>
