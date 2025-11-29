@@ -45,6 +45,11 @@ const BASE_URL = "https://jsonplaceholder.typicode.com"
 const todoList = document.querySelector(".todoList")
 const filterButtonsContainer = document.querySelector(".filter-buttons")
 const filterByUser = document.querySelector("#filter-by-user")
+const statisticsContainer = document.querySelector(".statistics")
+
+const todosData = []
+
+window.addEventListener("DOMContentLoaded", getData)
 
 async function fetchUsers() {
   try {
@@ -57,6 +62,8 @@ async function fetchUsers() {
     return data
   } catch (error) {
     console.log(error)
+
+    return []
   }
 }
 
@@ -71,107 +78,35 @@ async function fetchTodos() {
     return data
   } catch (error) {
     console.log(error)
+
+    return []
   }
 }
 
-Promise.all([fetchUsers(), fetchTodos()])
-  .then(data => {
-    const [users, todos] = data
+async function getData() {
+  const [users, todos] = await Promise.all([fetchUsers(), fetchTodos()])
 
-    users.forEach(({ name }) =>
-      filterByUser.appendChild(renderUsersForOptionInSelectFilter(name))
-    )
+  users.forEach(
+    ({ name }) =>
+      filterByUser.appendChild(renderUsersForOptionInSelectFilter(name)) // createOptionForFilter
+  )
 
-    const mergedUsersWithTodos = todos.map(todo => {
-      const user = users.find(user => user.id === todo.userId)
+  todos.forEach(todo => {
+    const user = users.find(user => user.id === todo.userId)
 
-      return {
-        todoId: todo.id,
-        title: todo.title,
-        completed: todo.completed,
-        userId: user.id,
-        name: user.name,
-        email: user.email,
-      }
+    todosData.push({
+      todoId: todo.id,
+      title: todo.title,
+      completed: todo.completed,
+      userId: user?.id,
+      name: user?.name,
+      email: user?.email,
     })
-
-    console.log(mergedUsersWithTodos)
-
-    return mergedUsersWithTodos
   })
-  .then(todos => {
-    todos.forEach(({ title, completed, name, email }) => {
-      todoList.appendChild(renderTodo(title, completed, name, email))
-    })
 
-    filterButtonsContainer.addEventListener("click", event => {
-      const filterButtonDataSet = event.target.dataset.filter
-
-      filterTodos(filterButtonDataSet)
-    })
-
-    function filterTodos(dataset) {
-      switch (dataset) {
-        case "All":
-          todoList.innerHTML = ""
-
-          todos.forEach(({ title, completed, name, email }) => {
-            todoList.appendChild(renderTodo(title, completed, name, email))
-          })
-
-          break
-
-        case "Completed":
-          todoList.innerHTML = ""
-
-          todos
-            .filter(item => item.completed === true)
-            .forEach(({ title, completed, name, email }) => {
-              todoList.appendChild(renderTodo(title, completed, name, email))
-            })
-
-          break
-        case "Active":
-          todoList.innerHTML = ""
-
-          todos
-            .filter(item => item.completed === false)
-            .forEach(({ title, completed, name, email }) => {
-              todoList.appendChild(renderTodo(title, completed, name, email))
-            })
-
-          break
-        default:
-          break
-      }
-    }
-
-    filterByUser.addEventListener("change", () => {
-      const filterByUserOptionValue = filterByUser.value
-
-      filterByUserValue(filterByUserOptionValue)
-    })
-
-    function filterByUserValue(username) {
-      if (username === "All") {
-        todoList.innerHTML = ""
-
-        todos.forEach(({ title, completed, name, email }) => {
-          todoList.appendChild(renderTodo(title, completed, name, email))
-        })
-
-        return
-      }
-
-      todoList.innerHTML = ""
-      todos
-        .filter(item => item.name === username)
-        .forEach(({ title, completed, name, email }) => {
-          todoList.appendChild(renderTodo(title, completed, name, email))
-        })
-    }
-  })
-  .catch(err => console.log(err))
+  renderList(todosData)
+  renderStatistics(todosData)
+}
 
 function renderTodo(title, completed, name, email) {
   const li = document.createElement("li")
@@ -193,15 +128,22 @@ function renderTodo(title, completed, name, email) {
 
   const usernameEl = document.createElement("p")
   usernameEl.className = "todo-username"
-  usernameEl.textContent = name
+  usernameEl.textContent = name || "-"
 
   const emailEl = document.createElement("span")
   emailEl.className = "todo-email"
-  emailEl.textContent = email
+  emailEl.textContent = email || "-"
 
   li.append(titleEl, statusEl, usernameEl, emailEl)
 
   return li
+}
+
+function renderList(list) {
+  todoList.innerHTML = ""
+  list.forEach(({ title, completed, name, email }) => {
+    todoList.appendChild(renderTodo(title, completed, name, email))
+  })
 }
 
 function renderUsersForOptionInSelectFilter(username) {
@@ -210,4 +152,80 @@ function renderUsersForOptionInSelectFilter(username) {
   option.textContent = username
 
   return option
+}
+
+filterButtonsContainer.addEventListener("click", event => {
+  const filterParameter = event.target.dataset.filter
+
+  const user = filterByUser.value
+
+  filterTodos(todosData, filterParameter, user)
+})
+
+function filterTodos(list, filterParameter, user) {
+  const filtered = list.filter(todo => {
+    if (filterParameter === "Active") {
+      if (user === "All") return todo.completed === false
+
+      return todo.completed === false && todo.name === user
+    }
+
+    if (filterParameter === "Completed") {
+      if (user === "All") return todo.completed === true
+
+      return todo.completed === true && todo.name === user
+    }
+
+    if (user !== "All") return todo.name === user
+
+    return todo
+  })
+
+  renderList(filtered)
+  renderStatistics(filtered)
+}
+
+function filterTodosByUserName(list, user) {
+  if (user === "All") return list
+
+  return list.filter(todo => todo.name === user)
+}
+
+filterByUser.addEventListener("change", event => {
+  const user = event.target.value
+
+  const filtered = filterTodosByUserName(todosData, user)
+
+  renderList(filtered)
+  renderStatistics(filtered)
+})
+
+function renderStatistics(list) {
+  statisticsContainer.innerHTML = ""
+
+  const allTasks = document.createElement("p")
+  allTasks.className = "all-tasks"
+
+  const allTasksAmount = list.length
+  allTasks.textContent = `All tasks: ${allTasksAmount}`
+
+  const completedTasks = document.createElement("p")
+  completedTasks.className = "completed-tasks"
+
+  const completedTasksAmount = list.filter(
+    todo => todo.completed === true
+  ).length
+  completedTasks.textContent = `Completed: ${completedTasksAmount} (${Math.floor(
+    (completedTasksAmount / allTasksAmount) * 100
+  )}%)`
+
+  const leftTasks = document.createElement("p")
+  leftTasks.className = "left-tasks"
+
+  leftTasks.textContent =
+    allTasksAmount === 0
+      ? "Left tasks: 0"
+      : `Left tasks ${allTasksAmount - completedTasksAmount}`
+
+  statisticsContainer.append(allTasks, completedTasks, leftTasks)
 }
