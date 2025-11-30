@@ -48,8 +48,11 @@ const filterByUser = document.querySelector("#filter-by-user")
 const statisticsContainer = document.querySelector(".statistics")
 
 const todosData = []
+let filterButtonDataSet = "All"
 
 window.addEventListener("DOMContentLoaded", getData)
+
+//==========Fetch===========
 
 async function fetchUsers() {
   try {
@@ -86,9 +89,8 @@ async function fetchTodos() {
 async function getData() {
   const [users, todos] = await Promise.all([fetchUsers(), fetchTodos()])
 
-  users.forEach(
-    ({ name }) =>
-      filterByUser.appendChild(renderUsersForOptionInSelectFilter(name)) // createOptionForFilter
+  users.forEach(({ id, name }) =>
+    filterByUser.appendChild(createUserOptionsForFilter(id, name))
   )
 
   todos.forEach(todo => {
@@ -108,7 +110,9 @@ async function getData() {
   renderStatistics(todosData)
 }
 
-function renderTodo(title, completed, name, email) {
+//=========TodoItems=========
+
+function createTodoItem(title, completed, name, email) {
   const li = document.createElement("li")
   li.className = "todo-list-item"
 
@@ -142,63 +146,9 @@ function renderTodo(title, completed, name, email) {
 function renderList(list) {
   todoList.innerHTML = ""
   list.forEach(({ title, completed, name, email }) => {
-    todoList.appendChild(renderTodo(title, completed, name, email))
+    todoList.appendChild(createTodoItem(title, completed, name, email))
   })
 }
-
-function renderUsersForOptionInSelectFilter(username) {
-  const option = document.createElement("option")
-  option.setAttribute("value", username)
-  option.textContent = username
-
-  return option
-}
-
-filterButtonsContainer.addEventListener("click", event => {
-  const filterParameter = event.target.dataset.filter
-
-  const user = filterByUser.value
-
-  filterTodos(todosData, filterParameter, user)
-})
-
-function filterTodos(list, filterParameter, user) {
-  const filtered = list.filter(todo => {
-    if (filterParameter === "Active") {
-      if (user === "All") return todo.completed === false
-
-      return todo.completed === false && todo.name === user
-    }
-
-    if (filterParameter === "Completed") {
-      if (user === "All") return todo.completed === true
-
-      return todo.completed === true && todo.name === user
-    }
-
-    if (user !== "All") return todo.name === user
-
-    return todo
-  })
-
-  renderList(filtered)
-  renderStatistics(filtered)
-}
-
-function filterTodosByUserName(list, user) {
-  if (user === "All") return list
-
-  return list.filter(todo => todo.name === user)
-}
-
-filterByUser.addEventListener("change", event => {
-  const user = event.target.value
-
-  const filtered = filterTodosByUserName(todosData, user)
-
-  renderList(filtered)
-  renderStatistics(filtered)
-})
 
 function renderStatistics(list) {
   statisticsContainer.innerHTML = ""
@@ -222,10 +172,84 @@ function renderStatistics(list) {
   const leftTasks = document.createElement("p")
   leftTasks.className = "left-tasks"
 
-  leftTasks.textContent =
-    allTasksAmount === 0
-      ? "Left tasks: 0"
-      : `Left tasks ${allTasksAmount - completedTasksAmount}`
+  leftTasks.textContent = `Left tasks ${allTasksAmount - completedTasksAmount}`
 
   statisticsContainer.append(allTasks, completedTasks, leftTasks)
+}
+
+function createUserOptionsForFilter(id, name) {
+  const value = id
+  const viewValue = name
+
+  const option = document.createElement("option")
+  option.setAttribute("value", value)
+  option.textContent = viewValue
+
+  return option
+}
+
+//=========Events=========
+
+filterButtonsContainer.addEventListener("click", event => {
+  if (event.target.tagName !== "BUTTON") return
+
+  ;[...filterButtonsContainer.children].forEach(btn =>
+    btn.classList.remove("active")
+  )
+  event.target.classList.add("active")
+
+  filterButtonDataSet = event.target.dataset.filter
+
+  const filterParams = getFilterParams(filterButtonDataSet, filterByUser.value)
+
+  const filtered = filterTodos(todosData, filterParams)
+
+  renderList(filtered)
+  renderStatistics(filtered)
+})
+
+filterByUser.addEventListener("change", event => {
+  const filterParams = getFilterParams(filterButtonDataSet, event.target.value)
+
+  const filtered = filterTodos(todosData, filterParams)
+
+  renderList(filtered)
+  renderStatistics(filtered)
+})
+
+//=========Filter=========
+
+function getFilterParams(state, user) {
+  const stateMap = {
+    All: null,
+    Active: false,
+    Completed: true,
+  }
+
+  return {
+    todoState: stateMap[state],
+    user: user === "All" ? null : user,
+  }
+}
+
+function filterUsers({ userId }, { user }) {
+  if (user === null) {
+    return true
+  }
+
+  return userId === +user
+}
+
+function filterTodoState({ completed }, { todoState }) {
+  if (todoState === null) {
+    return true
+  }
+
+  return todoState === completed
+}
+
+function filterTodos(todoListItems, filterParams) {
+  return todoListItems
+    .filter(todoItem => filterUsers(todoItem, filterParams))
+    .filter(todoItem => filterTodoState(todoItem, filterParams))
 }

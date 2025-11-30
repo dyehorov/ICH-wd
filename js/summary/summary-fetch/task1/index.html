@@ -11,9 +11,11 @@
     <div class="container">
       <div class="filter-container">
         <div class="filter-buttons">
-          <button data-filter="All">All</button>
-          <button data-filter="Active">Active</button>
-          <button data-filter="Completed">Completed</button>
+          <button class="filter-button" data-filter="All">All</button>
+          <button class="filter-button" data-filter="Active">Active</button>
+          <button class="filter-button" data-filter="Completed">
+            Completed
+          </button>
         </div>
         <form class="filter-select">
           <label for="filter-by-user">Choose user:</label>
@@ -23,11 +25,7 @@
         </form>
       </div>
       <ul class="todoList"></ul>
-      <div class="statistics">
-        <!-- <p class="all-tasks">Всего задач: X</p>
-        <p class="completed-tasks">Выполнено: Y (Z%)</p>
-        <p class="left-tasks">Осталось: K</p> -->
-      </div>
+      <div class="statistics"></div>
     </div>
   </body>
 </html>

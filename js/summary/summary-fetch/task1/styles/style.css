@@ -1,72 +1,130 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 body {
-  background-color: aliceblue;
+  background: #f2f4f8;
+  color: #222;
+  padding: 0 32px;
 }
 
 .container {
+  max-width: 1104px;
   margin: 0 auto;
-  max-width: 1206px;
 }
 
 .filter-container {
-  padding: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 24px;
+  padding: 24px 0;
 }
 
-.filter-buttons button {
-  padding: 4px 16px;
-  background-color: cornflowerblue;
-  border: 1px solid cornflowerblue;
-  border-radius: 4px;
+.filter-button {
+  padding: 8px 24px;
+  border-radius: 8px;
+  border: none;
+  background: #4f6ef7;
   color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.filter-buttons button.active {
+  background-color: darkblue;
+}
+
+.filter-select select {
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccd2e0;
+  background: #fff;
 }
 
 .todoList {
-  list-style-type: none;
+  list-style: none;
+  margin-top: 24px;
 }
 
 .todo-list-item {
-  background-color: cadetblue;
-  border-radius: 4px;
-  padding: 8px 16px;
+  background: #ffffff;
+  padding: 16px 24px;
+  border-radius: 8px;
   margin-bottom: 16px;
-}
-
-.todo-list-item:last-child {
-  margin-bottom: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease;
+  position: relative;
 }
 
 .completed {
-  background-color: rgb(91, 182, 112);
+  background: #d5f2d8;
+}
+
+.todo-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.todo-status {
+  display: inline-block;
+  position: absolute;
+  top: 16px;
+  right: 8px;
+  margin-bottom: 8px;
+  padding: 4px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #e1e7f5;
+  color: #4f6ef7;
+}
+
+.completed .todo-status {
+  background: #bfeecc;
+  color: #247d37;
+}
+
+.todo-username {
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.todo-email {
+  font-size: 14px;
+  color: #666;
 }
 
 .statistics {
   position: fixed;
-  bottom: 0;
+  bottom: 24px;
   right: 24px;
   display: flex;
+  gap: 16px;
 }
 
 .statistics p {
-  padding: 4px 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .all-tasks {
-  background-color: dodgerblue;
+  background: #4f6ef7;
 }
 
 .completed-tasks {
-  background-color: green;
+  background: #2b9a47;
 }
 
 .left-tasks {
-  background-color: red;
+  background: #d64545;
 }
