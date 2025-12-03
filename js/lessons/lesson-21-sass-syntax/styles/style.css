@@ -1,0 +1,51 @@
+.header {
+  color: red;
+}
+
+.main h1 {
+  color: blue;
+  font-style: italic;
+}
+
+.footer {
+  color: teal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  font-style: normal;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+}
+
+.main h1 {
+  color: red;
+  font-size: 18px;
+  font-style: italic;
+  border: 2px, solid, green;
+  font-style: normal;
+}
+
+.clickMeBtn, .registerBtn {
+  font-size: 20px;
+  background-color: teal;
+  padding: 20px;
+  color: #fff;
+}
+
+.registerBtn {
+  border-radius: 12px;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,38 @@
+@mixin border($width: 2px, $type: solid, $color: green) {
+  border: $width, $type, $color;
+}
+
+@mixin primaryText {
+  color: red;
+  font-size: 18px;
+  font-style: italic;
+  @include border;
+}
+
+@mixin textPosition {
+  position: relative;
+  left: 50px;
+  top: 5px;
+}
+
+@mixin flexBox($display: flex, $justCont: center, $align: center, $flexD: row) {
+  display: $display;
+  justify-content: $justCont;
+  align-items: $align;
+  flex-direction: $flexD;
+}
+@mixin wrapFlexBox(
+  $display: flex,
+  $justCont: center,
+  $align: center,
+  $flexD: row
+) {
+  @include flexBox(
+    $display: $display,
+    $justCont: $justCont,
+    $align: $align,
+    $flexD: $flexD,
+    $wrap: nowrap
+  );
+  flex-wrap: $wrap;
+}

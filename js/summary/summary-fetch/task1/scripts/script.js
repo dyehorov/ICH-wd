@@ -192,7 +192,6 @@ function createUserOptionsForFilter(id, name) {
 
 filterButtonsContainer.addEventListener("click", event => {
   if (event.target.tagName !== "BUTTON") return
-
   ;[...filterButtonsContainer.children].forEach(btn =>
     btn.classList.remove("active")
   )

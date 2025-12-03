@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+$primaryWidth: 960px;
+$additionalWidth: 100%;
+
+.container {
+  border: 2px solid green;
+  padding: 50px;
+  width: $primaryWidth;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: $additionalWidth;
+  }
+}
+
+@mixin button-styles($background-color, $color) {
+  background-color: $background-color;
+  color: $color;
+}
+
+.button {
+  @include button-styles(yellow, red);
+}

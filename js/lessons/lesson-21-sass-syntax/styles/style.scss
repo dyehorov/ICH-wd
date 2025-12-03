@@ -1,0 +1,43 @@
+// @import "./sections/footer.scss"; это устаревший вариант
+
+@use "./sections/header"; // использовать надо use
+@use "./sections/main";
+@use "./sections/footer";
+@use "./variables/mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  font-style: normal;
+  height: 100%;
+}
+
+body {
+  @include mixins.flexBox($justCont: space-between);
+  height: 100%;
+}
+
+.main {
+  h1 {
+    @include mixins.primaryText;
+    // @include textPosition;
+    font-style: normal; // можно перезаписывать свойство, если не подходит из миксина. Что ниже то и будет выведено.
+  }
+}
+
+.clickMeBtn {
+  font-size: 20px;
+  background-color: teal;
+  padding: 20px;
+  color: #fff;
+}
+
+.registerBtn {
+  @extend .clickMeBtn;
+  border-radius: 12px;
+}

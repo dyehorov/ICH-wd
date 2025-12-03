@@ -1,0 +1,79 @@
+@use "../variables/mixins";
+@use "../variables/spacing";
+@use "../variables/colors";
+@use "../variables/radius";
+
+.create-task-form {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: colors.$surface;
+  padding: spacing.$space-16;
+  border-radius: radius.$radius-xxl radius.$radius-xxl 0 0;
+  z-index: 20;
+
+  .top-handle {
+    width: spacing.$space-32;
+    height: spacing.$space-4;
+    background-color: colors.$gray;
+    border-radius: radius.$radius-pill;
+    margin: 0 auto spacing.$space-32;
+  }
+
+  .create-task-input-wrapper {
+    min-height: spacing.$space-32 * 2;
+
+    input {
+      @include mixins.inputBase;
+      @include mixins.text16;
+    }
+  }
+
+  .create-task-form-input {
+    @include mixins.text16;
+  }
+
+  .remind-me {
+    @include mixins.flexBox(space-between, center, row, spacing.$space-16);
+    margin-bottom: spacing.$space-32;
+    @include mixins.text16;
+  }
+
+  .create-task-buttons {
+    @include mixins.flexBox(flex-end, center, row, spacing.$space-8);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.switch {
+  width: spacing.$space-24 * 2;
+  height: spacing.$space-32;
+  background-color: colors.$primaryColor;
+  @include mixins.rounded(radius.$radius-xl);
+  position: relative;
+
+  .switch-handler {
+    @include mixins.circle(24px);
+    background-color: colors.$bg;
+    position: absolute;
+    right: spacing.$space-4;
+    top: spacing.$space-4;
+    text-align: center;
+    line-height: 24px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+
+  &.hidden {
+    display: none;
+  }
+}

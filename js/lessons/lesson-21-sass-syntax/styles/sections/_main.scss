@@ -1,0 +1,8 @@
+@use "../variables/colors.scss";
+
+.main {
+  h1 {
+    color: colors.$primaryColor;
+    font-style: italic;
+  }
+}

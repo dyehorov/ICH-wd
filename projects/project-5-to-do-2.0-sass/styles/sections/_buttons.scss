@@ -1,0 +1,60 @@
+@use "../variables/mixins";
+@use "../variables/colors";
+@use "../variables/spacing";
+
+.add-task-btn {
+  background-color: colors.$primaryLight;
+  padding: spacing.$space-16;
+  @include mixins.rounded(16px);
+  position: absolute;
+  right: spacing.$space-16;
+  bottom: spacing.$space-16;
+  cursor: pointer;
+  @include mixins.text16;
+}
+
+.focus:focus {
+  outline: 2px solid colors.$primaryLight;
+  z-index: 10;
+}
+
+.button {
+  @include mixins.buttonBase(colors.$primaryColor);
+  @include mixins.text16;
+
+  &:last-child {
+    @include mixins.buttonBase(colors.$surface, colors.$primaryColor);
+    @include mixins.text16;
+  }
+}
+
+.task-edit-button {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.task-edit-input,
+.task-edit-date-input {
+  @include mixins.inputBase;
+  @include mixins.text16;
+  margin-bottom: spacing.$space-8;
+}
+
+.task-edit-buttons {
+  @include mixins.flexBox(null, center, row, spacing.$space-8);
+  margin-top: spacing.$space-8;
+
+  .task-edit-save {
+    @include mixins.buttonBase(colors.$primaryColor);
+    padding: spacing.$space-8 spacing.$space-16;
+    @include mixins.rounded(16px);
+    @include mixins.text12;
+  }
+
+  .task-edit-cancel {
+    @include mixins.buttonBase(colors.$surface, colors.$primaryColor);
+    padding: spacing.$space-8 spacing.$space-16;
+    @include mixins.rounded(16px);
+    @include mixins.text12;
+  }
+}

@@ -1,0 +1,29 @@
+@use "../variables/mixins";
+@use "../variables/colors";
+@use "../variables/spacing";
+
+.search-task {
+  background-color: colors.$surface;
+  @include mixins.rounded(24px);
+  padding: spacing.$space-8 spacing.$space-16;
+  @include mixins.flexBox(null, center, row, spacing.$space-8);
+
+  &:focus-within {
+    outline: 2px solid colors.$primaryLight;
+  }
+
+  &-input {
+    background-color: colors.$surface;
+    border: 1px solid colors.$surface;
+    flex-grow: 1;
+    @include mixins.text16;
+
+    &::placeholder {
+      @include mixins.text16;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

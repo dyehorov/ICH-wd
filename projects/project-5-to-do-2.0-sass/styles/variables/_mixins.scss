@@ -1,0 +1,55 @@
+@use "./spacing";
+@use "./typography";
+@use "./radius";
+@use "./colors";
+
+@mixin flexBox($jc: center, $ai: center, $dir: row, $gap: spacing.$space-8) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $dir;
+  gap: $gap;
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+@mixin rounded($radius) {
+  border-radius: $radius;
+}
+
+@mixin inputBase {
+  width: 100%;
+  padding: spacing.$space-8;
+  font-size: typography.$fs-16;
+  line-height: typography.$lh-default;
+  border-radius: radius.$radius-l;
+  border: 1px solid colors.$gray;
+  background-color: colors.$bg;
+}
+
+@mixin buttonBase($bg, $color: #fff) {
+  padding: spacing.$space-8 spacing.$space-24;
+  border-radius: radius.$radius-xl;
+  background-color: $bg;
+  color: $color;
+  font-size: typography.$fs-16;
+  line-height: typography.$lh-default;
+  border: 1px solid $bg;
+  cursor: pointer;
+}
+
+@mixin text16 {
+  font-size: typography.$fs-16;
+  line-height: typography.$lh-default;
+  font-weight: typography.$fw-regular;
+}
+
+@mixin text12 {
+  font-size: typography.$fs-12;
+  line-height: typography.$lh-default;
+  font-weight: typography.$fw-regular;
+}

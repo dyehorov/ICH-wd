@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./scripts/script.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/dace3e7454.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="to-do-content">
+        <p class="current-weekday"></p>
+        <p class="current-date"></p>
+        <form class="search-task">
+          <input type="text" placeholder="Search" class="search-task-input" /><i
+            class="fa-solid fa-magnifying-glass"
+          ></i>
+        </form>
+        <div class="filter-buttons">
+          <button
+            class="filter-button filter-all active focus"
+            data-button="All"
+          >
+            <i class="fa-solid fa-check"></i><span>All</span>
+          </button>
+          <button
+            class="filter-button filter-active focus"
+            data-button="Active"
+          >
+            Active
+          </button>
+          <button
+            class="filter-button filter-completed focus"
+            data-button="Completed"
+          >
+            Completed
+          </button>
+        </div>
+        <ul class="to-do-list">
+          <!-- <li class="to-do-list-item">
+            <label class="checkbox">
+              <input type="checkbox" class="focus" />
+              <span class="checkmark"></span>
+            </label>
+            <div class="task-info">
+              <p class="task-date task-completed">10 January, 11:30</p>
+              <p class="task-text task-completed">Feed my cat</p>
+            </div>
+          </li>
+          <li class="to-do-list-item">
+            <label class="checkbox">
+              <input type="checkbox" class="focus" />
+              <span class="checkmark"></span>
+            </label>
+            <div class="task">
+              <p class="task-date">10 January, 11:30</p>
+              <p class="task-text">Feed my cat</p>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+      <div class="add-task-btn"><i class="fa-solid fa-pen"></i></div>
+      <div class="overlay hidden"></div>
+      <form class="create-task-form hidden">
+        <div class="top-handle"></div>
+        <div class="create-task-input-wrapper">
+          <input
+            type="text"
+            placeholder="Description"
+            class="focus create-task-form-input"
+            name="task-input"
+          />
+        </div>
+        <div class="create-task-input-wrapper">
+          <input
+            type="datetime-local"
+            class="focus"
+            name="task-date"
+            required
+          />
+          <span class="error-in-date"></span>
+        </div>
+        <div class="remind-me">
+          <p>Remind me</p>
+          <div class="switch">
+            <div class="switch-handler"><i class="fa-solid fa-check"></i></div>
+          </div>
+        </div>
+        <div class="create-task-buttons">
+          <input
+            type="submit"
+            value="Create"
+            class="create-task-button button focus"
+          />
+          <button type="button" class="close-task-form button focus">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

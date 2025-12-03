@@ -1,0 +1,26 @@
+@use "../variables/colors";
+@use "../variables/mixins";
+@use "../variables/typography";
+@use "../variables/spacing";
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: colors.$bg;
+  padding: spacing.$space-24 spacing.$space-16;
+  position: relative;
+  height: 100%;
+}
+
+.to-do-content {
+  @include mixins.flexBox(null, null, column, spacing.$space-16);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: typography.$font-main;
+}

@@ -1,0 +1,9 @@
+@use "../variables/mixins";
+
+.current-weekday {
+  @include mixins.text16;
+}
+
+.current-date {
+  @include mixins.text12;
+}

@@ -1,0 +1,110 @@
+@use "../variables/mixins";
+@use "../variables/colors";
+@use "../variables/spacing";
+@use "../variables/radius";
+
+.to-do-list {
+  list-style-type: none;
+}
+
+.to-do-list-item {
+  background-color: colors.$surface;
+  @include mixins.flexBox(null, center, row, spacing.$space-16);
+  padding: spacing.$space-8 spacing.$space-16;
+  @include mixins.rounded(radius.$radius-l);
+  margin-bottom: spacing.$space-8;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &.editing {
+    @include mixins.flexBox(null, flex-start, column, spacing.$space-16);
+
+    .task-info {
+      width: 100%;
+      white-space: normal;
+    }
+
+    .task-edit-input,
+    .task-edit-date-input {
+      width: 100%;
+    }
+
+    .task-edit-buttons {
+      width: 100%;
+      @include mixins.flexBox(flex-start, center, row, spacing.$space-16);
+    }
+
+    > .checkbox,
+    > .task-edit-button {
+      display: none;
+    }
+  }
+}
+
+.task-info {
+  white-space: normal;
+  overflow: visible;
+}
+
+.task-date {
+  @include mixins.text12;
+  margin-bottom: spacing.$space-8;
+}
+
+.task-text {
+  @include mixins.text16;
+  word-break: break-word;
+}
+
+.completed .task-info-text {
+  color: colors.$gray;
+
+  &:last-of-type {
+    text-decoration: line-through;
+  }
+}
+
+.checkbox {
+  position: relative;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .checkmark {
+    width: 24px;
+    height: 24px;
+    @include mixins.rounded(radius.$radius-m);
+    border: 2px solid colors.$gray;
+    @include mixins.flexBox(center, center, row, 0);
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 6px;
+      height: 12px;
+      border-right: 2px solid colors.$primaryColor;
+      border-bottom: 2px solid colors.$primaryColor;
+      transform: rotate(45deg) scale(0);
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      transition: 0.2s;
+    }
+  }
+
+  input:checked + .checkmark {
+    background-color: colors.$primaryLight;
+    border-color: colors.$primaryLight;
+
+    &::after {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+}

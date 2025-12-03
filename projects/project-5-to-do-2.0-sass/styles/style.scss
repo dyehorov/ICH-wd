@@ -1,0 +1,20 @@
+@use "./variables/colors";
+@use "./variables/spacing";
+@use "./variables/radius";
+@use "./variables/typography";
+@use "./variables/mixins";
+
+@use "./sections/container";
+@use "./sections/search";
+@use "./sections/filters";
+@use "./sections/todo";
+@use "./sections/modal";
+@use "./sections/buttons";
+
+@use "./pages/home";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
