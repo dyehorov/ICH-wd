@@ -122,3 +122,29 @@ console.log(findShort("bitcoin take over the world maybe who knows perhaps"))
  21   23    25    27    29
 
 */
+
+function rowSumOddNumbers(n) {
+  const firstNumberInTheRow = n ** 2 - n + 1
+  const arrayOfTheRow = []
+  let num = 1
+
+  for (let i = firstNumberInTheRow; num <= n; i++) {
+    if (i % 2 !== 0) {
+      arrayOfTheRow.push(i)
+
+      num++
+    }
+  }
+
+  return arrayOfTheRow.reduce((accum, item) => {
+    return (accum += item)
+  }, 0)
+}
+
+console.log(rowSumOddNumbers(42))
+
+/*
+ 1 3 7 13 21 each step is multiplied by 2, then we can say an​=n2−n+1 then 
+
+
+ */
