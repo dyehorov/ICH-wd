@@ -8,7 +8,7 @@ class User {
   }
 
   login() {
-    console.log("I am signing up")
+    console.log("I am logging in")
   }
 
   sayHello() {
