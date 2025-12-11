@@ -21,27 +21,181 @@ Animal.getTotal()
 
 // 2. Модифицируйте класс User. Добавьте статическое свойство nextId, которое будет хранить следующий доступный ID. При создании нового пользователя автоматически присваивайте ему уникальный ID из этого свойства и увеличивайте nextId на 1 для следующего пользователя. Добавьте свойство id в экземпляры.
 
+class User {
+  static nextId = 1
+
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+    this.id = User.nextId
+    User.nextId++
+  }
+
+  displayInfo() {
+    console.log(`User name: ${this.name}, User age: ${this.age}`)
+  }
+}
+
+const user1 = new User("John", 22)
+const user2 = new User("Max", 21)
+const user3 = new User("Carl", 25)
+
+console.log(user1)
+console.log(user2)
+console.log(user3)
+
 // 3. К классу Product добавьте статические методы:
 // isValidName(name) - проверяет, что имя не пустое и длиннее 2 символов
 // isValidPrice(price) - проверяет, что цена положительная
 // isValidQuantity(quantity) - проверяет, что количество целое и неотрицательное
 // Используйте эти методы в конструкторе класса для проверки входных данных.
 
+class Product {
+  static isValidName(name) {
+    return name.trim().length > 2
+  }
+
+  static isValidPrice(price) {
+    return price > 0
+  }
+
+  static isValidQuantity(quantity) {
+    return quantity > 0 && Number.isInteger(quantity)
+  }
+
+  constructor(name, price, quantity) {
+    this.name = name
+    this.price = price
+    this.quantity = quantity
+  }
+
+  getTotalCost() {
+    return this.quantity * this.price
+  }
+
+  applyDiscount(percent) {
+    return this.getTotalCost() - this.getTotalCost() * (percent / 100)
+  }
+}
+
+const product = new Product("Eggs", 5.99, 4)
+
+console.log(Product.isValidName(product.name))
+console.log(Product.isValidPrice(product.price))
+console.log(Product.isValidQuantity(product.quantity))
+
 // 4. К классу Account добавьте:
 // Статическое свойство exchangeRates, хранящее курс валют (например, {USD: 1, EUR: 0.92, GBP: 0.75 })
 // Статический метод convert(amount, fromCurrency, toCurrency), который конвертирует сумму
 // Статический метод setExchangeRate(currency, rate) для обновления курса
+
+class Account {
+  static exchangeRates = { USD: 1, EUR: 0.92, GBP: 0.75 }
+
+  static convert(amount, fromCurrency, toCurrency) {
+    const amountInUSD = amount / Account.exchangeRates[fromCurrency]
+
+    return (
+      Math.floor(amountInUSD * Account.exchangeRates[toCurrency] * 100) / 100
+    )
+  }
+
+  static setExchangeRate(currency, rate) {
+    if (rate <= 0) {
+      console.log("Rate must be positive")
+    }
+    Account.exchangeRates[currency] = rate
+  }
+
+  constructor(id, balance) {
+    this.id = id
+    this.balance = balance
+  }
+
+  deposit(value) {
+    if (value > 0) {
+      this.balance += value
+    } else {
+      console.log("Enter non negative number")
+    }
+  }
+
+  withdraw(value) {
+    if (value <= this.balance) {
+      this.balance -= value
+    } else {
+      console.log("Not enough money on your balance")
+    }
+  }
+}
+
+console.log(Account.convert(100, "EUR", "GBP")) // ~81.52
+
+Account.setExchangeRate("EUR", 0.95)
+console.log(Account.convert(100, "EUR", "USD")) // ~105.26
 
 // 5. Создайте класс Order. Добавьте:
 // Статическое свойство lastOrderNumber
 // Статический метод generateOrderNumber(), который генерирует номер заказа в формате "ORD-YYYY-MMDD-XXXX" (XXXX - последовательный номер)
 // При создании заказа автоматически присваивайте сгенерированный номер
 
+class Order {
+  static lastOrderNumber = 0o0
+
+  static generateOrderNumber() {
+    const now = new Date()
+    const year = now.getFullYear()
+    const month = String(now.getMonth() + 1).padStart(2, "0")
+    const day = String(now.getDate()).padStart(2, "0")
+    const orderNumber = String(++Order.lastOrderNumber).padStart(4, "0")
+
+    return `ORD-${year}-${month}${day}-${orderNumber}`
+  }
+}
+
+console.log(Order.generateOrderNumber())
+console.log(Order.generateOrderNumber())
+console.log(Order.generateOrderNumber())
+
 // 6. Модифицируйте класс Vehicle. Добавьте статические фабричные методы:
 // createCar(brand, year, doors) - создает автомобиль
 // createMotorcycle(brand, year, type) - создает мотоцикл
 // createTruck(brand, year, capacity) - создает грузовик
 // Каждый метод возвращает соответствующий экземпляр с предустановленными значениями типа транспорта.
+
+class Vehicle {
+  constructor(brand, year, type, extra) {
+    this.brand = brand
+    this.year = year
+    this.type = type
+    this.extra = extra
+  }
+
+  static createCar(brand, year, doors) {
+    return new Vehicle(brand, year, "car", { doors })
+  }
+
+  static createMotorcycle(brand, year, motoType) {
+    return new Vehicle(brand, year, "motorcycle", { type: motoType })
+  }
+
+  static createTruck(brand, year, capacity) {
+    return new Vehicle(brand, year, "truck", { capacity })
+  }
+
+  start() {
+    console.log(`${this.type} starting...`)
+  }
+}
+
+const car = Vehicle.createCar("Toyota", 2018, 4)
+console.log(car)
+
+const moto = Vehicle.createMotorcycle("Yamaha", 2022, "sport")
+console.log(moto)
+
+const truck = Vehicle.createTruck("MAN", 2020, 120000)
+console.log(truck)
 
 // 7. К классу User добавьте статические методы:
 // createCustomer(name, age, email) - создает обычного пользователя
@@ -73,17 +227,6 @@ Animal.getTotal()
 // Статическим методом getWeather(city) - если результат есть в кэше и он свежий, возвращает его, иначе делает "запрос" (симуляцию) и сохраняет в кэш
 // Статическим методом clearCache() - очищает кэш
 // Статическим методом getCacheStats() - возвращает статистику по кэшу
-
-class Vehicle {
-  constructor(brand, year) {
-    this.brand = brand
-    this.year = year
-  }
-
-  start() {
-    console.log("Vehicle starting...")
-  }
-}
 
 class Motorcycle extends Vehicle {
   constructor(brand, year, engineType) {
@@ -145,29 +288,6 @@ class Smartphone extends Gadget {
   }
 }
 
-class Account {
-  constructor(id, balance) {
-    this.id = id
-    this.balance = balance
-  }
-
-  deposit(value) {
-    if (value > 0) {
-      this.balance += value
-    } else {
-      console.log("Enter non negative number")
-    }
-  }
-
-  withdraw(value) {
-    if (value <= this.balance) {
-      this.balance -= value
-    } else {
-      console.log("Not enough money on your balance")
-    }
-  }
-}
-
 class CheckingAccount extends Account {
   constructor(id, balance, transactionFee) {
     super(id, balance)
@@ -224,17 +344,6 @@ class RatedLibrary extends Library {
       book => book.rating > 4
     )
     return booksWithRatingHigherThan4
-  }
-}
-
-class User {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  displayInfo() {
-    console.log(`User name: ${this.name}, User age: ${this.age}`)
   }
 }
 
@@ -345,22 +454,6 @@ class LimitedSavingsAccount extends SavingsAccount {
     console.log(
       `Successfully withdrew ${value}. Your balance is ${this.balance}. Your remaining withdrawal limit is ${this.withdrawalLimit}.`
     )
-  }
-}
-
-class Product {
-  constructor(name, price, quantity) {
-    this.name = name
-    this.price = price
-    this.quantity = quantity
-  }
-
-  getTotalCost() {
-    return this.quantity * this.price
-  }
-
-  applyDiscount(percent) {
-    return this.getTotalCost() - this.getTotalCost() * (percent / 100)
   }
 }
 
