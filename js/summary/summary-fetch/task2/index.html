@@ -15,8 +15,18 @@
     <div class="container">
       <form class="create-post-form">
         <div class="post-text-input">
-          <input type="text" name="postTitle" />
-          <input type="text" name="postText" id="" />
+          <input
+            type="text"
+            name="postTitle"
+            id="post-title"
+            placeholder="Title..."
+          />
+          <input
+            type="text"
+            name="postText"
+            id="post-body"
+            placeholder="Body..."
+          />
         </div>
         <div class="bottom-part">
           <div class="file-input">
@@ -30,24 +40,10 @@
           </div>
         </div>
       </form>
-      <ul class="posts-list">
-        <!-- <li class="post-list-item">
-          <span class="post-author-name">Author's name</span>
-          <h2 class="post-title">Title</h2>
-          <p class="post-body">Body</p>
-          <div class="comments">
-            <i class="fa-regular fa-comment fa-sm"></i>
-            <span class="number-of-comments">33</span>
-          </div>
-        </li> -->
-      </ul>
+      <ul class="posts-list"></ul>
       <div class="comments-modal-window hidden">
-        <ul class="comments-list">
-          <!-- <li class="comment">
-            <p class="comment-name">Comment name</p>
-            <p class="comment-text">Comment text</p>
-          </li> -->
-        </ul>
+        <span class="close-modal">X</span>
+        <ul class="comments-list"></ul>
       </div>
     </div>
   </body>

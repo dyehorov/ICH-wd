@@ -1,8 +1,3 @@
-/*
-
-
-*/
-
 const BASE_URL = "https://jsonplaceholder.typicode.com"
 
 const urls = [
@@ -15,6 +10,8 @@ const container = document.querySelector(".container")
 const postsList = document.querySelector(".posts-list")
 const commentsModalWindow = document.querySelector(".comments-modal-window")
 const commentsList = document.querySelector(".comments-list")
+const closeCommentModal = document.querySelector(".close-modal")
+const createPostForm = document.querySelector(".create-post-form")
 
 function createPostCard(author, id, title, body, commentsCount) {
   const li = document.createElement("li")
@@ -33,6 +30,8 @@ function createPostCard(author, id, title, body, commentsCount) {
   bodyEl.className = "post-body"
   bodyEl.textContent = body
 
+  const commentIconAndCountContainer = document.createElement("div")
+
   const icon = document.createElement("i")
   icon.className = "fa-regular fa-comment comment-icon"
 
@@ -40,21 +39,23 @@ function createPostCard(author, id, title, body, commentsCount) {
   commentsCountEl.className = "number-of-comments comment-icon"
   commentsCountEl.textContent = commentsCount
 
-  li.append(authorEl, titleEl, bodyEl, icon, commentsCountEl)
+  commentIconAndCountContainer.append(icon, commentsCountEl)
+
+  li.append(authorEl, titleEl, bodyEl, commentIconAndCountContainer)
 
   return li
 }
 
 function getPosts() {
-  return fetch(`${BASE_URL}/posts`).then((response) => response.json())
+  return fetch(`${BASE_URL}/posts`).then(response => response.json())
 }
 
 function getUsers() {
-  return fetch(`${BASE_URL}/users`).then((response) => response.json())
+  return fetch(`${BASE_URL}/users`).then(response => response.json())
 }
 
 function getComments() {
-  return fetch(`${BASE_URL}/comments`).then((response) => response.json())
+  return fetch(`${BASE_URL}/comments`).then(response => response.json())
 }
 
 Promise.all([getComments(), getPosts(), getUsers()])
@@ -69,14 +70,24 @@ Promise.all([getComments(), getPosts(), getUsers()])
       return accum
     }, {})
 
-    postsList.addEventListener("click", (event) => {
+    postsList.addEventListener("click", event => {
       if (!event.target.classList.contains("comment-icon")) return
 
-      commentsModalWindow.classList.remove("hidden")
+      const commentCount = event.target.parentElement.children[1].textContent
 
-      const targetPost = event.target.parentElement.dataset.id
+      if (Number(commentCount) === 0) return
+
+      commentsModalWindow.classList.remove("hidden")
+      closeCommentModal.classList.remove("hidden")
+
+      const targetPost = event.target.parentElement.parentElement.dataset.id
 
       renderComments(commentsByPostId[targetPost])
+    })
+
+    closeCommentModal.addEventListener("click", () => {
+      commentsModalWindow.classList.add("hidden")
+      closeCommentModal.classList.add("hidden")
     })
 
     const usersById = users.reduce((accum, user) => {
@@ -87,7 +98,7 @@ Promise.all([getComments(), getPosts(), getUsers()])
       return accum
     }, {})
 
-    return posts.map((post) => {
+    return posts.map(post => {
       return {
         ...post,
         userId: post.userId,
@@ -99,8 +110,32 @@ Promise.all([getComments(), getPosts(), getUsers()])
       }
     })
   })
-  .then((posts) => {
-    posts.forEach((post) => {
+  .then(posts => {
+    createPostForm.addEventListener("submit", event => {
+      event.preventDefault()
+
+      const title = event.target["postTitle"].value
+      const body = event.target["postText"].value
+
+      if (title.trim() === "" || body.trim() === "") return
+
+      posts.unshift({
+        userId: 1,
+        id: posts.length + 1,
+        title: title,
+        body: body,
+      })
+
+      postsList.prepend(
+        createPostCard("Leanne Graham", posts.length + 1, title, body, 0)
+      )
+
+      console.log(posts)
+
+      createPostForm.reset()
+    })
+
+    posts.forEach(post => {
       postsList.appendChild(
         createPostCard(
           post.user.name,
@@ -136,7 +171,9 @@ function renderComments(comments) {
   const list = document.querySelector(".comments-list")
   list.innerHTML = ""
 
-  comments.forEach((comment) => {
+  if (!comments) return
+
+  comments.forEach(comment => {
     list.appendChild(createComment(comment.name, comment.body))
   })
 }
