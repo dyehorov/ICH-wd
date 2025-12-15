@@ -3,9 +3,16 @@ const openModalBtn = document.querySelector(".openModalBtn")
 const modalRegistration = document.querySelector(".modalRegistration")
 const modalForm = document.querySelector(".modalForm")
 const closeModalButton = document.querySelector(".closeModalBody")
+const submitBtn = document.querySelector(".submitBtn")
+const cancelBtn = document.querySelector(".cancelBtn")
+const formInputs = document.querySelectorAll(".form-input")
+const checkBox = document.querySelector("input[type='checkbox']")
+const loader = document.querySelector(".loader")
+let isErrorPresentInForm = true
 
 // form
 const registrationForm = document.querySelector(".modalForm")
+const passwordValue = document.querySelector("#password")
 
 const toggleModalWindow = () => {
   modalRegistration.classList.toggle("modalHidden")
@@ -25,20 +32,16 @@ document.addEventListener("keyup", event => {
 // close via btn (close icon)
 closeModalButton.addEventListener("click", toggleModalWindow)
 
-async function addUser() {
+async function addUser(user) {
   const response = await fetch(`${BASE_URL}/users/add`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      firstName: "Muhammad",
-      lastName: "Ovi",
-      age: 250,
-    }),
+    body: JSON.stringify(user),
   })
 
   const data = await response.json()
 
-  console.log(data)
+  return { response, data }
 }
 
 function validatePassword(passwordInput) {
@@ -49,24 +52,158 @@ function isPasswordMatchPasswordRepeat(passwordInput, passwordRepeat) {
   return passwordInput === passwordRepeat
 }
 
-registrationForm.addEventListener("submit", event => {
+function validateEmail(email) {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
+}
+
+function renderMessage(text, parent, color) {
+  const message = document.createElement("p")
+  message.classList.add("message-text")
+  message.textContent = text
+  message.style.color = color
+
+  parent.appendChild(message)
+}
+
+registrationForm.addEventListener("input", event => {
+  const input = event.target
+  const inputContainer = event.target.parentNode
+
+  switch (input.id) {
+    case "password":
+      if (!validatePassword(input.value)) {
+        if (inputContainer.lastElementChild.nodeName === "P") return
+
+        renderMessage(
+          "Password length must be at least 6 symbols",
+          inputContainer,
+          "red"
+        )
+
+        input.classList.add("error")
+      } else {
+        if (inputContainer.lastElementChild.nodeName === "P") {
+          inputContainer.removeChild(inputContainer.lastElementChild)
+          input.classList.remove("error")
+        }
+      }
+
+      break
+    case "passwordConfirm":
+      if (!isPasswordMatchPasswordRepeat(passwordValue.value, input.value)) {
+        if (inputContainer.lastElementChild.nodeName === "P") return
+
+        renderMessage("Passwords don't match", inputContainer, "red")
+        input.classList.add("error")
+      } else {
+        if (inputContainer.lastElementChild.nodeName === "P") {
+          inputContainer.removeChild(inputContainer.lastElementChild)
+
+          input.classList.remove("error")
+        }
+      }
+
+      break
+    case "email":
+      if (!validateEmail(input.value)) {
+        if (inputContainer.lastElementChild.nodeName === "P") return
+
+        renderMessage("Enter a valid email", inputContainer, "red")
+        input.classList.add("error")
+      } else {
+        if (inputContainer.lastElementChild.nodeName === "P") {
+          inputContainer.removeChild(inputContainer.lastElementChild)
+
+          input.classList.remove("error")
+        }
+      }
+
+      break
+
+    case "age":
+      if (input.value < 18 || input.value > 100) {
+        if (inputContainer.lastElementChild.nodeName === "P") return
+
+        renderMessage(
+          "The age must be between 18 and 100",
+          inputContainer,
+          "red"
+        )
+        input.classList.add("error")
+      } else {
+        if (inputContainer.lastElementChild.nodeName === "P") {
+          inputContainer.removeChild(inputContainer.lastElementChild)
+
+          input.classList.remove("error")
+        }
+      }
+
+      break
+  }
+
+  isErrorPresentInForm = [...formInputs].some(input => {
+    return input.value.trim() === "" || input.classList.contains("error")
+  })
+
+  submitBtn.disabled = !isErrorPresentInForm && checkBox.checked ? false : true
+})
+
+registrationForm.addEventListener("submit", async event => {
   event.preventDefault()
 
-  const usernameInput = event.target.elements["username"]
-  const emailInput = event.target.elements["email"]
-  const passwordInput = event.target.elements["password"]
-  const passwordInputRepeat = event.target.elements["passwordRepeat"]
-  const firstNameInput = event.target.elements["firstName"]
-  const lastNameInput = event.target.elements["lastName"]
-  const ageInput = event.target.elements["age"]
+  submitBtn.disabled = true
+  submitBtn.value = "Registering..."
+  showLoader()
 
-  const usernameInputContainer = loginInput.parentNode
-  const emailInputContainer = emailInput.parentNode
-  const passwordInpuContainer = passwordInput.parentNode
-  const passwordInputRepeatContainer = passwordInputRepeat.parentNode
+  const user = {
+    username: username.value,
+    email: email.value,
+    password: password.value,
+    firstName: firstName.value,
+    lastName: lastName.value,
+    age: Number(age.value),
+  }
 
-  const username = usernameInput.value.trim()
-  const email = emailInput.value.trim()
-  const password = passwordInput.value.trim()
-  const passwordRepeat = passwordInputRepeat.value.trim()
+  try {
+    const { response, data } = await addUser(user)
+
+    if (!response.ok) {
+      renderMessage(data.message || "Registration error", modalForm, "red")
+      return
+    }
+
+    console.log(data)
+
+    renderMessage("Successfully registered", modalForm, "green")
+  } catch (error) {
+    renderMessage("Error with registering", modalForm, "red")
+  }
+
+  setTimeout(() => {
+    hideLoader()
+
+    submitBtn.disabled = false
+    submitBtn.value = "Register"
+    modalForm.reset()
+  }, 2000)
+})
+
+function showLoader() {
+  loader.classList.add("active")
+  modalForm.classList.add("modalHidden")
+}
+
+function hideLoader() {
+  loader.classList.remove("active")
+  modalForm.classList.remove("modalHidden")
+}
+
+cancelBtn.addEventListener("click", event => {
+  event.preventDefault()
+  modalRegistration.classList.add("modalHidden")
+  modalForm.reset()
 })

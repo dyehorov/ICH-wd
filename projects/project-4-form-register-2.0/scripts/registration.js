@@ -12,9 +12,7 @@ function renderMessage(text, parent, color) {
 }
 
 function clearMessages(parent) {
-  parent
-    .querySelectorAll(".message-text")
-    .forEach((message) => message.remove())
+  parent.querySelectorAll(".message-text").forEach(message => message.remove())
 }
 
 function getUserByLogin(loginInput) {
@@ -80,7 +78,7 @@ function onlyLettersInLogin(loginInput) {
   return true
 }
 
-registrationForm.addEventListener("submit", (event) => {
+registrationForm.addEventListener("submit", event => {
   event.preventDefault()
 
   const loginInput = event.target.elements["login"]

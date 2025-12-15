@@ -13,47 +13,72 @@
     <title>Document</title>
   </head>
   <body>
-    <button class="openModalBtn">Open modal</button>
+    <button class="openModalBtn button">Open modal</button>
 
     <div class="modalRegistration">
-      <form class="modalForm" novalidate>
+      <span class="loader"></span>
+      <form class="modalForm">
         <i class="fa-solid fa-xmark fa-xl closeModalBody"></i>
-
         <div class="field">
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" required />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-input"
+            required
+          />
         </div>
-
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            type="text"
+            id="email"
+            name="email"
+            class="form-input"
+            required
+          />
         </div>
-
         <div class="field">
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            required
+          />
         </div>
-
         <div class="field">
           <label for="passwordConfirm">Confirm password</label>
           <input
             type="password"
             id="passwordConfirm"
             name="passwordRepeat"
+            class="form-input"
             required
           />
         </div>
-
         <div class="field">
           <label for="firstName">First name</label>
-          <input type="text" id="firstName" name="firstName" required />
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            class="form-input"
+            required
+          />
         </div>
-
         <div class="field">
           <label for="lastName">Last name</label>
-          <input type="text" id="lastName" name="lastName" required />
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            class="form-input"
+            required
+          />
         </div>
-
         <div class="field">
           <label for="age">Age</label>
           <input
@@ -62,10 +87,10 @@
             min="18"
             max="100"
             name="age"
+            class="form-input"
             required
           />
         </div>
-
         <div class="field checkbox">
           <label>
             <input type="checkbox" name="checkbox" required />
@@ -73,7 +98,7 @@
           </label>
         </div>
         <div class="field buttons">
-          <button class="button registerBtn">Register</button>
+          <input type="submit" class="button submitBtn" disabled />
           <button class="button cancelBtn">Cancel</button>
         </div>
       </form>
