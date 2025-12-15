@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.openModalBtn {
+  margin: 40px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #6366f1;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.openModalBtn:hover {
+  background-color: #4f46e5;
+}
+
+.modalRegistration {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modalHidden {
+  display: none;
+}
+
+.modalForm {
+  background-color: #fff;
+  max-width: 520px;
+  width: 100%;
+  padding: 28px 36px 32px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.closeModalBody {
+  position: absolute;
+  top: 21spx;
+  right: 14px;
+  cursor: pointer;
+  color: #666;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.field:has(input[required]) label::after {
+  content: " *";
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.field input:not([type="checkbox"]) {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.field::after {
+  content: "";
+  min-height: 16px;
+  font-size: 12px;
+  display: block;
+}
+
+.field.error::after {
+  color: #ef4444;
+}
+
+.field.error input {
+  border-color: #ef4444;
+}
+
+.field.checkbox::after {
+  display: none;
+}
+
+.field.checkbox label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
