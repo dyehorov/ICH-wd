@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.cards {
+  max-width: 300px;
+  margin: 10vh auto;
+  list-style: none;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: blanchedalmond;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+}
+
+.list-item:last-child {
+  margin-bottom: 0;
+}
+
+.deleteItem {
+  padding: 2px 4px;
+  background-color: black;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
