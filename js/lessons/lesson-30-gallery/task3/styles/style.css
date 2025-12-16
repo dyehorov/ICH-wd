@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.frame {
+  max-width: 600px;
+  margin: 10vh auto;
+  display: flex;
+  gap: 50px;
+}
+
+.mainCard {
+  width: 400px;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: box-shadow 0.5s;
+}
+
+.card.active {
+  box-shadow: 5px 5px 5px #000;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 5px #000;
+}
