@@ -69,6 +69,10 @@ function renderMessage(text, parent, color) {
   parent.appendChild(message)
 }
 
+function clearMessages(parent) {
+  parent.querySelectorAll(".message-text").forEach(message => message.remove())
+}
+
 registrationForm.addEventListener("input", event => {
   const input = event.target
   const inputContainer = event.target.parentNode
@@ -172,14 +176,30 @@ registrationForm.addEventListener("submit", async event => {
     const { response, data } = await addUser(user)
 
     if (!response.ok) {
+      clearMessages(modalForm)
+
       renderMessage(data.message || "Registration error", modalForm, "red")
       return
     }
 
     console.log(data)
 
+    const isUsernameAlreadyExist = await isUsernameExists(user.username)
+
+    if (isUsernameAlreadyExist) {
+      clearMessages(modalForm)
+
+      renderMessage("User with such username already exists", modalForm, "red")
+      submitBtn.value = "Register"
+      hideLoader()
+
+      return
+    }
+
+    clearMessages(modalForm)
     renderMessage("Successfully registered", modalForm, "green")
   } catch (error) {
+    clearMessages(modalForm)
     renderMessage("Error with registering", modalForm, "red")
   }
 
@@ -207,3 +227,21 @@ cancelBtn.addEventListener("click", event => {
   modalRegistration.classList.add("modalHidden")
   modalForm.reset()
 })
+
+async function isUsernameExists(username) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/users/filter?key=username&value=${username}`
+    )
+
+    const data = await response.json()
+
+    if (data.total === 0) {
+      return false
+    }
+
+    return true
+  } catch (error) {
+    console.log(error)
+  }
+}
