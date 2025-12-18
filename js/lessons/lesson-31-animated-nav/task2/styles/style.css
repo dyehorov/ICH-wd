@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 16px;
+  border: 1px solid #000;
+  padding: 8px 16px;
+  gap: 8px;
+}
+
+.form > input {
+  padding: 4px;
+}
+
+.button {
+  background-color: #32b7e6;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #32b7e6;
+  color: #fff;
+  display: block;
+}
+
+.orderButtons {
+  margin-left: 16px;
+}
+
+.orderButtons .button {
+  margin-bottom: 8px;
+  width: 150px;
+}
+
+.orderButtons .button:last-child {
+  margin-bottom: 0;
+}
+
+.notifications {
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #3fc43f;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  width: 380px;
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.notification-show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.position {
+  position: absolute;
+}
+
+.notification-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification-icon i {
+  color: #000;
+}
+
+.notification-content p:not(.notification-content p:last-child) {
+  margin-bottom: 8px;
+}
+
+.notification-closeButton {
+  align-self: flex-start;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.paid,
+.shipped,
+.received {
+  background-color: #dfaf2c;
+}
