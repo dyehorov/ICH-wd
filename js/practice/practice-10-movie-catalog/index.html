@@ -5,23 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/style.css" />
     <script src="./scripts/script.js" defer></script>
-    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/dace3e7454.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Movie Catalog</title>
   </head>
   <body>
-    <header>
-      <div class="search-and-filter-movies container">
+    <header class="container">
+      <div class="header-top">
+        <h1>Movie Catalog</h1>
+      </div>
+      <div class="header-bottom search-and-filter-movies">
         <form class="search-movie">
           <input
             type="text"
             class="search-input"
+            name="search"
             placeholder="Search for movies"
+            aria-label="Search movies"
           />
-          <input type="submit" value="Search" />
+          <input type="submit" class="button" value="Search" />
         </form>
         <div class="favorite">
-          <a href="">Favorite movies</a>
+          <button class="favorite-movies button" type="button">
+            Favorite movies
+          </button>
         </div>
       </div>
     </header>
+    <main class="container">
+      <aside class="filter-container">
+        <form>
+          <label><input type="checkbox" name="drama" id="drama" />Drama</label>
+          <label
+            ><input type="checkbox" name="comedy" id="comedy" />Comedy</label
+          >
+          <label
+            ><input type="checkbox" name="action" id="action" />Action</label
+          >
+          <label
+            ><input type="checkbox" name="fiction" id="fiction" />Sci-Fi</label
+          >
+          <label class="filter-by-year"
+            >Year:
+            <input
+              type="number"
+              name="filterFromYear"
+              id="filterFromYear"
+              placeholder="From"
+            />
+            <span> - </span>
+            <input
+              type="number"
+              name="filterToYear"
+              id="filterToYear"
+              placeholder="To"
+            />
+          </label>
+          <label
+            >Rating IMDb:
+            <input
+              type="number"
+              name="rating"
+              id="rating"
+              min="0"
+              max="10"
+              step="0.1"
+            />
+          </label>
+          <input type="reset" class="button" value="Reset filters" />
+        </form>
+      </aside>
+      <ul class="movie-list">
+        <li class="movie">
+          <div class="movie-poster">
+            <div class="movie-rating"><span>IMDb 8.8</span></div>
+          </div>
+          <div class="movie-info">
+            <p class="movie-name">Inception</p>
+            <p class="movie-year-and-genre">2010, Action, Adventure, Sci-Fi</p>
+            <p class="movie-short-description">
+              A thief who steals corporate secrets..
+            </p>
+            <button class="movie-button">More...</button>
+          </div>
+        </li>
+      </ul>
+      <div class="movie-full-description modal-hidden">
+        <span class="close-modal-button"
+          ><i class="fa-solid fa-2xl fa-xmark"></i
+        ></span>
+        <h2 class="movie-full-description-title">Inception</h2>
+        <div class="movie-full-info">
+          <div class="info-poster">
+            <img
+              src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+              alt="Movie poster"
+            />
+          </div>
+          <div class="info">
+            <div>
+              <h3>Director</h3>
+              <p>Christopher Nolan</p>
+            </div>
+            <div>
+              <h3>Actors</h3>
+              <p>Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page</p>
+            </div>
+            <div>
+              <h3>Runtime</h3>
+              <p>148 min</p>
+            </div>
+            <div>
+              <h3>IMDb rating</h3>
+              <p>8.8</p>
+            </div>
+          </div>
+        </div>
+        <h3>Description</h3>
+        <p>
+          A thief who steals corporate secrets through the use of dream-sharing
+          technology is given the inverse task of planting an idea into the mind
+          of a CEO, but his tragic past may doom the project and his team to
+          disaster.
+        </p>
+      </div>
+    </main>
   </body>
 </html>
