@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #313131;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-and-filter-movies {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.search-movie {
+  max-width: 600px;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+}

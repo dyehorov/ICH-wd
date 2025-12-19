@@ -1,17 +1,43 @@
-/*
-{
-    id: "",
-    title: "",
-    content: "",
-    icon: "",
-    type: "",
-   }
-*/
-
 const form = document.querySelector(".form")
-const orderButtons = document.querySelector(".orderButtons")
+const orderButtonsContainer = document.querySelector(".orderButtons")
 const notificationContainer = document.querySelector(".notifications")
 const notifications = []
+
+const notificationData = [
+  {
+    title: "Order paid",
+    text: "Awaiting shipment",
+    type: "paid",
+  },
+  {
+    title: "Order shipped",
+    text: "Please wait for the courier",
+    type: "shipped",
+  },
+  {
+    title: "Order received",
+    text: "We look forward to seeing you again!",
+    type: "received",
+  },
+  {
+    title: "Order created",
+    text: "Please wait for further information",
+    type: "created",
+  },
+]
+
+const orderButtonsList = [
+  { title: "Order paid", type: "paid" },
+  { title: "Order shipped", type: "shipped" },
+  { title: "Order received", type: "received" },
+]
+
+const notificationIcons = {
+  created: "fa-solid fa-check",
+  paid: "fa-solid fa-money-bills",
+  shipped: "fa-solid fa-truck",
+  received: "fa-solid fa-file-invoice",
+}
 
 class Notification {
   constructor(title, text, type) {
@@ -35,105 +61,89 @@ form.addEventListener("submit", event => {
 
   setTimeout(() => {
     renderNotifications(notifications[0])
-    orderButtons.classList.remove("hidden")
+    renderOrderButtons(orderButtonsList)
   }, 500)
-
-  console.log(notifications)
 })
 
-orderButtons.addEventListener("click", event => {
+orderButtonsContainer.addEventListener("click", event => {
   if (!event.target.closest(".button")) return
 
-  const buttonClicked = event.target.dataset.status
+  const buttonClicked = event.target.id
 
-  switch (buttonClicked) {
-    case "paid":
-      notifications.unshift(
-        new Notification("Order paid", "Awaiting shipment", `${buttonClicked}`)
-      )
+  const notification = notificationData.find(
+    item => item.type === buttonClicked
+  )
 
-      break
-    case "shipped":
-      notifications.unshift(
-        new Notification(
-          "Order shipped",
-          "Please wait for the courier",
-          `${buttonClicked}`
-        )
-      )
-
-      break
-    case "received":
-      notifications.unshift(
-        new Notification(
-          "Order received",
-          "We look forward to seeing you again!",
-          `${buttonClicked}`
-        )
-      )
-
-      break
-  }
+  notifications.unshift(
+    new Notification(notification.title, notification.text, notification.type)
+  )
 
   renderNotifications(notifications[0])
 })
 
-function createNotification(notification) {
-  const notificationContainer = document.createElement("div")
-  notificationContainer.classList.add("notification", `${notification.type}`)
+function removeNotificationFromList(id) {
+  const index = notifications.findIndex(item => item.id === id)
+  if (index === -1) return false
 
-  const iconContainer = document.createElement("div")
-  iconContainer.classList.add("notification-icon")
+  notifications.splice(index, 1)
 
-  const iconSpan = document.createElement("span")
-  const icon = document.createElement("i")
+  return true
+}
 
-  const icons = {
-    created: "fa-solid fa-check",
-    paid: "fa-solid fa-money-bills",
-    shipped: "fa-solid fa-truck",
-    received: "fa-solid fa-file-invoice",
-  }
+function createNotification({ id, type, title, text }) {
+  const notification = document.createElement("div")
+  notification.className = `notification ${type}`
+  notification.dataset.id = id
 
-  icon.className = icons[`${notification.type}`]
+  notification.innerHTML = `
+    <div class="notification-icon">
+      <i class="fa-solid ${notificationIcons[type] ?? "fa-info"}"></i>
+    </div>
 
-  iconSpan.append(icon)
-  iconContainer.append(iconSpan)
+    <div class="notification-content">
+      <p class="notification-title">${title}</p>
+      <p class="notification-text">${text}</p>
+    </div>
 
-  const content = document.createElement("div")
-  content.classList.add("notification-content")
+    <div class="notification-closeButton">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+  `
 
-  const titleEl = document.createElement("p")
-  titleEl.classList.add("notification-title")
-  titleEl.textContent = notification.title
+  notification
+    .querySelector(".notification-closeButton")
+    .addEventListener("click", () => {
+      notification.classList.remove("notification-show")
 
-  const textEl = document.createElement("p")
-  textEl.classList.add("notification-text")
-  textEl.textContent = notification.text
+      notification.addEventListener(
+        "transitionend",
+        () => {
+          const id = Number(notification.dataset.id)
 
-  content.append(titleEl, textEl)
+          if (removeNotificationFromList(id)) {
+            notification.remove()
+          }
+        },
+        { once: true }
+      )
+    })
 
-  const closeContainer = document.createElement("div")
-  closeContainer.classList.add("notification-closeButton")
+  return notification
+}
 
-  const closeSpan = document.createElement("span")
-  const closeIcon = document.createElement("i")
-  closeIcon.classList.add("fa-solid", "fa-xmark")
+function createOrderButtons(title, type) {
+  const btn = document.createElement("button")
+  btn.classList.add("button")
+  btn.textContent = title
+  btn.id = type
 
-  closeSpan.append(closeIcon)
-  closeContainer.append(closeSpan)
+  return btn
+}
 
-  closeContainer.addEventListener("click", () => {
-    notificationContainer.classList.remove("notification-show")
-
-    setTimeout(() => {
-      notificationContainer.remove()
-    }, 400)
-  })
-
-  notificationContainer.append(iconContainer, content, closeContainer)
-
-  return notificationContainer
+function renderOrderButtons(buttonList) {
+  buttonList.forEach(item =>
+    orderButtonsContainer.appendChild(createOrderButtons(item.title, item.type))
+  )
 }
 
 function renderNotifications(notification) {
@@ -143,8 +153,4 @@ function renderNotifications(notification) {
   requestAnimationFrame(() => {
     element.classList.add("notification-show")
   })
-}
-
-function removeNotificationFromList(id) {
-  noti
 }
