@@ -5,24 +5,34 @@ const notifications = []
 
 const notificationData = [
   {
-    title: "Order paid",
+    title: "Order Paid",
     text: "Awaiting shipment",
     type: "paid",
   },
   {
-    title: "Order shipped",
+    title: "Order Shipped",
     text: "Please wait for the courier",
     type: "shipped",
   },
   {
-    title: "Order received",
+    title: "Order Received",
     text: "We look forward to seeing you again!",
     type: "received",
   },
   {
-    title: "Order created",
+    title: "Order Created",
     text: "Please wait for further information",
     type: "created",
+  },
+  {
+    title: "Order Delayed",
+    text: "Your order is taking longer than expected",
+    type: "delayed",
+  },
+  {
+    title: "Order Canceled",
+    text: "The order has been canceled",
+    type: "canceled",
   },
 ]
 
@@ -30,6 +40,8 @@ const orderButtonsList = [
   { title: "Order paid", type: "paid" },
   { title: "Order shipped", type: "shipped" },
   { title: "Order received", type: "received" },
+  { title: "Order delayed", type: "delayed" },
+  { title: "Order canceled", type: "canceled" },
 ]
 
 const notificationIcons = {
