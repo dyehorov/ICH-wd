@@ -151,3 +151,19 @@ console.log(rowSumOddNumbers(42))
  The main idea is to count all the occurring characters in a string. If you have a string like aba, then the result should be {'a': 2, 'b': 1}.
 What if the string is empty? Then the result should be empty object literal, {}. 
 */
+
+function count(str) {
+  const obj = {}
+
+  const filtredStr = str.replace(/[^A-Za-z]/g, "")
+
+  for (let char of filtredStr) {
+    if (obj[char]) {
+      obj[char]++
+    } else {
+      obj[char] = 1
+    }
+  }
+
+  return obj
+}

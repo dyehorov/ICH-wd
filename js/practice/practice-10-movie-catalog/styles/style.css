@@ -20,6 +20,40 @@ body {
   background-color: #061013;
   text-align: center;
   padding: 20px;
+  position: relative;
+}
+
+.thumbler {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  z-index: 15;
+  transition: all 0.3s;
+}
+
+.thumbler-dark {
+  left: none;
+  transform: translateX(35px);
+  transition: all 0.3s;
+}
+
+.theme-thumbler-wrapper {
+  background-color: #222d34;
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-radius: 16px;
+  gap: 16px;
+  z-index: 10;
+  cursor: pointer;
 }
 
 .search-and-filter-movies {
@@ -31,7 +65,7 @@ body {
   background-color: #222d33;
 }
 
-.search-movie {
+.search-movie-form {
   flex: 1;
   display: flex;
   gap: 12px;
@@ -68,6 +102,7 @@ body {
 
 main.container {
   display: flex;
+  min-height: 300px;
 }
 
 .favorite-movies {
@@ -82,7 +117,7 @@ main.container {
 }
 
 .filter-container {
-  max-width: 240px;
+  max-width: 320px;
   background-color: #222d33;
 }
 
@@ -91,6 +126,10 @@ main.container {
   flex-direction: column;
   padding: 20px;
   gap: 8px;
+}
+
+.filter-container > .hiddenForm {
+  display: none;
 }
 
 .filter-container label {
@@ -115,23 +154,28 @@ main.container {
   max-width: 50px;
 }
 
+.movie-list-wrapper {
+  position: relative;
+  width: 100%;
+  background-color: #09161c;
+}
+
 .movie-list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  background-color: #09161c;
   padding: 20px;
   width: 100%;
 }
 
 .movie {
   border-radius: 8px;
-  cursor: pointer;
+  max-width: 250px;
+  text-wrap: wrap;
 }
 
 .movie-poster {
-  background-image: url("https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg");
   background-size: cover;
   width: 250px;
   height: 350px;
@@ -187,6 +231,7 @@ main.container {
   max-width: 1206px;
   padding: 20px 80px;
   border-radius: 8px;
+  z-index: 20;
 }
 
 .close-modal-button {
@@ -206,6 +251,26 @@ main.container {
   margin-bottom: 24px;
 }
 
+.info-poster {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-poster > a {
+  width: 100%;
+  text-decoration: none;
+  color: aliceblue;
+  text-align: center;
+  background-color: #3e3e3e;
+  padding: 8px;
+  font-size: 18px;
+}
+
+.info-poster > a:hover {
+  background-color: #2a2929;
+}
+
 .info {
   display: flex;
   flex-direction: column;
@@ -223,5 +288,67 @@ main.container {
 }
 
 .modal-hidden {
+  display: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.loader {
+  color: #fff;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.3s infinite linear;
+  transform: translateZ(0);
+  position: absolute;
+  right: 50%;
+  top: 50%;
+}
+
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em,
+      0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em,
+      0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+
+.hidden {
   display: none;
 }
