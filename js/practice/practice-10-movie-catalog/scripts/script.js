@@ -13,27 +13,30 @@ const closeModalBtn = modal.querySelector(".close-modal-button")
 const loader = document.querySelector(".loader")
 const themeThumbler = document.querySelector(".theme-thumbler-wrapper")
 const thumbler = themeThumbler.querySelector(".thumbler")
-let theme = JSON.parse(localStorage.getItem("theme")) ?? true
+const isLight = JSON.parse(localStorage.getItem("lightTheme")) ?? true
+const fromYearInput = document.querySelector("#filterFromYear")
+const toYearInput = document.querySelector("#filterToYear")
+const ratingInput = document.querySelector("#rating")
+const favoriteBtn = document.querySelector(".favorite-movies")
+const favoritesModal = document.querySelector(".favorites-modal")
+const favoritesMovieList = document.querySelector(".favorites-movie-list")
+const closeFavoritesBtn = document.querySelector(".close-favorites-modal")
+
 let movieGenres = []
 let movies = []
 let genresToFilterMovies = []
 
-window.addEventListener("DOMContentLoaded", () => {
-  if (theme) {
-    thumbler.classList.remove("thumbler-dark")
-  } else {
-    thumbler.classList.add("thumbler-dark")
-  }
-})
+if (isLight) {
+  document.body.classList.add("light")
+  thumbler.classList.add("thumbler-dark")
+}
 
 themeThumbler.addEventListener("click", () => {
+  document.body.classList.toggle("light")
   thumbler.classList.toggle("thumbler-dark")
 
-  theme = !theme
-
-  localStorage.setItem("theme", JSON.stringify(theme))
-
-  console.log(theme)
+  const isLightTheme = document.body.classList.contains("light")
+  localStorage.setItem("lightTheme", JSON.stringify(isLightTheme))
 })
 
 searchMovieForm.addEventListener("submit", async event => {
@@ -61,9 +64,96 @@ searchMovieForm.addEventListener("submit", async event => {
   }
 })
 
-filterForm.addEventListener("click", event => {
-  console.log(event.target.id)
+filterForm.addEventListener("change", event => {
+  if (event.target.type !== "checkbox") return
+
+  const genre = event.target.id
+
+  if (event.target.checked) {
+    genresToFilterMovies.push(genre)
+  } else {
+    genresToFilterMovies = genresToFilterMovies.filter(g => g !== genre)
+  }
+
+  applyFilters()
 })
+
+filterForm.addEventListener("input", applyFilters)
+
+filterForm.addEventListener("reset", () => {
+  genresToFilterMovies = []
+  applyFilters()
+})
+
+favoriteBtn.addEventListener("click", () => {
+  openFavoritesModal()
+})
+
+function openFavoritesModal() {
+  const favorites = getFavoriteMovies()
+
+  favoritesMovieList.innerHTML = ""
+
+  if (favorites.length === 0) {
+    favoritesMovieList.innerHTML = "<p>No favorite movies yet ⭐</p>"
+  } else {
+    favorites.forEach(movie => {
+      favoritesMovieList.appendChild(createMovieItem(movie))
+    })
+  }
+
+  favoritesModal.classList.remove("modal-hidden")
+  overlay.classList.remove("modal-hidden")
+}
+
+function closeFavoritesModal() {
+  favoritesModal.classList.add("modal-hidden")
+  overlay.classList.add("modal-hidden")
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeMovieModal()
+    closeFavoritesModal()
+  }
+})
+
+closeFavoritesBtn.addEventListener("click", closeFavoritesModal)
+overlay.addEventListener("click", closeFavoritesModal)
+
+function applyFilters() {
+  let filteredMovies = [...movies]
+
+  if (genresToFilterMovies.length > 0) {
+    filteredMovies = filteredMovies.filter(movie =>
+      genresToFilterMovies.some(genre => movie.Genre.includes(genre))
+    )
+  }
+
+  const fromYear = Number(fromYearInput.value)
+  const toYear = Number(toYearInput.value)
+  const rating = Number(ratingInput.value)
+
+  if (fromYear) {
+    filteredMovies = filteredMovies.filter(
+      movie => Number(movie.Year.slice(0, 4)) >= fromYear
+    )
+  }
+
+  if (toYear) {
+    filteredMovies = filteredMovies.filter(
+      movie => Number(movie.Year.slice(0, 4)) <= toYear
+    )
+  }
+
+  if (rating) {
+    filteredMovies = filteredMovies.filter(
+      movie => Number(movie.imdbRating) >= rating
+    )
+  }
+
+  renderMovies(filteredMovies)
+}
 
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") closeMovieModal()
@@ -124,6 +214,9 @@ function createMovieItem(movie) {
       <div class="movie-rating">
         <span>IMDb ${movie.imdbRating}</span>
       </div>
+      <div class="movie-favorite-icon">
+        <span class="favorite-icon">${getFavoriteIcon(movie.imdbID)}</span>
+      </div>
     </div>
     <div class="movie-info">
       <p class="movie-name">${movie.Title}</p>
@@ -142,7 +235,57 @@ function createMovieItem(movie) {
     openMovieModal(movie)
   })
 
+  li.querySelector(".favorite-icon").addEventListener("click", event => {
+    event.stopPropagation()
+
+    toggleFavoriteMovie(movie)
+
+    event.currentTarget.innerHTML = getFavoriteIcon(movie.imdbID)
+  })
+
   return li
+}
+
+function getFavoriteMovies() {
+  return JSON.parse(localStorage.getItem("favoriteMovies")) ?? []
+}
+
+function isMovieAddedToFavorites(imdbID) {
+  const favorites = getFavoriteMovies()
+  return favorites.some(movie => movie.imdbID === imdbID)
+}
+
+function addMovieToFavorites(movie) {
+  const favorites = getFavoriteMovies()
+
+  if (favorites.some(item => item.imdbID === movie.imdbID)) {
+    return
+  }
+
+  favorites.push(movie)
+  localStorage.setItem("favoriteMovies", JSON.stringify(favorites))
+}
+
+function removeMovieFromFavorites(imdbID) {
+  const favorites = getFavoriteMovies().filter(movie => movie.imdbID !== imdbID)
+
+  localStorage.setItem("favoriteMovies", JSON.stringify(favorites))
+}
+
+function toggleFavoriteMovie(movie) {
+  if (isMovieAddedToFavorites(movie.imdbID)) {
+    removeMovieFromFavorites(movie.imdbID)
+  } else {
+    addMovieToFavorites(movie)
+  }
+
+  renderMovies(movies)
+}
+
+function getFavoriteIcon(imdbID) {
+  return isMovieAddedToFavorites(imdbID)
+    ? '<i class="fa-solid fa-xl fa-star"></i>'
+    : '<i class="fa-regular fa-xl fa-star"></i>'
 }
 
 function renderMovies(movies) {
@@ -223,7 +366,7 @@ function formatYear(year) {
 }
 
 function getYoutubeLink(movie) {
-  return `https://www.youtube.com/results?search_searchInput=${movie
+  return `https://www.youtube.com/results?search_query=${movie
     .toLowerCase()
     .split(" ")
     .join("+")}+trailer`
