@@ -542,3 +542,28 @@ body.light .favorite-icon i {
 body.light .favorite-icon i.fa-solid {
   color: #ffb703;
 }
+
+body.light .favorites-modal {
+  background-color: #ffffff;
+  color: #111;
+}
+
+body.light .favorites-modal h2 {
+  color: #111;
+}
+
+body.light .favorites-modal .movie {
+  background-color: #f5f5f5;
+}
+
+body.light .modal-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+body.light .close-favorites-modal {
+  color: #111;
+}
+
+body:not(.light) .close-favorites-modal {
+  color: #fff;
+}

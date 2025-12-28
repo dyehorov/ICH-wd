@@ -328,7 +328,10 @@ function openMovieModal(movie) {
   modal.querySelector("[data-runtime]").textContent = movie.Runtime
   modal.querySelector("[data-rating]").textContent = movie.imdbRating
   modal.querySelector("[data-plot]").textContent = movie.Plot
-  modal.querySelector("[data-trailer]").href = getYoutubeLink(movie.Title)
+  modal.querySelector("[data-trailer]").href = getYoutubeLink(
+    movie.Title,
+    movie.Released
+  )
 
   modal.classList.remove("modal-hidden")
   overlay.classList.remove("modal-hidden")
@@ -365,9 +368,9 @@ function formatYear(year) {
   return y
 }
 
-function getYoutubeLink(movie) {
-  return `https://www.youtube.com/results?search_query=${movie
+function getYoutubeLink(title, release) {
+  return `https://www.youtube.com/results?search_query=${title
     .toLowerCase()
     .split(" ")
-    .join("+")}+trailer`
+    .join("+")}+${release}+trailer`
 }
