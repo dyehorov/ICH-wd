@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100%;
+}
+
+header {
+  background-color: #add8e6;
+  padding: 10px;
+}
+
+.aside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background-color: #ffb6c2;
+  padding: 8px;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s;
+  z-index: 10;
+}
+
+.closeAsideBtn {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.nav {
+  width: 100%;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-list__item {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-list__item:last-child {
+  margin-bottom: 0;
+}
+
+.nav-list__item > a {
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  background-color: #ffdbb9;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.openAsideBtn {
+  cursor: pointer;
+}
+
+.asideClosed {
+  transform: translateX(-320px);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  transition: opacity 0.5s;
+}
+
+.overlayHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sublist {
+  list-style: none;
+  width: 90%;
+  align-self: flex-end;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.sublist--open {
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sublist-item {
+  margin-bottom: 4px;
+  background-color: #ffdbb9;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.sublist-item > a {
+  text-decoration: none;
+  color: #000;
+}
