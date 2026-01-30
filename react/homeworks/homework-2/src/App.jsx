@@ -26,11 +26,7 @@ function App() {
       {products.length === 0 ? (
         <p>Shopping list is empty</p>
       ) : (
-        <ul>
-          {products.map(product => (
-            <ShoppingList key={Math.random()} product={product} />
-          ))}
-        </ul>
+        <ShoppingList productsList={products} />
       )}
       {orders.length === 0 ? (
         <p>No orders</p>
