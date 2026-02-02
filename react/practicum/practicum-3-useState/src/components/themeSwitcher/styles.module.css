@@ -1,0 +1,27 @@
+#text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.textLight {
+  color: darkblue;
+}
+
+.textDark {
+  color: #b1dcea;
+}
+
+#themeSwitcher {
+  padding: 4px 8px;
+  margin-left: 4px;
+  background-color: transparent;
+  border: 2px solid darkblue;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#themeSwitcher.themeSwitcherDark {
+  color: #fff;
+  background-color: darkblue;
+  border-color: #b1dcea;
+}

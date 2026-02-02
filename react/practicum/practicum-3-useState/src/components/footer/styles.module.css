@@ -1,0 +1,22 @@
+#footer {
+  border-top: 2px solid darkblue;
+  padding: 16px 64px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#footer.footerLight {
+  background-color: #add8e6;
+  color: darkblue;
+}
+
+#footer.footerDark {
+  background-color: #063f52;
+  border-color: #b1dcea;
+  color: #b1dcea;
+}
+
+.text {
+  font-weight: bold;
+  font-size: 18px;
+}

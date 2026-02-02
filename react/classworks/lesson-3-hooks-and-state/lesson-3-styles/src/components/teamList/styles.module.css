@@ -1,0 +1,6 @@
+.teamList {
+  list-style-type: none;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}

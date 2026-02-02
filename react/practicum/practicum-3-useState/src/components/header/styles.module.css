@@ -1,0 +1,24 @@
+#header {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid darkblue;
+}
+
+#header.headerLight {
+  background-color: #add8e6;
+}
+
+#header.headerDark {
+  background-color: #063f52;
+  border-color: #b1dcea;
+}
+
+.text {
+  color: darkblue;
+}
+
+.headerDark > .text {
+  color: #b1dcea;
+}
