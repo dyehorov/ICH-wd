@@ -36,3 +36,50 @@
   background-color: #fff;
   padding: 13px 14px;
 }
+
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 0;
+  }
+
+  .headerInner {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .headerLeftSide {
+    flex: 1 1 420px;
+    gap: 40px;
+  }
+
+  .headerRightSide {
+    flex: 0 0 auto;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 16px 0;
+  }
+
+  .headerLeftSide {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .headerLeftSideLinks {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .headerRightSide {
+    margin: 0 auto;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+}
