@@ -1,0 +1,15 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.link {
+  font-size: 15px;
+  color: #274059;
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: 0.5;
+}
