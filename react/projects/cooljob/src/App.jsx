@@ -1,16 +1,12 @@
 import "./App.css"
 import Header from "./components/header"
-import Hero from "./components/hero"
-import TrustedBy from "./components/trustedBy"
+import Main from "./components/main"
 
 function App() {
   return (
     <>
-      <div className="container">
-        <Header />
-        <Hero />
-        <TrustedBy />
-      </div>
+      <Header />
+      <Main />
     </>
   )
 }

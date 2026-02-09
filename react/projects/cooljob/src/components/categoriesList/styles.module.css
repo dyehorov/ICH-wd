@@ -1,0 +1,35 @@
+.categoriesList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 90px;
+}
+
+.categoriesListItem {
+  background-color: #fff;
+  width: 270px;
+  padding: 50px 0 50px 29px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1 1 260px;
+}
+
+.categoriesListItem:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.categoriesListItem > .categorieIcon {
+  margin-bottom: 20px;
+}
+
+.categoriesListItem .categorieTitle {
+  max-width: 111px;
+}
+
+@media (max-width: 768px) {
+  .categoriesList {
+    gap: 45px;
+  }
+}
