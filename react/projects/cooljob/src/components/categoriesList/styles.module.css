@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 90px;
+  margin-top: 43px;
 }
 
 .categoriesListItem {
