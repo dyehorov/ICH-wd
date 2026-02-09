@@ -1,0 +1,59 @@
+.hero {
+  position: relative;
+  background: #cfe6fb;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 1020px;
+  z-index: 20;
+  padding: 120px 0 240px;
+}
+
+.title {
+  margin: 0 0 40px;
+  font-size: 64px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: #1f2d3d;
+}
+
+.heroShape {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  z-index: 10;
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    padding-top: 100px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding-top: 80px;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .heroShape {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+}
