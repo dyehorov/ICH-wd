@@ -1,0 +1,7 @@
+.socialList {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  position: relative;
+  bottom: -25px;
+}

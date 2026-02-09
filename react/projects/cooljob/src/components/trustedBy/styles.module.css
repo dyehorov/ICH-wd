@@ -1,0 +1,33 @@
+.trustedBy {
+  padding: 52px 0;
+}
+
+.trustedByInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trustedByText {
+  font-size: 16px;
+  color: #696969;
+}
+
+.trustedByList {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 42px;
+}
+
+@media (max-width: 1024px) {
+  .trustedByInner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .trustedByList {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

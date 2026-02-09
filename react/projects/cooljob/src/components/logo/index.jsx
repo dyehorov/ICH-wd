@@ -3,8 +3,8 @@ import logo from "../../assets/cooljob.svg"
 
 export default function Logo() {
   return (
-    <div>
-      <img src={logo} alt="" />
+    <div className={styles.logo}>
+      <img src={logo} alt="Cooljob logo" />
     </div>
   )
 }

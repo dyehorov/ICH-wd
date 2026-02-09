@@ -1,0 +1,115 @@
+.card {
+  list-style: none;
+  background: #ffffff;
+  border-radius: 2px;
+  padding: 44px 48px;
+  width: 449px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.category {
+  font-size: 18px;
+  color: #9aa3ab;
+}
+
+.title {
+  font-size: 22px;
+  max-width: 270px;
+  margin-bottom: 16px;
+}
+
+.locationRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 60px;
+}
+
+.locationIcon {
+  width: 19px;
+  height: 19px;
+  opacity: 0.5;
+}
+
+.locationText {
+  font-size: 15px;
+  color: #8d8d8d;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.companyLogo {
+  height: 13px;
+  width: auto;
+  display: block;
+}
+
+.companyText {
+  font-size: 15px;
+  color: #8d8d8d;
+}
+
+.meta {
+  font-size: 16px;
+  color: #9aa3ab;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    padding: 32px;
+    min-height: 320px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .locationRow {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 12px;
+    width: 300px;
+  }
+}

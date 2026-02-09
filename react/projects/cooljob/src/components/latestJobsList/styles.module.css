@@ -1,0 +1,13 @@
+.latestJobsList {
+  margin-top: 42px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .latestJobsList {
+    justify-content: center;
+  }
+}
