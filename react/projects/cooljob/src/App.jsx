@@ -1,6 +1,7 @@
 import "./App.css"
 import Header from "./components/header"
 import Hero from "./components/hero"
+import TrustedBy from "./components/trustedBy"
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <div className="container">
         <Header />
         <Hero />
+        <TrustedBy />
       </div>
     </>
   )
