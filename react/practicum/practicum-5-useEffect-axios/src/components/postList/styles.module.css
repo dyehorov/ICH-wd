@@ -1,0 +1,51 @@
+.postsList {
+  overflow-y: auto;
+  max-height: 80vh;
+  background-color: cadetblue;
+  padding: 24px;
+  border-radius: 8px;
+  list-style: none;
+  min-height: 80vh;
+}
+
+.postsList li {
+  background-color: rgb(148, 189, 190);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.postsList li:last-child {
+  margin-bottom: 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.buttons button {
+  width: 100px;
+  padding: 8px;
+  background-color: rgb(64, 124, 235);
+  border-radius: 8px;
+  border: 1px solid rgb(64, 124, 235);
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: rgb(31, 100, 228);
+}
+
+.buttons span {
+  font-size: 20px;
+  width: 25px;
+  text-align: center;
+}
