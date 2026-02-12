@@ -1,0 +1,16 @@
+.quizContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 30px auto;
+  border-radius: 8px;
+  gap: 12px;
+  background-color: cadetblue;
+  padding: 24px;
+}
+
+.expressionContainer {
+  display: flex;
+  gap: 12px;
+}
