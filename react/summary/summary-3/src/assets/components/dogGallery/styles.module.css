@@ -1,5 +1,6 @@
 .dogList img {
   width: 200px;
+  border-radius: 12px;
 }
 
 .dogList {
@@ -8,4 +9,32 @@
   gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-rows: masonry;
+  padding: 0 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.header span {
+  font-size: 20px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.buttonsContainer button {
+  padding: 8px 12px;
+  background-color: #00000005;
+  border: 1px solid #000;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.buttonsContainer button:hover {
+  background-color: rgba(0, 0, 0, 0.283);
 }

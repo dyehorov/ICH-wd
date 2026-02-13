@@ -5,23 +5,6 @@ import DogImage from "../dogImage"
 
 const BASE_URL = "https://dog.ceo/api/breeds/image/random"
 
-const itemSizes = [
-  "2em",
-  "3em",
-  "1.6em",
-  "4em",
-  "3.2em",
-  "3em",
-  "4.5em",
-  "1em",
-  "3.5em",
-  "2.8em",
-]
-const items = document.querySelectorAll(".item")
-for (let i = 0; i < items.length; i++) {
-  items[i].style.blockSize = itemSizes[i]
-}
-
 export default function DogGallery() {
   const [dogList, setDogList] = useState([])
   const [numberOfDogs, setNumberOfDogs] = useState(3)
@@ -70,22 +53,27 @@ export default function DogGallery() {
 
   return (
     <div>
-      <button onClick={() => setNumberOfDogs(prev => prev + 1)}>
-        Add a dog
-      </button>
-      <button onClick={() => onWindowLoad(numberOfDogs)}>Update all</button>
-      <button
-        onClick={() => {
-          onWindowLoad()
-          setNumberOfDogs(3)
-        }}
-      >
-        Reset
-      </button>
-      <span>Loaded dogs: {numberOfDogs}</span>
+      <div className={styles.header}>
+        <span>Loaded dogs: {numberOfDogs}</span>
+        <div className={styles.buttonsContainer}>
+          <button onClick={() => setNumberOfDogs(prev => prev + 1)}>
+            Add a dog
+          </button>
+          <button onClick={() => onWindowLoad(numberOfDogs)}>Update all</button>
+          <button
+            onClick={() => {
+              onWindowLoad()
+              setNumberOfDogs(3)
+            }}
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+
       <ul className={styles.dogList}>
         {dogList.map(item => (
-          <DogImage key={Math.random()} image={item} />
+          <DogImage key={item} image={item} />
         ))}
       </ul>
     </div>
