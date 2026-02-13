@@ -1,9 +1,12 @@
 import "./App.css"
+import DogGallery from "./assets/components/dogGallery"
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return <></>
+  return (
+    <>
+      <DogGallery />
+    </>
+  )
 }
 
 export default App
