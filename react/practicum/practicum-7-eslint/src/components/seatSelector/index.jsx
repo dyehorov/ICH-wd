@@ -16,11 +16,7 @@ export default function SeatSelector({ seats, setSeats }) {
       prev.map(seat => {
         if (seat.id !== id) return seat
 
-        if (seat.selected) {
-          return { ...seat, selected: false }
-        } else {
-          return { ...seat, selected: true }
-        }
+        return { ...seat, selected: seat.selected ? false : true }
       }),
     )
   }
