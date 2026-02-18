@@ -1,7 +1,10 @@
 .container {
-  margin: 10vh auto;
-  max-width: 600px;
-  background-color: cadetblue;
-  padding: 8px 16px;
-  border-radius: 12px;
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #1e1e2f;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  color: white;
+  font-family: Arial, sans-serif;
 }

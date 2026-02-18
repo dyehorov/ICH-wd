@@ -1,23 +1,37 @@
 .seatList {
   list-style: none;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
   padding: 0;
-  width: 100%;
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  gap: 15px;
 }
 
 .seatList li {
-  padding: 8px 16px;
-  border-radius: 12px;
+  padding: 14px 0;
+  text-align: center;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.selectedSeat {
-  background-color: green;
+.notSelectedSeat {
+  background-color: #3a3a55;
 }
 
-.notSelectedSeat {
-  background-color: gray;
+.notSelectedSeat:hover {
+  background-color: #50507a;
+}
+
+.selectedSeat {
+  background-color: #2ecc71;
+  color: #111;
+}
+
+.selectedSeat:hover {
+  background-color: #27ae60;
+}
+
+p {
+  margin-top: 20px;
+  font-size: 16px;
 }

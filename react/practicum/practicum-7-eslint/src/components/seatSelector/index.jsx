@@ -16,10 +16,12 @@ export default function SeatSelector({ seats, setSeats }) {
       prev.map(seat => {
         if (seat.id !== id) return seat
 
-        return { ...seat, selected: seat.selected ? false : true }
+        return { ...seat, selected: !seat.selected }
       }),
     )
   }
+
+  const selectedSeats = getSelectedSeats(seats)
 
   return (
     <div>
@@ -36,11 +38,20 @@ export default function SeatSelector({ seats, setSeats }) {
           </li>
         ))}
       </ul>
-      <p>
+      <p style={{ fontSize: "18px" }}>
         Selected Seats:{" "}
-        {getSelectedSeats(seats).map(item => (
-          <span key={item}>{item + " "}</span>
-        ))}
+        {selectedSeats.length === 0 ? (
+          <span style={{ fontStyle: "italic", fontSize: "16px" }}>
+            No seats selected
+          </span>
+        ) : (
+          selectedSeats.map((item, index) => (
+            <span key={item}>
+              {item}
+              {selectedSeats.length === index + 1 ? " " : ", "}
+            </span>
+          ))
+        )}
       </p>
     </div>
   )
