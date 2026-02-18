@@ -1,0 +1,7 @@
+.container {
+  margin: 10vh auto;
+  max-width: 600px;
+  background-color: cadetblue;
+  padding: 8px 16px;
+  border-radius: 12px;
+}

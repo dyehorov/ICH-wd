@@ -1,0 +1,19 @@
+.seatList {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.seatList li {
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.selectedSeat {
+  background-color: green;
+}
+
+.notSelectedSeat {
+  background-color: gray;
+}
