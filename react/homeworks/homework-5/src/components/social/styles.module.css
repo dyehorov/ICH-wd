@@ -1,0 +1,16 @@
+.logoImage {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logoImage:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 660px) {
+  .logoImage {
+    width: 70px;
+    height: 70px;
+  }
+}
