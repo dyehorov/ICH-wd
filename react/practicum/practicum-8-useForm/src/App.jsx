@@ -1,4 +1,11 @@
 import "./App.css"
-  export default function App() {
-  return <h1>Hello</h1>;
+import UserProvider from "./components/userProvider"
+import MainComponent from "./components/mainComponent"
+
+export default function App() {
+  return (
+    <UserProvider>
+      <MainComponent />
+    </UserProvider>
+  )
 }
