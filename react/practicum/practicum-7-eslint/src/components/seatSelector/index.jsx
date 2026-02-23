@@ -1,40 +1,24 @@
+import EventsContext from "../../context/eventsContext"
 import styles from "./styles.module.css"
+import { useContext } from "react"
 
-export default function SeatSelector({ seats, setSeats }) {
-  function getSelectedSeats(seats) {
-    return seats.reduce((accum, item) => {
-      if (!item.selected) return accum
+export default function SeatSelector({ seatList, eventId }) {
+  const { getSelectedSeats, handleSeatSelect } = useContext(EventsContext)
 
-      accum.push(item.seatNumber)
-
-      return accum
-    }, [])
-  }
-
-  function handleSeatSelect(id) {
-    setSeats(prev =>
-      prev.map(seat => {
-        if (seat.id !== id) return seat
-
-        return { ...seat, selected: !seat.selected }
-      }),
-    )
-  }
-
-  const selectedSeats = getSelectedSeats(seats)
+  const selectedSeats = getSelectedSeats(seatList)
 
   return (
     <div>
       <ul className={styles.seatList}>
-        {seats.map(seat => (
+        {seatList.map(seat => (
           <li
             key={seat.id}
-            onClick={() => handleSeatSelect(seat.id)}
+            onClick={() => handleSeatSelect(eventId, seat.id)}
             className={
-              seat.selected ? styles.selectedSeat : styles.notSelectedSeat
+              seat.isSelected ? styles.selectedSeat : styles.notSelectedSeat
             }
           >
-            {seat.seatNumber}
+            {seat.label}
           </li>
         ))}
       </ul>

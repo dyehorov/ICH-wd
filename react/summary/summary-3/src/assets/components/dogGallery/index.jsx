@@ -53,6 +53,7 @@ export default function DogGallery() {
 
   return (
     <div>
+      <h2>Dog gallery</h2>
       <div className={styles.header}>
         <span>Loaded dogs: {numberOfDogs}</span>
         <div className={styles.buttonsContainer}>
