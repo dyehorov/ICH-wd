@@ -13,6 +13,8 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
         `${url}/posts?page=${pageNumber}&limit=3`,
       )
 
+      console.log(response)
+
       setPosts(response.data)
     } catch (error) {
       console.log(error)
@@ -78,16 +80,18 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
       </ul>
       <div className={styles.pageButtons}>
         <button
-          onClick={() => {
-            if (pageNumber === 1) return
-
-            setPageNumber(prev => prev - 1)
-          }}
+          disabled={pageNumber === 1}
+          onClick={() => setPageNumber(prev => prev - 1)}
         >
           Previous
         </button>
         <span>{pageNumber}</span>
-        <button onClick={() => setPageNumber(prev => prev + 1)}>Next</button>
+        <button
+          disabled={posts.length <= 2}
+          onClick={() => setPageNumber(prev => prev + 1)}
+        >
+          Next
+        </button>
       </div>
     </div>
   )
