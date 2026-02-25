@@ -1,6 +1,10 @@
-
 import "./App.css"
+import Header from "./components/header"
 
 export default function App() {
-  return <h1>Hello</h1>;
+  return (
+    <>
+      <Header />
+    </>
+  )
 }

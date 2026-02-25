@@ -1,0 +1,14 @@
+.header {
+  background-color: #3f5cc0;
+  padding: 24px 0;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__inner > nav {
+  flex-grow: 1;
+}

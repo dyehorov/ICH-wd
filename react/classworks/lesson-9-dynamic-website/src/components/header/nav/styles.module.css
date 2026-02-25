@@ -1,0 +1,24 @@
+.navList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.navList li {
+  padding: 9px 60px;
+  border-right: 1px solid #0000003c;
+}
+
+.navList li:last-child {
+  border-right: none;
+}
+
+.navList a {
+  color: #090808;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navList a:hover {
+  color: #353434;
+}
