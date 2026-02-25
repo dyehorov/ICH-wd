@@ -1,34 +1,94 @@
 import styles from "./styles.module.css"
 import userLogo from "../../assets/userLogo.svg"
 import axios from "axios"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 
-const BASE_URL = "https://699eb2fb78dda56d396b079c.mockapi.io/"
+export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
+  const [posts, setPosts] = useState([])
+  const [pageNumber, setPageNumber] = useState(1)
 
-const posts = []
+  const loadPosts = async () => {
+    try {
+      const response = await axios.get(
+        `${url}/posts?page=${pageNumber}&limit=3`,
+      )
 
-export default function PostsList() {
+      setPosts(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deletePost = async id => {
+    try {
+      await axios.delete(`${url}/posts/${id}`)
+
+      loadPosts()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    loadPosts()
+  }, [])
+
+  useEffect(() => {
+    loadPosts()
+  }, [pageNumber])
+
+  useEffect(() => {
+    loadPosts()
+    setIsPostCreated(false)
+  }, [isPostCreated])
+
   return (
     <div className={styles.postListContainer}>
       <h2>Posts list</h2>
       <ul>
-        <li>
-          <div>
-            <div className={styles.userLogo}>
-              <img src={userLogo} alt="user logo" />
-              <span>User logo</span>
-            </div>
-          </div>
-          <div className={styles.postContent}>
-            <h3>Title</h3>
-            <p>Text</p>
-          </div>
-          <div className={styles.postActions}>
-            <span>Post Id</span>
-            <button>Delete</button>
-          </div>
-        </li>
+        {posts ? (
+          posts.map(post => {
+            return (
+              <li key={post.id}>
+                <div>
+                  <div className={styles.userLogo}>
+                    <img src={userLogo} alt="user logo" />
+                    <span>User logo</span>
+                  </div>
+                </div>
+                <div className={styles.postContent}>
+                  <h3>{post.title}</h3>
+                  <p>{post.text}</p>
+                </div>
+                <div className={styles.postActions}>
+                  <span>{post.id}</span>
+                  <button
+                    id={post.id}
+                    onClick={event => deletePost(event.target.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            )
+          })
+        ) : (
+          <p>No posts</p>
+        )}
       </ul>
+      <div className={styles.pageButtons}>
+        <button
+          onClick={() => {
+            if (pageNumber === 1) return
+
+            setPageNumber(prev => prev - 1)
+          }}
+        >
+          Previous
+        </button>
+        <span>{pageNumber}</span>
+        <button onClick={() => setPageNumber(prev => prev + 1)}>Next</button>
+      </div>
     </div>
   )
 }

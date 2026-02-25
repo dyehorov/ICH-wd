@@ -24,6 +24,11 @@
   padding: 16px 24px;
   border-radius: 12px;
   gap: 24px;
+  margin-bottom: 24px;
+}
+
+.postListContainer li:last-child {
+  margin-bottom: 0;
 }
 
 .userLogo {
@@ -47,4 +52,25 @@
   padding: 4px 8px;
   background-color: #31578e;
   border: 1px solid #31578e;
+  cursor: pointer;
+}
+
+.pageButtons {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.pageButtons button {
+  width: 120px;
+  padding: 4px;
+  border: 1px solid #4b69cd;
+  background-color: #4b69cd;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.pageButtons span {
+  font-size: 18px;
 }
