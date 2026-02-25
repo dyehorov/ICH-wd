@@ -1,6 +1,12 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+hrml,
+body,
+#root {
+  height: 100%;
+  background-color: #96dcff;
 }

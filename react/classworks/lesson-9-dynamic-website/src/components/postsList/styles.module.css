@@ -1,0 +1,50 @@
+.postListContainer {
+  background-color: #7d9fff;
+  flex-grow: 1;
+  padding: 60px 113px;
+  max-width: 1043px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postListContainer h2 {
+  margin-bottom: 124px;
+}
+
+.postListContainer ul {
+  list-style: none;
+  width: 100%;
+}
+
+.postListContainer li {
+  background-color: #4b69cd;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-radius: 12px;
+  gap: 24px;
+}
+
+.userLogo {
+  border-right: 1px solid #0000003c;
+  padding-right: 12px;
+}
+
+.postContent {
+  flex-grow: 1;
+}
+
+.postActions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.postActions button {
+  font-size: 16px;
+  color: #000;
+  padding: 4px 8px;
+  background-color: #31578e;
+  border: 1px solid #31578e;
+}

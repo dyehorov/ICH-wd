@@ -1,0 +1,42 @@
+.postFormContainer {
+  background-color: #7d9fff;
+  padding: 60px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 500px;
+}
+
+.postFormContainer h2 {
+  margin-bottom: 124px;
+}
+
+.postFormContainer form {
+  background-color: #4b69cd;
+  display: flex;
+  gap: 13px;
+  padding: 30px 12px;
+  width: 100%;
+}
+
+.formInner {
+  background-color: #4662b8;
+  padding: 2px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.formInner label {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonSubmit {
+  color: #000;
+  background-color: #31578e;
+  border: 1px solid #31578e;
+  align-self: flex-end;
+  padding: 8px 16px;
+}
