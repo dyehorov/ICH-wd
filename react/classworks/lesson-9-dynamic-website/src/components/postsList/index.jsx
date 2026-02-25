@@ -10,7 +10,7 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
   const loadPosts = async () => {
     try {
       const response = await axios.get(
-        `${url}/posts?page=${pageNumber}&limit=3`,
+        `${url}/posts?page=${pageNumber}&limit=3&order=asc`,
       )
 
       console.log(response)
@@ -54,11 +54,8 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
           posts.map(post => {
             return (
               <li key={post.id}>
-                <div>
-                  <div className={styles.userLogo}>
-                    <img src={userLogo} alt="user logo" />
-                    <span>User logo</span>
-                  </div>
+                <div className={styles.userLogo}>
+                  <img src={post.userImage} alt="user logo" />
                 </div>
                 <div className={styles.postContent}>
                   <h3>{post.title}</h3>

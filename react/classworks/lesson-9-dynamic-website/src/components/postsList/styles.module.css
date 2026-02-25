@@ -76,3 +76,9 @@
 .pageButtons span {
   font-size: 18px;
 }
+
+.userLogo > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 999px;
+}
