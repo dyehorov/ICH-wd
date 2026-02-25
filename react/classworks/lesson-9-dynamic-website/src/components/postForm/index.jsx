@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form"
 import userLogo from "../../assets/userLogo.svg"
 import styles from "./styles.module.css"
 import axios from "axios"
+import postFormValidation from "../validator/forms/postFormValidation"
+
+const { title, text } = postFormValidation
 
 export default function PostForm({ url, setIsPostCreated }) {
   const {
@@ -44,18 +47,12 @@ export default function PostForm({ url, setIsPostCreated }) {
           <div>
             <label>
               <span>Title</span>
-              <input
-                type="text"
-                {...register("title", { required: "Title is required" })}
-              />
+              <input type="text" {...register("title", title)} />
               {errors.title && <span>{errors.title.message}</span>}
             </label>
             <label>
               <span>Text</span>
-              <input
-                type="text"
-                {...register("text", { required: "Text is required" })}
-              />
+              <input type="text" {...register("text", text)} />
               {errors.text && <span>{errors.text.message}</span>}
             </label>
           </div>
