@@ -2,7 +2,7 @@ import styles from "./styles.module.css"
 import PostsList from "../postsList"
 import PostForm from "../postForm"
 import Container from "../container"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 const BASE_URL = "https://699eb2fb78dda56d396b079c.mockapi.io/"
 

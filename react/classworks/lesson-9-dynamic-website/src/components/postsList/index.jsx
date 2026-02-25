@@ -1,5 +1,4 @@
 import styles from "./styles.module.css"
-import userLogo from "../../assets/userLogo.svg"
 import axios from "axios"
 import { useState, useEffect } from "react"
 
@@ -49,7 +48,7 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
       <h2>Posts list</h2>
       <ul>
         {posts.length === 0 ? (
-          <p>No posts</p>
+          <li className={styles.emptyState}>No posts</li>
         ) : (
           posts.map(post => {
             return (

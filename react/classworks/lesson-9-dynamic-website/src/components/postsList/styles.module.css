@@ -1,7 +1,9 @@
 .postListContainer {
   background-color: #7d9fff;
   flex-grow: 1;
-  padding: 60px 113px;
+  padding: 40px 24px;
+  width: 100%;
+  min-width: 0;
   max-width: 1043px;
   display: flex;
   flex-direction: column;
@@ -10,19 +12,24 @@
 }
 
 .postListContainer h2 {
-  margin-bottom: 124px;
+  margin-bottom: 40px;
 }
 
 .postListContainer ul {
   list-style: none;
   width: 100%;
-  height: 100%;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .postListContainer li {
   background-color: #4b69cd;
   display: flex;
   justify-content: space-between;
+  min-height: 120px;
   padding: 16px 24px;
   border-radius: 12px;
   gap: 24px;
@@ -40,6 +47,19 @@
 
 .postContent {
   flex-grow: 1;
+  min-width: 0;
+}
+
+.postContent h3 {
+  margin: 0 0 8px;
+}
+
+.postContent p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  line-height: 1.4;
+  max-height: calc(1.4em * 3);
 }
 
 .postActions {
@@ -62,6 +82,7 @@
   display: flex;
   gap: 16px;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .pageButtons button {
@@ -81,4 +102,21 @@
   width: 70px;
   height: 70px;
   border-radius: 999px;
+}
+
+.emptyState {
+  color: #1c2f72;
+  font-size: 18px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .postListContainer li {
+    flex-direction: column;
+  }
+
+  .userLogo {
+    border-right: 0;
+    padding-right: 0;
+  }
 }
