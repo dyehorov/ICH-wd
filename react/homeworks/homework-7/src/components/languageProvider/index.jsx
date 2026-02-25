@@ -1,8 +1,16 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import LanguageContext from "../../context/languageContext"
 
-export default function LanguageProvider() {
-  const [currentLanguage, setCurrentLanguage] = useState(null)
+export default function LanguageProvider({ children }) {
+  const [currentLanguage, setCurrentLanguage] = useState("english")
 
-  return <LanguageContext.Provider></LanguageContext.Provider>
+  function changeLanguage() {
+    setCurrentLanguage(prev => (prev === "english" ? "german" : "english"))
+  }
+
+  return (
+    <LanguageContext.Provider value={{ currentLanguage, changeLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  )
 }
