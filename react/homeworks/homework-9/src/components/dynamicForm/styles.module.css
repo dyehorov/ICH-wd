@@ -1,0 +1,18 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  background-color: cadetblue;
+  margin: 10vh auto;
+  padding: 16px;
+  gap: 8px;
+  border-radius: 12px;
+}
+
+.form button {
+  background-color: cornflowerblue;
+  border: 1px solid #000;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
