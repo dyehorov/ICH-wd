@@ -48,7 +48,9 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
     <div className={styles.postListContainer}>
       <h2>Posts list</h2>
       <ul>
-        {posts ? (
+        {posts.length === 0 ? (
+          <p>No posts</p>
+        ) : (
           posts.map(post => {
             return (
               <li key={post.id}>
@@ -74,8 +76,6 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
               </li>
             )
           })
-        ) : (
-          <p>No posts</p>
         )}
       </ul>
       <div className={styles.pageButtons}>
