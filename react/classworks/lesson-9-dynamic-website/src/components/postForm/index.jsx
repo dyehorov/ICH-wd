@@ -12,9 +12,12 @@ export default function PostForm({ url, setIsPostCreated }) {
   } = useForm()
 
   async function publishPost(data) {
+    const isoString = new Date().toISOString()
+
     const postData = {
       title: data.title,
       text: data.text,
+      date: isoString,
     }
 
     try {

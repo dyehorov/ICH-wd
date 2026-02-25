@@ -9,10 +9,8 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
   const loadPosts = async () => {
     try {
       const response = await axios.get(
-        `${url}/posts?page=${pageNumber}&limit=3&order=asc`,
+        `${url}/posts?page=${pageNumber}&limit=3&orderBy=date&order=desc`,
       )
-
-      console.log(response)
 
       setPosts(response.data)
     } catch (error) {
