@@ -1,6 +1,10 @@
-
+import RegistrationForm from "./components/registrationForm"
 import "./App.css"
 
 export default function App() {
-  return <h1>Hello</h1>;
+  return (
+    <div className="container">
+      <RegistrationForm />
+    </div>
+  )
 }
