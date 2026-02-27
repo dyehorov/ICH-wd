@@ -30,16 +30,7 @@ export default function PostsList({ url, isPostCreated, setIsPostCreated }) {
 
   useEffect(() => {
     loadPosts()
-  }, [])
-
-  useEffect(() => {
-    loadPosts()
-  }, [pageNumber])
-
-  useEffect(() => {
-    loadPosts()
-    setIsPostCreated(false)
-  }, [isPostCreated])
+  }, [pageNumber, isPostCreated])
 
   return (
     <div className={styles.postListContainer}>

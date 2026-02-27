@@ -30,7 +30,7 @@ export default function PostForm({ url, setIsPostCreated }) {
 
       reset()
 
-      setIsPostCreated(true)
+      setIsPostCreated(prev => !prev)
     } catch (error) {
       console.log(error)
     }
