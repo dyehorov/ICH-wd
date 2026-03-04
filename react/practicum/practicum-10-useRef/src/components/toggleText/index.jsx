@@ -31,7 +31,9 @@ export default function ToggleText() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Hide text</button>
+        <button type="submit">
+          {isTextVisible ? "Hide text" : "Show text"}
+        </button>
         <input
           name="animationTime"
           type="number"
