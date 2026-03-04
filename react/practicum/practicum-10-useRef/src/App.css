@@ -1,0 +1,30 @@
+.contentWrapper {
+  max-width: 600px;
+  margin: 10vh auto;
+  background-color: cadetblue;
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: sans-serif;
+  min-height: 200px;
+}
+
+.contentWrapper button {
+  padding: 4px 8px;
+  background-color: cornflowerblue;
+  font-size: 18px;
+  border-radius: 12px;
+  border: 1px solid cornflowerblue;
+}
+
+.contentWrapper input {
+  padding: 4px 8px;
+  margin-left: 8px;
+}
+
+.contentWrapper p {
+  margin-top: 12px;
+  font-size: 20px;
+}
