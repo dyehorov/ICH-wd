@@ -24,24 +24,32 @@ export default function ToggleText() {
     handleTextVisibility()
   }
 
+  const handleClear = () => {
+    setAnimationTime("")
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <button type="submit">Hide text</button>
         <input
+          name="animationTime"
           type="number"
           value={animationTime}
           onChange={event => setAnimationTime(event.target.value)}
-          placeholder="Enter value in ms"
+          placeholder="Enter value in ms. Default is 0ms."
         />
-        <p
-          ref={textRef}
-          className={`${styles.text} ${isTextVisible ? styles.visible : styles.hidden}`}
-          style={{ transitionDuration: `${animationTime}ms` }}
-        >
-          This is hidden text. Click the button to hide or show it.
-        </p>
+        <button type="button" onClick={handleClear}>
+          Clear
+        </button>
       </form>
+      <p
+        ref={textRef}
+        className={`${styles.text} ${isTextVisible ? styles.visible : styles.hidden}`}
+        style={{ transitionDuration: `${animationTime ? animationTime : 0}ms` }}
+      >
+        This is hidden text. Click the button to hide or show it.
+      </p>
     </div>
   )
 }
