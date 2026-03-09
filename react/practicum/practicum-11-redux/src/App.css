@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px;
+  height: 100%;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin-top: 12px;
+}
+
+.cartWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 300px;
+  min-height: 150px;
+  gap: 12px;
+}
+
+.cartList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
