@@ -1,0 +1,8 @@
+.noteList {
+  width: 100%;
+  max-width: 600px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

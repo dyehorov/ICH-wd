@@ -5,6 +5,13 @@
 }
 
 html,
-body {
+body,
+#root {
   font-family: sans-serif;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,0 +1,35 @@
+.listItem {
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listItemContent > h3 {
+  margin-bottom: 8px;
+}
+
+.listItemActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.listItemActions button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #5e85ce;
+  color: white;
+  cursor: pointer;
+}
+
+.listItemActions button:last-child {
+  background-color: #d86e6e;
+}
+
+.listItemActions button:hover {
+  opacity: 0.8;
+}
