@@ -2,7 +2,7 @@ import styles from "./styles.module.css"
 import { connect } from "react-redux"
 import NoteItem from "../noteItem"
 
-function NoteList({ todos }) {
+function NoteList({ todos, setIsNoteEditing, setTitleToEdit }) {
   return (
     <ul className={styles.noteList}>
       {todos.length === 0 ? (
@@ -14,6 +14,8 @@ function NoteList({ todos }) {
             title={todo.title}
             text={todo.text}
             id={todo.id}
+            setIsNoteEditing={setIsNoteEditing}
+            setTitleToEdit={setTitleToEdit}
           />
         ))
       )}

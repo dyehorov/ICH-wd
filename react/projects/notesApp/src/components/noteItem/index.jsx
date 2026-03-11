@@ -1,8 +1,8 @@
 import styles from "./styles.module.css"
 import { connect } from "react-redux"
-import { deleteTodoAction } from "../../redux/actions"
+import { deleteTodoAction, editTodoAction } from "../../redux/actions"
 
-function NoteItem({ title, text, id, dispatch }) {
+function NoteItem({ title, text, id, setIsNoteEditing, dispatch }) {
   return (
     <li className={styles.listItem}>
       <div className={styles.listItemContent}>
@@ -10,7 +10,7 @@ function NoteItem({ title, text, id, dispatch }) {
         <p>{text}</p>
       </div>
       <div className={styles.listItemActions}>
-        <button>Edit</button>
+        <button onClick={() => setIsNoteEditing(true)}>Edit</button>
         <button onClick={() => dispatch(deleteTodoAction(id))}>Delete</button>
       </div>
     </li>

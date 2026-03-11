@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form"
-import { addTodoAction } from "../../redux/actions"
+import { addTodoAction, editTodoAction } from "../../redux/actions"
 import { connect } from "react-redux"
 import styles from "./styles.module.css"
 
-function NoteForm({ dispatch }) {
+function NoteForm({ isNoteEditing, setIsNoteEditing, dispatch }) {
   const {
     register,
     handleSubmit,
@@ -12,8 +12,6 @@ function NoteForm({ dispatch }) {
   } = useForm()
 
   const onSubmit = data => {
-    console.log(data)
-
     const newTodo = {
       id: crypto.randomUUID(),
       title: data.title,
@@ -21,7 +19,13 @@ function NoteForm({ dispatch }) {
       completed: false,
     }
 
-    dispatch(addTodoAction(newTodo))
+    if (isNoteEditing) {
+      dispatch(editTodoAction(newTodo))
+
+      setIsNoteEditing(false)
+    } else {
+      dispatch(addTodoAction(newTodo))
+    }
 
     reset()
   }
@@ -46,7 +50,7 @@ function NoteForm({ dispatch }) {
       />
       {errors.text && <p className={styles.error}>{errors.text.message}</p>}
 
-      <button type="submit">Add Note</button>
+      <button type="submit"> {isNoteEditing ? "Edit Note" : "Add Note"}</button>
     </form>
   )
 }

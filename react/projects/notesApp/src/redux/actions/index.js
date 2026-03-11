@@ -11,3 +11,10 @@ export const deleteTodoAction = id => {
     payload: { id },
   }
 }
+
+export const editTodoAction = data => {
+  return {
+    type: "EDIT_TODO",
+    payload: data,
+  }
+}

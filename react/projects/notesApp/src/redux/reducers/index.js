@@ -11,6 +11,26 @@ const todoReducer = (state = initialState, action) => {
         ...state,
         data: state.data.filter(todo => todo.id !== action.payload.id),
       }
+    case "EDIT_TODO":
+      return {
+        data: state.data.reduce((accum, item) => {
+          if (item.id !== action.payload.id) {
+            accum.push(item)
+
+            return accum
+          }
+
+          item = {
+            ...item,
+            title: action.payload.title,
+            text: action.payload.text,
+          }
+
+          accum.push(item)
+
+          return accum
+        }),
+      }
     default:
       return state
   }
