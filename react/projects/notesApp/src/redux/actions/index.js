@@ -18,3 +18,16 @@ export const editTodoAction = data => {
     payload: data,
   }
 }
+
+export const setEditingNoteAction = note => {
+  return {
+    type: "SET_EDITING_NOTE",
+    payload: note,
+  }
+}
+
+export const clearEditingNoteAction = () => {
+  return {
+    type: "CLEAR_EDITING_NOTE",
+  }
+}

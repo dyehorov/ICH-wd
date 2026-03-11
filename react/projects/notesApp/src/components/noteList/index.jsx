@@ -2,22 +2,13 @@ import styles from "./styles.module.css"
 import { connect } from "react-redux"
 import NoteItem from "../noteItem"
 
-function NoteList({ todos, setIsNoteEditing, setTitleToEdit }) {
+function NoteList({ todos }) {
   return (
     <ul className={styles.noteList}>
       {todos.length === 0 ? (
-        <p>No notes, add one.</p>
+        <li>No notes, add one.</li>
       ) : (
-        todos.map(todo => (
-          <NoteItem
-            key={todo.id}
-            title={todo.title}
-            text={todo.text}
-            id={todo.id}
-            setIsNoteEditing={setIsNoteEditing}
-            setTitleToEdit={setTitleToEdit}
-          />
-        ))
+        todos.map(todo => <NoteItem key={todo.id} todo={todo} />)
       )}
     </ul>
   )

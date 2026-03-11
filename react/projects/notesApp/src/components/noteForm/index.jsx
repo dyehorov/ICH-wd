@@ -1,9 +1,14 @@
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { addTodoAction, editTodoAction } from "../../redux/actions"
+import {
+  addTodoAction,
+  clearEditingNoteAction,
+  editTodoAction,
+} from "../../redux/actions"
 import { connect } from "react-redux"
 import styles from "./styles.module.css"
 
-function NoteForm({ isNoteEditing, setIsNoteEditing, dispatch }) {
+function NoteForm({ editingNote, dispatch }) {
   const {
     register,
     handleSubmit,
@@ -11,7 +16,37 @@ function NoteForm({ isNoteEditing, setIsNoteEditing, dispatch }) {
     formState: { errors },
   } = useForm()
 
+  useEffect(() => {
+    if (editingNote) {
+      reset({
+        title: editingNote.title,
+        text: editingNote.text,
+      })
+
+      return
+    }
+
+    reset({
+      title: "",
+      text: "",
+    })
+  }, [editingNote, reset])
+
   const onSubmit = data => {
+    if (editingNote) {
+      dispatch(
+        editTodoAction({
+          id: editingNote.id,
+          title: data.title,
+          text: data.text,
+        }),
+      )
+
+      dispatch(clearEditingNoteAction())
+
+      return
+    }
+
     const newTodo = {
       id: crypto.randomUUID(),
       title: data.title,
@@ -19,15 +54,11 @@ function NoteForm({ isNoteEditing, setIsNoteEditing, dispatch }) {
       completed: false,
     }
 
-    if (isNoteEditing) {
-      dispatch(editTodoAction(newTodo))
-
-      setIsNoteEditing(false)
-    } else {
-      dispatch(addTodoAction(newTodo))
-    }
-
-    reset()
+    dispatch(addTodoAction(newTodo))
+    reset({
+      title: "",
+      text: "",
+    })
   }
 
   return (
@@ -50,9 +81,15 @@ function NoteForm({ isNoteEditing, setIsNoteEditing, dispatch }) {
       />
       {errors.text && <p className={styles.error}>{errors.text.message}</p>}
 
-      <button type="submit"> {isNoteEditing ? "Edit Note" : "Add Note"}</button>
+      <button type="submit"> {editingNote ? "Edit Note" : "Add Note"}</button>
     </form>
   )
 }
 
-export default connect()(NoteForm)
+const mapStateToProps = state => {
+  return {
+    editingNote: state.editingNote,
+  }
+}
+
+export default connect(mapStateToProps)(NoteForm)
