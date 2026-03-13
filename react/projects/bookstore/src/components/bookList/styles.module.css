@@ -1,0 +1,7 @@
+.noteList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 50px;
+}

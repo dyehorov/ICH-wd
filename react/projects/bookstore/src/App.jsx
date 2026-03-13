@@ -1,6 +1,12 @@
-
 import "./App.css"
+import BookList from "./components/bookList"
+import BookForm from "./components/bookForm"
 
 export default function App() {
-  return <h1>Hello</h1>;
+  return (
+    <>
+      <BookForm />
+      <BookList />
+    </>
+  )
 }
