@@ -1,16 +1,28 @@
 import { useParams, Link, Navigate } from "react-router-dom"
-import { districtsData } from "../../data.js"
+import { initialCategories } from "../../data.js"
 
-const Place = () => {
-  const { districtId, placeId } = useParams()
+const Place = ({ favorites, setFavorites }) => {
+  const { categorieId, placeId } = useParams()
 
-  const district = districtsData.find(district => district.id === districtId)
+  const category = initialCategories.find(
+    category => category.id === categorieId,
+  )
 
-  if (!district) {
+  if (!category) {
     return <Navigate to="/404" replace />
   }
 
-  const place = district.places.find(place => place.id === placeId)
+  const place = category.places.find(place => place.id === placeId)
+  const isFavorited = favorites.some(item => item.id === placeId)
+
+  const handleFavoriteToggle = () => {
+    if (isFavorited) {
+      setFavorites(prev => prev.filter(item => item.id !== placeId))
+      return
+    }
+
+    setFavorites(prev => [...prev, { ...place, categoryId: categorieId }])
+  }
 
   if (!place) {
     return (
@@ -19,8 +31,8 @@ const Place = () => {
         <p>
           Sorry, an attraction with this name does not exist in this district.
         </p>
-        <Link to={`/districts/${districtId}`} className="back-button">
-          Back to District
+        <Link to={`/categories/${categorieId}`} className="back-button">
+          Back to Categories
         </Link>
       </div>
     )
@@ -29,8 +41,8 @@ const Place = () => {
   return (
     <div className="place-page">
       <div className="place-header">
-        <Link to={`/districts/${districtId}`} className="back-link">
-          ← Back to District
+        <Link to={`/categories/${categorieId}`} className="back-link">
+          ← Back to Categories
         </Link>
       </div>
 
@@ -42,15 +54,23 @@ const Place = () => {
         <div className="place-meta">
           <div className="meta-item">
             <span className="meta-label">District:</span>
-            <Link to={`/districts/${districtId}`} className="meta-value">
-              {district.name}
+            <Link to={`/categories/${categorieId}`} className="meta-value">
+              {category.name}
             </Link>
           </div>
         </div>
 
-        <button onClick={() => window.history.back()} className="back-button">
-          ← Back
-        </button>
+        <div className="action-buttons">
+          <button onClick={() => window.history.back()} className="back-button">
+            ← Back
+          </button>
+          <button
+            onClick={handleFavoriteToggle}
+            className={`favorite-button${isFavorited ? " is-favorited" : ""}`}
+          >
+            {isFavorited ? "Remove from Favorites" : "Add to Favorites"}
+          </button>
+        </div>
       </div>
     </div>
   )

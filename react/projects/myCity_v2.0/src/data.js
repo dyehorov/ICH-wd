@@ -1,72 +1,75 @@
-export const districtsData = [
+export const initialCategories = [
   {
-    id: "center",
-    name: "Central District",
-    description:
-      "The historical center of the city with architectural landmarks",
+    id: "parks",
+    name: "Parks",
+    icon: "🌳",
     places: [
       {
-        id: "park",
-        name: "City Park",
+        id: "central-park",
+        name: "Central Park",
         description:
-          "A beautiful park with a fountain and centuries-old trees. A great place for walks and relaxation.",
-        image: "🏞️",
+          "A large city park for walking, relaxing, and outdoor activities",
+        image: "🌲",
+        todos: [], // will be loaded later
       },
       {
-        id: "museum",
-        name: "Local History Museum",
+        id: "botanical-garden",
+        name: "Botanical Garden",
         description:
-          "The history of the city from ancient times to the present day. More than 5000 exhibits.",
-        image: "🏛️",
-      },
-      {
-        id: "theater",
-        name: "Drama Theater",
-        description:
-          "The main stage of the city where plays and concerts take place.",
-        image: "🎭",
+          "A green space with rare plants, walking paths, and quiet areas",
+        image: "🍃",
+        todos: [],
       },
     ],
   },
   {
-    id: "north",
-    name: "Northern District",
-    description: "A modern residential district with developed infrastructure",
+    id: "museums",
+    name: "Museums",
+    icon: "🏛️",
     places: [
       {
-        id: "lake",
-        name: "Blue Lake",
+        id: "city-art-museum",
+        name: "City Art Museum",
         description:
-          "A picturesque lake with clear water. A place for relaxation and fishing.",
-        image: "🏖️",
-      },
-      {
-        id: "mall",
-        name: 'Shopping Center "Northfield"',
-        description:
-          "The largest shopping and entertainment complex in the district.",
-        image: "🛍️",
+          "A major museum with European paintings and modern exhibitions",
+        image: "🎨",
+        todos: [],
       },
     ],
   },
   {
-    id: "south",
-    name: "Southern District",
-    description: "An industrial district with interesting historical sites",
+    id: "restaurants",
+    name: "Restaurants",
+    icon: "🍽️",
     places: [
       {
-        id: "factory",
-        name: "Old Factory",
-        description:
-          "A monument of 19th-century industrial architecture. Now it is a museum and art space.",
-        image: "🏭",
-      },
-      {
-        id: "station",
-        name: "Railway Station",
-        description: "A beautiful Art Nouveau building constructed in 1910.",
-        image: "🚂",
+        id: "old-town-bistro",
+        name: "Old Town Bistro",
+        description: "A cozy restaurant serving traditional European cuisine",
+        image: "🥐",
+        todos: [],
       },
     ],
   },
 ]
+
+const todosData = {
+  "central-park": [
+    { id: 1, text: "Rent a bicycle", completed: false },
+    { id: 2, text: "Feed the ducks by the lake", completed: true },
+    { id: 3, text: "Visit the open-air café", completed: false },
+  ],
+  "botanical-garden": [
+    { id: 1, text: "Walk through the rose garden", completed: false },
+    { id: 2, text: "Visit the greenhouse", completed: false },
+  ],
+  "city-art-museum": [
+    { id: 1, text: "See the Impressionist collection", completed: false },
+    { id: 2, text: "Buy souvenirs", completed: true },
+  ],
+  "old-town-bistro": [
+    { id: 1, text: "Try the seasonal soup", completed: false },
+    { id: 2, text: "Reserve a table", completed: true },
+    { id: 3, text: "Leave a tip", completed: false },
+  ],
+}

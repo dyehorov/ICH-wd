@@ -1,5 +1,6 @@
 import styles from "./styles.module.css"
 import { connect } from "react-redux"
+import { useState } from "react"
 import {
   bookRemoveAction,
   setEditingBookAction,
@@ -8,30 +9,48 @@ import {
 
 function BookItem({ book, dispatch }) {
   const { id, title, author, year, isAvailable } = book
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const handleBookRemoval = () => {
+    if (!isAvailable) {
+      setErrorMessage("Cannot delete, the book is not available")
+    }
+
+    dispatch(bookRemoveAction(id, isAvailable))
+  }
 
   return (
     <li className={styles.listItem}>
       <div className={styles.listItemContent}>
-        <h3>{title}</h3>
-        <p>Author: {author}</p>
-        <p>Year: {year}</p>
-        <p>
-          Availability:{" "}
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.meta}>Author: {author}</p>
+        <p className={styles.meta}>Year: {year}</p>
+        <div className={styles.availability}>
+          <span>Status:</span>
           <span
-            onClick={() => dispatch(bookToggleAvailabilityAction(id))}
-            className={
+            className={`${styles.status} ${
               isAvailable ? styles.availableBook : styles.notAvailableBook
-            }
+            }`}
           >
             {isAvailable ? "Available" : "Not Available"}
           </span>
-        </p>
+        </div>
+        {!isAvailable && <p>{errorMessage}</p>}
       </div>
       <div className={styles.listItemActions}>
-        <button onClick={() => dispatch(setEditingBookAction(book))}>
+        <button
+          type="button"
+          onClick={() => dispatch(setEditingBookAction(book))}
+        >
           Edit
         </button>
-        <button onClick={() => dispatch(bookRemoveAction(id))}>Delete</button>
+        <button
+          type="button"
+          className={styles.deleteButton}
+          onClick={handleBookRemoval}
+        >
+          Delete
+        </button>
       </div>
     </li>
   )

@@ -1,27 +1,29 @@
 import { useParams, Link, Navigate } from "react-router-dom"
-import { districtsData } from "../../data.js"
+import { initialCategories } from "../../data.js"
 
-function District() {
-  const { districtId } = useParams()
+function Categorie() {
+  const { categorieId } = useParams()
 
-  const district = districtsData.find(district => district.id === districtId)
+  const category = initialCategories.find(
+    categorie => categorie.id === categorieId,
+  )
 
   return (
     <div className="district-page">
       <div className="district-header">
-        <Link to="/districts" className="back-link">
-          ← Back to Districs
+        <Link to="/categories" className="back-link">
+          ← Back to Categories
         </Link>
-        <h1>{district.name}</h1>
-        <p className="district-description">{district.description}</p>
+        <h1>{category.name}</h1>
+        <p className="district-description">{category.description}</p>
       </div>
 
       <div className="places-section">
-        <h2>District Attractions</h2>
+        <h2>Category Attractions</h2>
         <div className="places-grid">
-          {district.places.map(place => (
+          {category.places.map(place => (
             <Link
-              to={`/districts/${districtId}/places/${place.id}`}
+              to={`/categories/${categorieId}/places/${place.id}`}
               key={place.id}
               className="place-card"
             >
@@ -39,4 +41,4 @@ function District() {
   )
 }
 
-export default District
+export default Categorie

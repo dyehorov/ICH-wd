@@ -1,0 +1,42 @@
+.nav {
+  margin: 1rem 0;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+}
+
+.item {
+  margin: 0;
+}
+
+.link,
+.activeLink {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.link {
+  color: #334155;
+  background: #ffffff;
+}
+
+.link:hover {
+  background: #f8fafc;
+}
+
+.activeLink {
+  color: #ffffff;
+  background: #0f766e;
+  border-color: #0f766e;
+}

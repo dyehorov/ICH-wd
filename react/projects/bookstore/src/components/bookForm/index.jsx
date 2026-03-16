@@ -6,7 +6,7 @@ import {
   bookUpdateInfoAction,
 } from "../../redux/actions"
 import { connect } from "react-redux"
-import styles from "./styles.module.css"
+import Form from "../form"
 
 function NoteForm({ editingBook, dispatch }) {
   const {
@@ -62,35 +62,46 @@ function NoteForm({ editingBook, dispatch }) {
     reset()
   }
 
-  return (
-    <form className={styles.noteForm} onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="text"
-        placeholder="Title"
-        {...register("title", {
-          required: "Title is required",
-        })}
-      />
-      {errors.title && <p className={styles.error}>{errors.title.message}</p>}
-      <input
-        type="text"
-        placeholder="Author"
-        {...register("author", {
-          required: "Author is required",
-        })}
-      />
-      {errors.author && <p className={styles.error}>{errors.author.message}</p>}
-      <input
-        type="number"
-        placeholder="Year"
-        {...register("year", {
-          required: "Year is required",
-        })}
-      />
-      {errors.year && <p className={styles.error}>{errors.year.message}</p>}
+  const currentYear = new Date().getFullYear()
+  const fields = [
+    {
+      name: "title",
+      type: "text",
+      placeholder: "Book title",
+      rules: { required: "Title is required" },
+    },
+    {
+      name: "author",
+      type: "text",
+      placeholder: "Author",
+      rules: { required: "Author is required" },
+    },
+    {
+      name: "year",
+      type: "number",
+      placeholder: "Year",
+      rules: {
+        required: "Year is required",
+        max: currentYear,
+      },
+      getErrorMessage: error => {
+        if (error.type === "max") {
+          return `The publish year cannot be after ${currentYear}`
+        }
 
-      <button type="submit">Add Book</button>
-    </form>
+        return error.message
+      },
+    },
+  ]
+
+  return (
+    <Form
+      fields={fields}
+      register={register}
+      errors={errors}
+      onSubmit={handleSubmit(onSubmit)}
+      submitLabel={editingBook ? "Edit Book" : "Add Book"}
+    />
   )
 }
 

@@ -3,8 +3,6 @@ import { connect } from "react-redux"
 import BookItem from "../bookItem"
 
 function BookList({ books }) {
-  console.log(books)
-
   return (
     <ul className={styles.noteList}>
       {books.length === 0 ? (

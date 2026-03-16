@@ -5,10 +5,10 @@ export const bookAddAction = data => {
   }
 }
 
-export const bookRemoveAction = id => {
+export const bookRemoveAction = (id, isAvailable) => {
   return {
     type: "BOOK_REMOVE",
-    payload: { id },
+    payload: { id, isAvailable },
   }
 }
 
@@ -36,5 +36,40 @@ export const setEditingBookAction = book => {
 export const clearEditingNoteAction = () => {
   return {
     type: "CLEAR_EDITING_BOOK",
+  }
+}
+
+export const readerAddAction = (name, email) => {
+  const nextReaderId = Date.now()
+
+  return {
+    type: "READER_ADD",
+    payload: {
+      id: nextReaderId,
+      name,
+      email,
+      borrowedBooks: [],
+    },
+  }
+}
+
+export const readerRemoveAction = id => {
+  return {
+    type: "READER_REMOVE",
+    payload: { id },
+  }
+}
+
+export const bookLendToReaderAction = (bookId, readerId) => {
+  return {
+    type: "BOOK_LEND_TO_READER",
+    payload: { bookId, readerId },
+  }
+}
+
+export const bookReturnFromReaderAction = (bookId, readerId) => {
+  return {
+    type: "BOOK_RETURN_FROM_READER",
+    payload: { bookId, readerId },
   }
 }

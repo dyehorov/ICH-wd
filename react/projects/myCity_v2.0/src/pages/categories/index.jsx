@@ -1,27 +1,29 @@
 import { Link } from "react-router-dom"
-import { districtsData } from "../../data.js"
+import { initialCategories } from "../../data.js"
 
-function Districts() {
+function Categories() {
   return (
     <div className="districts">
-      <h1>City Districts</h1>
+      <h1>Categories</h1>
       <p className="subtitle">
         Select a district to learn about its attractions
       </p>
 
       <div className="districts-grid">
-        {districtsData.map(district => (
+        {initialCategories.map(category => (
           <Link
-            to={`/districts/${district.id}`}
-            key={district.id}
+            to={`/categories/${category.id}`}
+            key={category.id}
             className="district-card"
           >
-            <h2>{district.name}</h2>
-            <p>{district.description}</p>
+            <div className="card-main">
+              <h2>{category.name}</h2>
+              <p>{category.image}</p>
+            </div>
             <div className="card-footer">
               <span className="places-count">
-                {district.places.length}{" "}
-                {district.places.length === 1 ? "place" : "places"}
+                {category.places.length}{" "}
+                {category.places.length === 1 ? "place" : "places"}
               </span>
               <span className="view-link">Learn more →</span>
             </div>
@@ -32,4 +34,4 @@ function Districts() {
   )
 }
 
-export default Districts
+export default Categories
