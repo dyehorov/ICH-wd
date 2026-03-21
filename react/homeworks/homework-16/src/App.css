@@ -1,0 +1,13 @@
+.app-shell {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.app-content {
+  padding: 64px 0;
+  text-align: center;
+}
+
+.app-text {
+  margin-bottom: 24px;
+}
