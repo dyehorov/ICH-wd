@@ -1,0 +1,12 @@
+.userList {
+  margin-top: 12px;
+  padding: 8px 16px;
+  list-style: none;
+  border: 1px solid grey;
+}
+
+.userList li {
+  margin-bottom: 8px;
+  border-bottom: 1px solid grey;
+  padding: 4px;
+}
