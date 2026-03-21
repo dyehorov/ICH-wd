@@ -3,7 +3,7 @@ import styles from "./styles.module.css"
 
 const navMenu = [
   { title: "Home", path: "/" },
-  { title: "Posts", path: "/posts" },
+  { title: "Articles", path: "/articles" },
 ]
 
 export default function Nav() {

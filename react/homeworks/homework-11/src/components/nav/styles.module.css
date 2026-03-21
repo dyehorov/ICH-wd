@@ -1,0 +1,26 @@
+nav {
+  padding: 16px;
+  background: #111;
+}
+
+ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.link:hover {
+  color: white;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: #4da3ff;
+  font-weight: 600;
+}
