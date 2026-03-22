@@ -1,10 +1,32 @@
 .appShell {
-  width: min(1120px, 100% - 2rem);
-  margin: 1.3rem auto 2.2rem;
+  width: min(1180px, 100% - 2rem);
+  margin: 1.25rem auto 2.4rem;
 }
 
 .appHero {
-  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  padding: 1.6rem 1.45rem 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(251, 252, 248, 0.8)),
+    linear-gradient(135deg, rgba(31, 107, 92, 0.03), rgba(76, 105, 92, 0.03));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.appHero::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: -160px;
+  right: -100px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(31, 107, 92, 0.08), transparent 70%);
+  pointer-events: none;
 }
 
 .appEyebrow {
@@ -13,21 +35,41 @@
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #0f766e;
-  background: #ccfbf1;
-  padding: 0.3rem 0.6rem;
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  padding: 0.44rem 0.76rem;
   border-radius: 999px;
+  border: 1px solid rgba(31, 107, 92, 0.12);
 }
 
 .appHero h1 {
-  margin-top: 0.7rem;
+  max-width: 11ch;
+  margin-top: 0.95rem;
   font-family: "Space Grotesk", "Avenir Next", sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  line-height: 1.1;
-  color: #0f172a;
+  font-size: clamp(2.4rem, 4vw, 4.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
 }
 
 .appHero p {
-  margin-top: 0.45rem;
-  color: #475569;
+  margin-top: 0.6rem;
+  color: var(--text-secondary);
+  max-width: 58ch;
+}
+
+@media (max-width: 720px) {
+  .appShell {
+    width: min(100% - 1rem, 1180px);
+    margin: 0.75rem auto 1.4rem;
+  }
+
+  .appHero {
+    padding: 1rem 0.95rem 1.2rem;
+    border-radius: 22px;
+  }
+
+  .appHero h1 {
+    font-size: clamp(1.9rem, 9vw, 3rem);
+  }
 }

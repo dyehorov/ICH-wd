@@ -15,13 +15,6 @@ const defaultBooks = [
   },
   {
     id: 3,
-    title: "I, Robot",
-    author: "Isaac Asimov",
-    year: 1950,
-    isAvailable: false,
-  },
-  {
-    id: 4,
     title: "Neuromancer",
     author: "William Gibson",
     year: 1984,
@@ -54,9 +47,9 @@ const initialData = {
   books: defaultBooks,
   readers: defaultReaders,
   statistics: {
-    totalBooks: 4,
+    totalBooks: defaultBooks.length,
     availableBooks: 2,
-    borrowedBooks: 2,
+    borrowedBooks: 1,
     booksByDecade: {
       1950: 2,
       1960: 1,
@@ -232,8 +225,8 @@ const booksReducer = (state = initialData, action) => {
       const reader = state.readers.find(
         currentReader => currentReader.id === action.payload.readerId,
       )
-      const book = state.books.find(
-        currentBook => isSameId(currentBook.id, action.payload.bookId),
+      const book = state.books.find(currentBook =>
+        isSameId(currentBook.id, action.payload.bookId),
       )
 
       if (!reader || !book || !book.isAvailable) {
