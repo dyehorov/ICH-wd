@@ -33,7 +33,7 @@ export const setEditingBookAction = book => {
   }
 }
 
-export const clearEditingNoteAction = () => {
+export const clearEditingBookAction = () => {
   return {
     type: "CLEAR_EDITING_BOOK",
   }

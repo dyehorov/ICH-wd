@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import {
   bookAddAction,
-  clearEditingNoteAction,
+  clearEditingBookAction,
   bookUpdateInfoAction,
 } from "../../redux/actions"
 import { connect } from "react-redux"
@@ -45,7 +45,7 @@ function NoteForm({ editingBook, dispatch }) {
         }),
       )
 
-      dispatch(clearEditingNoteAction())
+      dispatch(clearEditingBookAction())
 
       return
     }
