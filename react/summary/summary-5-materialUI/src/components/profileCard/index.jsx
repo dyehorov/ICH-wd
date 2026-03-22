@@ -8,6 +8,7 @@ import {
   Button,
   Divider,
   Badge,
+  Tooltip,
 } from "@mui/material"
 
 export default function ProfileCard({
@@ -15,21 +16,51 @@ export default function ProfileCard({
   fullName,
   firstName,
   lastName,
+  role,
   roleLabel,
   currentColor,
   currentAvatarSize,
+  avatarImage,
   isOnline,
   color,
   size,
   showAlert,
   cardStyle,
 }) {
+  const offerButtonLabels = {
+    developer: "Offer a Project",
+    designer: "Offer a Design Job",
+    manager: "Offer a Vacancy",
+    analyst: "Offer an Internship",
+  }
+
+  const currentOfferLabel = offerButtonLabels[role] || "Offer a Job"
+
+  const handleMessageClick = () => {
+    window.alert(`Write a message for ${fullName}`)
+  }
+
+  const handleOfferClick = () => {
+    const isConfirmed = window.confirm(`Do you want to offer a job to ${fullName}?`)
+
+    if (isConfirmed) {
+      window.alert(`Application sent! ${fullName} will receive the offer`)
+      return
+    }
+
+    window.alert("Sending cancelled")
+  }
+
+  const handleReminderClick = () => {
+    window.alert("Thanks for reading!")
+  }
+
   return (
     <Card
       sx={{
         boxShadow:
           cardStyle === "shadow" ? "0 2px 12px rgba(0,0,0,0.10)" : "none",
-        p: 5,
+        p: 6,
         bgcolor: "#fff",
       }}
       variant={cardStyle === "outlined" ? "outlined" : undefined}
@@ -51,15 +82,16 @@ export default function ProfileCard({
           }}
         >
           <Avatar
+            src={avatarImage || undefined}
             sx={{
               width: currentAvatarSize,
               height: currentAvatarSize,
               bgcolor: currentColor,
-              fontSize: size * 0.33,
+              fontSize: currentAvatarSize * 0.33,
               fontWeight: 600,
             }}
           >
-            {initials}
+            {!avatarImage && initials}
           </Avatar>
         </Badge>
         <Box>
@@ -76,11 +108,14 @@ export default function ProfileCard({
                 border: "1.5px solid",
                 borderColor: isOnline ? "success.main" : "#9e9e9e",
                 display: "inline-block",
-                bgcolor: "transparent",
+                bgcolor: isOnline ? "success.main" : "transparent",
               }}
             />
-            <Typography variant="body2" color="text.secondary">
-              {isOnline ? "Онлайн" : "Офлайн"}
+            <Typography
+              variant="body2"
+              color={isOnline ? "success.main" : "text.secondary"}
+            >
+              {isOnline ? "Online" : "Offline"}
             </Typography>
           </Box>
         </Box>
@@ -102,43 +137,79 @@ export default function ProfileCard({
 
       <Divider sx={{ mb: 2 }} />
 
-      {showAlert && (
-        <Alert
-          color={color}
-          severity={isOnline ? "success" : "info"}
-          sx={{ mb: 2 }}
-        >
-          {isOnline ? `${fullName} сейчас онлайн` : `${fullName} сейчас офлайн`}
+      <Box sx={{ minHeight: 74, mb: 2 }}>
+        {showAlert && (
+          <Alert
+            severity="warning"
+            action={
+              <Button color="inherit" size="small" onClick={handleReminderClick}>
+                Got it
+              </Button>
+            }
+            sx={{
+              width: "100%",
+              "& .MuiAlert-message": {
+                minWidth: 0,
+              },
+              "& .MuiAlert-action": {
+                alignItems: "center",
+                pl: 1,
+              },
+            }}
+          >
+            Do not forget to upload an avatar!
+          </Alert>
+        )}
+      </Box>
+
+      <Box display="flex" flexDirection="column" gap={1} mb={3}>
+        <Alert severity="success" sx={{ py: 0 }}>
+          Great! MUI is working
         </Alert>
-      )}
+        <Alert severity="info" sx={{ py: 0 }}>
+          Try changing the button colors
+        </Alert>
+        <Alert severity="warning" sx={{ py: 0 }}>
+          Do not forget the attributes
+        </Alert>
+        <Alert severity="error" sx={{ py: 0 }}>
+          There are no errors, everything is great!
+        </Alert>
+      </Box>
 
       <Box display="flex" justifyContent={"space-between"} gap={2}>
-        <Button
-          variant="contained"
-          color={color}
-          size={size}
-          sx={{
-            borderRadius: 1.5,
-            textTransform: "uppercase",
-            fontWeight: 700,
-            fontSize: 14,
-          }}
-        >
-          Написать
-        </Button>
-        <Button
-          variant="outlined"
-          color={color}
-          size={size}
-          sx={{
-            borderRadius: 1.5,
-            textTransform: "uppercase",
-            fontWeight: 700,
-            fontSize: 14,
-          }}
-        >
-          Предложить работу
-        </Button>
+        <Tooltip title="Click to message">
+          <Button
+            variant="contained"
+            color={color}
+            size={size}
+            onClick={handleMessageClick}
+            sx={{
+              borderRadius: 1.5,
+              textTransform: "uppercase",
+              fontWeight: 700,
+              fontSize: 14,
+            }}
+          >
+            Message
+          </Button>
+        </Tooltip>
+        <Tooltip title="Click to send offer">
+          <Button
+            variant="outlined"
+            color={color}
+            size={size}
+            onClick={handleOfferClick}
+            sx={{
+              borderRadius: 1.5,
+              textTransform: "uppercase",
+              fontWeight: 700,
+              fontSize: 14,
+            }}
+          >
+            {currentOfferLabel}
+          </Button>
+        </Tooltip>
       </Box>
     </Card>
   )

@@ -23,44 +23,39 @@ const roles = [
 export default function BasicCard({
   card,
   cardTitle,
-  firstName,
-  lastName,
-  role,
-  avatarSize,
-  color,
-  size,
-  isOnline,
-  showAlert,
-  cardStyle,
-  setFirstName,
-  setLastName,
-  setRole,
-  setAvatarSize,
-  setColor,
-  setSize,
-  setIsOnline,
-  setShowAlert,
-  setCardStyle,
+  profileSettings,
+  setProfileSettings,
 }) {
+  const {
+    firstName,
+    lastName,
+    role,
+    avatarSize,
+    avatarImage,
+    color,
+    size,
+    isOnline,
+    showAlert,
+    cardStyle,
+  } = profileSettings
+
   const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()
   const fullName = `${firstName} ${lastName}`.trim()
 
-  const roleLabel = roles.find(r => r.value === role)?.label || ""
+  const roleLabel = roles.find(item => item.value === role)?.label || ""
 
   const currentColor = colorMap[color]
 
   return (
     <Card
       sx={{
-        minWidth: 320,
-        maxWidth: 550,
         width: "100%",
         height: "100%",
         borderTop:
           card === "settings" ? `4px solid ${currentColor}` : undefined,
       }}
     >
-      <CardContent sx={{ height: "100%" }}>
+      <CardContent sx={{ height: "100%", p: 4 }}>
         <Typography
           variant="h2"
           fontSize={25}
@@ -78,9 +73,11 @@ export default function BasicCard({
             fullName={fullName}
             firstName={firstName}
             lastName={lastName}
+            role={role}
             roleLabel={roleLabel}
             currentColor={currentColor}
             currentAvatarSize={avatarSize}
+            avatarImage={avatarImage}
             isOnline={isOnline}
             color={color}
             size={size}
@@ -89,25 +86,9 @@ export default function BasicCard({
           />
         ) : (
           <SettingsCard
-            firstName={firstName}
-            lastName={lastName}
-            role={role}
+            profileSettings={profileSettings}
+            setProfileSettings={setProfileSettings}
             roles={roles}
-            avatarSize={avatarSize}
-            color={color}
-            size={size}
-            isOnline={isOnline}
-            showAlert={showAlert}
-            cardStyle={cardStyle}
-            setFirstName={setFirstName}
-            setLastName={setLastName}
-            setRole={setRole}
-            setAvatarSize={setAvatarSize}
-            setColor={setColor}
-            setSize={setSize}
-            setIsOnline={setIsOnline}
-            setShowAlert={setShowAlert}
-            setCardStyle={setCardStyle}
           />
         )}
       </CardContent>

@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   TextField,
   Select,
   MenuItem,
@@ -15,35 +16,58 @@ import {
   Typography,
 } from "@mui/material"
 
+const colorRadioButtons = ["primary", "secondary", "success", "error"]
+
+const sizeRadioButtons = ["small", "medium", "large"]
+
 export default function SettingsCard({
-  firstName,
-  lastName,
-  role,
+  profileSettings,
+  setProfileSettings,
   roles,
-  avatarSize,
-  color,
-  size,
-  isOnline,
-  showAlert,
-  cardStyle,
-  setFirstName,
-  setLastName,
-  setRole,
-  setAvatarSize,
-  setColor,
-  setSize,
-  setIsOnline,
-  setShowAlert,
-  setCardStyle,
 }) {
+  const {
+    firstName,
+    lastName,
+    role,
+    avatarSize,
+    avatarImage,
+    color,
+    size,
+    isOnline,
+    showAlert,
+    cardStyle,
+  } = profileSettings
+
+  const handleAvatarChange = event => {
+    const file = event.target.files?.[0]
+
+    if (!file) return
+
+    const reader = new FileReader()
+
+    reader.onload = () => {
+      setProfileSettings({
+        ...profileSettings,
+        avatarImage: reader.result,
+      })
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   return (
     <>
       <Grid container spacing={2} mb={3}>
         <Grid item xs={6}>
           <TextField
-            label="Имя"
+            label="First Name"
             value={firstName}
-            onChange={e => setFirstName(e.target.value)}
+            onChange={event =>
+              setProfileSettings({
+                ...profileSettings,
+                firstName: event.target.value,
+              })
+            }
             fullWidth
             size="small"
             variant="outlined"
@@ -51,9 +75,14 @@ export default function SettingsCard({
         </Grid>
         <Grid item xs={6}>
           <TextField
-            label="Фамилия"
+            label="Last Name"
             value={lastName}
-            onChange={e => setLastName(e.target.value)}
+            onChange={event =>
+              setProfileSettings({
+                ...profileSettings,
+                lastName: event.target.value,
+              })
+            }
             fullWidth
             size="small"
             variant="filled"
@@ -63,15 +92,20 @@ export default function SettingsCard({
       </Grid>
 
       <FormControl fullWidth size="small" sx={{ mb: 3 }}>
-        <InputLabel>Роль</InputLabel>
+        <InputLabel>Role</InputLabel>
         <Select
           value={role}
-          label="Роль"
-          onChange={e => setRole(e.target.value)}
+          label="Role"
+          onChange={event =>
+            setProfileSettings({
+              ...profileSettings,
+              role: event.target.value,
+            })
+          }
         >
-          {roles.map(r => (
-            <MenuItem key={r.value} value={r.value}>
-              {r.label}
+          {roles.map(role => (
+            <MenuItem key={role.value} value={role.value}>
+              {role.label}
             </MenuItem>
           ))}
         </Select>
@@ -79,29 +113,60 @@ export default function SettingsCard({
 
       <Box mb={3}>
         <Typography variant="body2" gutterBottom>
-          Размер аватара: {avatarSize}px
+          Avatar size: {avatarSize}px
         </Typography>
         <Slider
           value={avatarSize}
-          onChange={event => setAvatarSize(event.target.value)}
+          onChange={(_, value) =>
+            setProfileSettings({
+              ...profileSettings,
+              avatarSize: value,
+            })
+          }
           min={24}
           max={100}
           color={color}
         />
+        <Button
+          component="label"
+          variant="outlined"
+          color={color}
+          sx={{
+            mt: 2,
+            alignSelf: "flex-start",
+          }}
+        >
+          {avatarImage ? "Change Avatar Photo" : "Upload Avatar Photo"}
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            onChange={handleAvatarChange}
+          />
+        </Button>
       </Box>
 
       <Divider sx={{ mb: 2 }} />
 
       <Box mb={2}>
-        <RadioGroup row value={color} onChange={e => setColor(e.target.value)}>
-          {["primary", "secondary", "success", "error"].map(c => (
+        <RadioGroup
+          row
+          value={color}
+          onChange={event =>
+            setProfileSettings({
+              ...profileSettings,
+              color: event.target.value,
+            })
+          }
+        >
+          {colorRadioButtons.map(color => (
             <FormControlLabel
-              key={c}
-              value={c}
-              control={<Radio color={c} size="small" />}
+              key={color}
+              value={color}
+              control={<Radio color={color} size="small" />}
               label={
                 <Typography variant="body2" textTransform="capitalize">
-                  {c.charAt(0).toUpperCase() + c.slice(1)}
+                  {color}
                 </Typography>
               }
             />
@@ -110,15 +175,24 @@ export default function SettingsCard({
       </Box>
 
       <Box mb={2}>
-        <RadioGroup row value={size} onChange={e => setSize(e.target.value)}>
-          {["small", "medium", "large"].map(s => (
+        <RadioGroup
+          row
+          value={size}
+          onChange={event =>
+            setProfileSettings({
+              ...profileSettings,
+              size: event.target.value,
+            })
+          }
+        >
+          {sizeRadioButtons.map(size => (
             <FormControlLabel
-              key={s}
-              value={s}
+              key={size}
+              value={size}
               control={<Radio color={color} size="small" />}
               label={
                 <Typography variant="body2" textTransform="capitalize">
-                  {s.charAt(0).toUpperCase() + s.slice(1)}
+                  {size}
                 </Typography>
               }
             />
@@ -133,23 +207,33 @@ export default function SettingsCard({
           control={
             <Switch
               checked={isOnline}
-              onChange={e => setIsOnline(e.target.checked)}
+              onChange={event =>
+                setProfileSettings({
+                  ...profileSettings,
+                  isOnline: event.target.checked,
+                })
+              }
               size="small"
               color={color}
             />
           }
-          label={<Typography variant="body2">Онлайн статус</Typography>}
+          label={<Typography variant="body2">Online status</Typography>}
         />
         <FormControlLabel
           control={
             <Switch
               checked={showAlert}
-              onChange={e => setShowAlert(e.target.checked)}
+              onChange={event =>
+                setProfileSettings({
+                  ...profileSettings,
+                  showAlert: event.target.checked,
+                })
+              }
               size="small"
               color={color}
             />
           }
-          label={<Typography variant="body2">Показать Alert</Typography>}
+          label={<Typography variant="body2">Show Alert</Typography>}
         />
       </Box>
 
@@ -157,17 +241,22 @@ export default function SettingsCard({
         <RadioGroup
           row
           value={cardStyle}
-          onChange={e => setCardStyle(e.target.value)}
+          onChange={event =>
+            setProfileSettings({
+              ...profileSettings,
+              cardStyle: event.target.value,
+            })
+          }
         >
           <FormControlLabel
             value="shadow"
             control={<Radio color={color} size="small" />}
-            label={<Typography variant="body2">С тенью</Typography>}
+            label={<Typography variant="body2">Shadow</Typography>}
           />
           <FormControlLabel
             value="outlined"
             control={<Radio color={color} size="small" />}
-            label={<Typography variant="body2">С обводкой</Typography>}
+            label={<Typography variant="body2">Border</Typography>}
           />
         </RadioGroup>
       </Box>

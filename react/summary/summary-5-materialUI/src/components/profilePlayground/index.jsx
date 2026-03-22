@@ -4,35 +4,22 @@ import { useState } from "react"
 import BasicCard from "../card"
 
 export default function ProfilePlayground() {
-  const [firstName, setFirstName] = useState("Max")
-  const [lastName, setLastName] = useState("Verstappen")
-  const [role, setRole] = useState("developer")
-  const [avatarSize, setAvatarSize] = useState(49)
-  const [color, setColor] = useState("primary")
-  const [size, setSize] = useState("medium")
-  const [isOnline, setIsOnline] = useState(false)
-  const [showAlert, setShowAlert] = useState(true)
-  const [cardStyle, setCardStyle] = useState("shadow")
+  const [profileSettings, setProfileSettings] = useState({
+    firstName: "Max",
+    lastName: "Verstappen",
+    role: "developer",
+    avatarSize: 49,
+    avatarImage: "",
+    color: "primary",
+    size: "medium",
+    isOnline: false,
+    showAlert: true,
+    cardStyle: "shadow",
+  })
 
   const sharedCardProps = {
-    firstName,
-    lastName,
-    role,
-    avatarSize,
-    color,
-    size,
-    isOnline,
-    showAlert,
-    cardStyle,
-    setFirstName,
-    setLastName,
-    setRole,
-    setAvatarSize,
-    setColor,
-    setSize,
-    setIsOnline,
-    setShowAlert,
-    setCardStyle,
+    profileSettings,
+    setProfileSettings,
   }
 
   return (
@@ -42,16 +29,16 @@ export default function ProfilePlayground() {
         spacing={5}
         justifyContent={"center"}
         alignItems="stretch"
-        sx={{ width: "fit-content", maxWidth: "100%", mx: "auto" }}
+        sx={{ maxWidth: 1200, mx: "auto" }}
       >
-        <Grid>
+        <Grid size={{ xs: 12, lg: 6 }}>
           <BasicCard
             card={"profile"}
-            cardTitle={"Profile card"}
+            cardTitle={"Profile Card"}
             {...sharedCardProps}
           />
         </Grid>
-        <Grid>
+        <Grid size={{ xs: 12, lg: 6 }}>
           <BasicCard
             card={"settings"}
             cardTitle={"Settings"}
