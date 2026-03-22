@@ -13,7 +13,7 @@ function ReaderItem({ reader, books, dispatch }) {
 
   const availableBooks = books.filter(book => book.isAvailable)
   const borrowedBookItems = borrowedBooks
-    .map(bookId => books.find(book => book.id === bookId))
+    .map(bookId => books.find(book => String(book.id) === String(bookId)))
     .filter(Boolean)
 
   const handleLendBook = () => {

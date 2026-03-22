@@ -20,6 +20,27 @@ const defaultBooks = [
     year: 1984,
     isAvailable: true,
   },
+  {
+    id: 4,
+    title: "I, Robot",
+    author: "Isaac Asimov",
+    year: 1950,
+    isAvailable: true,
+  },
+  {
+    id: 5,
+    title: "The Caves of Steel",
+    author: "Isaac Asimov",
+    year: 1953,
+    isAvailable: true,
+  },
+  {
+    id: 6,
+    title: "Children of Dune",
+    author: "Frank Herbert",
+    year: 1976,
+    isAvailable: false,
+  },
 ]
 
 const defaultReaders = [
@@ -33,7 +54,7 @@ const defaultReaders = [
     id: 102,
     name: "Bob Smith",
     email: "bob@example.com",
-    borrowedBooks: [3],
+    borrowedBooks: [6],
   },
   {
     id: 103,
@@ -42,29 +63,6 @@ const defaultReaders = [
     borrowedBooks: [],
   },
 ]
-
-const initialData = {
-  books: defaultBooks,
-  readers: defaultReaders,
-  statistics: {
-    totalBooks: defaultBooks.length,
-    availableBooks: 2,
-    borrowedBooks: 1,
-    booksByDecade: {
-      1950: 2,
-      1960: 1,
-      1980: 1,
-    },
-    activeReadersCount: 2,
-    mostPopularAuthor: {
-      name: "Isaac Asimov",
-      booksCount: 2,
-    },
-    consistencyCheck: true,
-  },
-  lastUpdated: null,
-  editingBook: null,
-}
 
 const getDecadeFromYear = year => String(Math.floor(Number(year) / 10) * 10)
 
@@ -129,6 +127,14 @@ const updateStateWithStatistics = updatedState => ({
 })
 
 const isSameId = (firstId, secondId) => String(firstId) === String(secondId)
+
+const initialData = {
+  books: defaultBooks,
+  readers: defaultReaders,
+  statistics: recalculateStatistics(defaultBooks, defaultReaders),
+  lastUpdated: null,
+  editingBook: null,
+}
 
 const booksReducer = (state = initialData, action) => {
   const dateUpdated = new Date().toISOString()

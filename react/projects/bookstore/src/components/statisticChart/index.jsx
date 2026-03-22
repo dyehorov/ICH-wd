@@ -3,9 +3,18 @@ import { connect } from "react-redux"
 import styles from "./styles.module.css"
 
 function BasicPie({ statistics }) {
-  const { totalBooks, availableBooks, borrowedBooks, booksByDecade } = statistics
+  const {
+    totalBooks,
+    availableBooks,
+    borrowedBooks,
+    booksByDecade,
+    activeReadersCount,
+    mostPopularAuthor,
+    consistencyCheck,
+  } = statistics
   const decades = Object.entries(booksByDecade).sort(
-    ([firstDecade], [secondDecade]) => Number(firstDecade) - Number(secondDecade),
+    ([firstDecade], [secondDecade]) =>
+      Number(firstDecade) - Number(secondDecade),
   )
 
   return (
@@ -50,6 +59,28 @@ function BasicPie({ statistics }) {
             ))}
           </ul>
         )}
+      </div>
+
+      <div className={styles.decadesBlock}>
+        <h3>Library insights</h3>
+        <ul className={styles.decadesList}>
+          <li className={styles.decadeItem}>
+            <span>Active readers</span>
+            <strong>{activeReadersCount}</strong>
+          </li>
+          <li className={styles.decadeItem}>
+            <span>Top author</span>
+            <strong>
+              {mostPopularAuthor.name
+                ? `${mostPopularAuthor.name} (${mostPopularAuthor.booksCount} books)`
+                : "None"}
+            </strong>
+          </li>
+          <li className={styles.decadeItem}>
+            <span>Consistency</span>
+            <strong>{consistencyCheck ? "OK" : "Warning"}</strong>
+          </li>
+        </ul>
       </div>
     </div>
   )
