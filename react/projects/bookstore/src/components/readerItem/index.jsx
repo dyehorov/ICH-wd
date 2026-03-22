@@ -57,7 +57,9 @@ function ReaderItem({ reader, books, dispatch }) {
                 <span>{book.title}</span>
                 <button
                   type="button"
-                  onClick={() => dispatch(bookReturnFromReaderAction(book.id, id))}
+                  onClick={() =>
+                    dispatch(bookReturnFromReaderAction(book.id, id))
+                  }
                 >
                   Return
                 </button>

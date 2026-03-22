@@ -1,0 +1,44 @@
+.statisticsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.decadesBlock {
+  min-width: 220px;
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.decadesBlock h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.decadesBlock p {
+  color: #64748b;
+}
+
+.decadesList {
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.decadeItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #334155;
+}
+
+.decadeItem strong {
+  color: #0f172a;
+}
