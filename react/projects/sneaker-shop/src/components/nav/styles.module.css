@@ -1,0 +1,18 @@
+.link {
+  color: #fff;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.activeLink {
+  opacity: 1;
+  color: #fff;
+  text-decoration: none;
+}
+
+.linksList {
+  display: flex;
+  min-width: 250px;
+  list-style: none;
+  justify-content: space-between;
+}

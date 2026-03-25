@@ -1,6 +1,16 @@
-
 import "./App.css"
+import { Route, Routes } from "react-router-dom"
+import Header from "./components/header"
 
 export default function App() {
-  return <h1>Hello</h1>;
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/main" />
+        <Route path="/cart" />
+        <Route path="/contacts" />
+      </Routes>
+    </>
+  )
 }
