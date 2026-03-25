@@ -7,7 +7,7 @@
   grid-template-columns: 220px 26px minmax(320px, 1fr) 140px 76px;
   align-items: center;
   box-sizing: border-box;
-  max-width: 900px;
+  /* max-width: 900px; */
 }
 
 .imageWrapper {
