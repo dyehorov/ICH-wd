@@ -1,0 +1,80 @@
+.contactsPageContent {
+  padding: 24px 0 80px;
+}
+
+.cartPageContent {
+  padding: 50px 0;
+}
+
+.pageTitle {
+  font-size: 36px;
+  position: relative;
+  margin-bottom: 82px;
+}
+
+.pageTitle::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  border: 1px solid grey;
+  left: 0;
+  bottom: -37px;
+  opacity: 0.2;
+}
+
+.contactList {
+  margin: 0;
+  padding-left: 16px;
+  color: #b3b3b3;
+  margin-bottom: 67px;
+}
+
+.contactItem {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 79px;
+}
+
+.socialBox {
+  min-height: 160px;
+  padding: 18px 22px;
+  border-radius: 4px;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+.socialTitle {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #4b4b4b;
+}
+
+.socialList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.socialLink {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.socialLink img {
+  width: 42px;
+  height: 42px;
+  display: block;
+}

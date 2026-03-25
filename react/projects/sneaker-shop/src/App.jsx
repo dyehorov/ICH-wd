@@ -5,6 +5,7 @@ import Footer from "./components/footer"
 import MainPage from "./pages/mainPage"
 import ProductsProvider from "./components/productsProvider"
 import CartPage from "./pages/cartPage"
+import ContactsPage from "./pages/contactsPage"
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
           <Routes>
             <Route path="/main" element={<MainPage />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/contacts" />
+            <Route path="/contacts" element={<ContactsPage />} />
           </Routes>
         </ProductsProvider>
       </main>
