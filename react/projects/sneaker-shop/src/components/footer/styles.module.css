@@ -1,0 +1,57 @@
+.footer {
+  background-color: #232425;
+  padding: 66px 0 48px;
+  color: #fff;
+}
+
+.footerInner {
+  display: flex;
+  justify-content: space-between;
+  min-height: 230px;
+}
+
+.socialLinksList {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+}
+
+.footerRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footerTitle {
+  font-size: 24px;
+  margin-bottom: 39px;
+}
+
+.contacts {
+  opacity: 0.5;
+  margin-bottom: 93px;
+  font-size: 18px;
+}
+
+.copyright {
+  opacity: 0.5;
+  font-size: 20px;
+}
+
+.form {
+  min-width: 400px;
+}
+
+.form input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid grey;
+  width: 100%;
+  padding: 10px 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form input::placeholder {
+  font-size: 20px;
+}
