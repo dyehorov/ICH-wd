@@ -2,9 +2,12 @@ import styles from "./styles.module.css"
 import AddButtonDefault from "../../assets/icons/add-icon-default.svg"
 import addButtonHover from "../../assets/icons/add-icon-hover.svg"
 import { useState } from "react"
+import { useContext } from "react"
+import ProductsContext from "../../context"
 
-export default function ProductItem({ name, price, image }) {
+export default function ProductItem({ id, name, price, image }) {
   const [hovered, setHovered] = useState(false)
+  const { addToCart } = useContext(ProductsContext)
 
   return (
     <li className={styles.card}>
@@ -21,6 +24,7 @@ export default function ProductItem({ name, price, image }) {
         </div>
 
         <button
+          onClick={() => addToCart(id)}
           className={styles.button}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}

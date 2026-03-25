@@ -1,0 +1,91 @@
+.card {
+  width: 100%;
+  padding: 22px;
+  border-radius: 16px;
+  background: #f8f8f8;
+  display: grid;
+  grid-template-columns: 220px 26px minmax(320px, 1fr) 140px 76px;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 900px;
+}
+
+.imageWrapper {
+  width: 190px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.imageWrapper img {
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.divider {
+  width: 1px;
+  height: 90px;
+  background: #d6d6d6;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.priceBlock {
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  margin-bottom: 6px;
+  font-size: 12px;
+  line-height: 1;
+  color: #9a9a9a;
+  text-transform: uppercase;
+}
+
+.price {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  color: #000000;
+}
+
+.deleteButton {
+  width: 56px;
+  height: 56px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f1f1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.deleteButton:hover {
+  background: #e7e7e7;
+}
+
+.deleteButton:active {
+  transform: scale(0.96);
+}
+
+.deleteIcon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}

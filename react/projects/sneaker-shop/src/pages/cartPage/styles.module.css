@@ -1,0 +1,19 @@
+.cartPageContent {
+  padding: 50px 0;
+}
+
+.pageTitle {
+  font-size: 36px;
+  position: relative;
+  margin-bottom: 82px;
+}
+
+.pageTitle::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  border: 1px solid grey;
+  left: 0;
+  bottom: -37px;
+  opacity: 0.2;
+}

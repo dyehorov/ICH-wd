@@ -4,7 +4,7 @@ import ProductsContext from "../../context"
 import ProductItem from "../productItem"
 
 export default function ProductsList() {
-  const products = useContext(ProductsContext)
+  const { products } = useContext(ProductsContext)
 
   return (
     <ul className={styles.productList}>
