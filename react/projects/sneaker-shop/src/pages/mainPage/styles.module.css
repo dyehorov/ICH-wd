@@ -1,0 +1,30 @@
+.mainPageContent {
+  padding: 28px 0 172px;
+}
+
+.banner {
+  width: 100%;
+  margin-bottom: 72px;
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pageTitle {
+  font-size: 36px;
+  position: relative;
+  margin-bottom: 82px;
+}
+
+.pageTitle::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  border: 1px solid grey;
+  left: 0;
+  bottom: -37px;
+  opacity: 0.2;
+}
