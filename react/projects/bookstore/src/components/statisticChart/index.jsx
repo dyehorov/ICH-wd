@@ -12,6 +12,7 @@ function BasicPie({ statistics }) {
     mostPopularAuthor,
     consistencyCheck,
   } = statistics
+
   const decades = Object.entries(booksByDecade).sort(
     ([firstDecade], [secondDecade]) =>
       Number(firstDecade) - Number(secondDecade),

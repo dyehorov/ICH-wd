@@ -12,6 +12,7 @@ function ReaderItem({ reader, books, dispatch }) {
   const [selectedBookId, setSelectedBookId] = useState("")
 
   const availableBooks = books.filter(book => book.isAvailable)
+
   const borrowedBookItems = borrowedBooks
     .map(bookId => books.find(book => String(book.id) === String(bookId)))
     .filter(Boolean)

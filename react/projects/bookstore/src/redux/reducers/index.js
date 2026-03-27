@@ -66,42 +66,49 @@ const defaultReaders = [
 
 const getDecadeFromYear = year => String(Math.floor(Number(year) / 10) * 10)
 
-const recalculateStatistics = (books, readers) => {
+const countBooksByDecade = books => {
+  return books.reduce((decades, book) => {
+    const decade = getDecadeFromYear(book.year)
+    decades[decade] = (decades[decade] || 0) + 1
+
+    return decades
+  }, {})
+}
+
+const getMostPopularAuthor = books => {
+  const authorCounts = books.reduce((authors, book) => {
+    authors[book.author] = (authors[book.author] || 0) + 1
+
+    return authors
+  }, {})
+
+  return Object.entries(authorCounts).reduce(
+    (mostPopularAuthor, [name, booksCount]) => {
+      if (booksCount > mostPopularAuthor.booksCount) {
+        return { name, booksCount }
+      }
+
+      return mostPopularAuthor
+    },
+    { name: "", booksCount: 0 },
+  )
+}
+
+const getBorrowedBooksCount = readers => {
+  return readers.reduce((total, reader) => {
+    return total + reader.borrowedBooks.length
+  }, 0)
+}
+
+const getActiveReadersCount = readers => {
+  return readers.filter(reader => reader.borrowedBooks.length > 0).length
+}
+
+const getStatistics = (books, readers) => {
   const totalBooks = books.length
   const availableBooks = books.filter(book => book.isAvailable).length
   const borrowedBooks = totalBooks - availableBooks
-
-  const booksByDecade = books.reduce((acc, book) => {
-    const decade = getDecadeFromYear(book.year)
-    acc[decade] = (acc[decade] || 0) + 1
-    return acc
-  }, {})
-
-  const activeReadersCount = readers.filter(
-    reader => reader.borrowedBooks.length > 0,
-  ).length
-
-  const authorsMap = books.reduce((acc, book) => {
-    acc[book.author] = (acc[book.author] || 0) + 1
-    return acc
-  }, {})
-
-  let mostPopularAuthor = {
-    name: "",
-    booksCount: 0,
-  }
-
-  Object.entries(authorsMap).forEach(([name, booksCount]) => {
-    if (booksCount > mostPopularAuthor.booksCount) {
-      mostPopularAuthor = { name, booksCount }
-    }
-  })
-
-  const borrowedBooksByReaders = readers.reduce(
-    (total, reader) => total + reader.borrowedBooks.length,
-    0,
-  )
-
+  const borrowedBooksByReaders = getBorrowedBooksCount(readers)
   const consistencyCheck =
     availableBooks + borrowedBooks === totalBooks &&
     borrowedBooksByReaders === borrowedBooks
@@ -114,16 +121,16 @@ const recalculateStatistics = (books, readers) => {
     totalBooks,
     availableBooks,
     borrowedBooks,
-    booksByDecade,
-    activeReadersCount,
-    mostPopularAuthor,
+    booksByDecade: countBooksByDecade(books),
+    activeReadersCount: getActiveReadersCount(readers),
+    mostPopularAuthor: getMostPopularAuthor(books),
     consistencyCheck,
   }
 }
 
 const updateStateWithStatistics = updatedState => ({
   ...updatedState,
-  statistics: recalculateStatistics(updatedState.books, updatedState.readers),
+  statistics: getStatistics(updatedState.books, updatedState.readers),
 })
 
 const isSameId = (firstId, secondId) => String(firstId) === String(secondId)
@@ -131,7 +138,7 @@ const isSameId = (firstId, secondId) => String(firstId) === String(secondId)
 const initialData = {
   books: defaultBooks,
   readers: defaultReaders,
-  statistics: recalculateStatistics(defaultBooks, defaultReaders),
+  statistics: getStatistics(defaultBooks, defaultReaders),
   lastUpdated: null,
   editingBook: null,
 }

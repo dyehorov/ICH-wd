@@ -6,9 +6,12 @@ import {
   bookUpdateInfoAction,
 } from "../../redux/actions"
 import { connect } from "react-redux"
-import Form from "../form"
+import bookFormValidation from "../../validator/forms/bookForm"
+import styles from "./styles.module.css"
 
-function NoteForm({ editingBook, dispatch }) {
+function BookForm({ editingBook, dispatch }) {
+  const { title, author, year } = bookFormValidation
+
   const {
     register,
     handleSubmit,
@@ -61,47 +64,39 @@ function NoteForm({ editingBook, dispatch }) {
     dispatch(bookAddAction(newBook))
     reset()
   }
-
-  const currentYear = new Date().getFullYear()
-  const fields = [
-    {
-      name: "title",
-      type: "text",
-      placeholder: "Book title",
-      rules: { required: "Title is required" },
-    },
-    {
-      name: "author",
-      type: "text",
-      placeholder: "Author",
-      rules: { required: "Author is required" },
-    },
-    {
-      name: "year",
-      type: "number",
-      placeholder: "Year",
-      rules: {
-        required: "Year is required",
-        max: currentYear,
-      },
-      getErrorMessage: error => {
-        if (error.type === "max") {
-          return `The publish year cannot be after ${currentYear}`
-        }
-
-        return error.message
-      },
-    },
-  ]
-
   return (
-    <Form
-      fields={fields}
-      register={register}
-      errors={errors}
-      onSubmit={handleSubmit(onSubmit)}
-      submitLabel={editingBook ? "Edit Book" : "Add Book"}
-    />
+    <form className={styles.noteForm} onSubmit={handleSubmit(onSubmit)}>
+      <div className={styles.field}>
+        <input
+          type="text"
+          placeholder="Book title"
+          {...register("title", title)}
+        />
+        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
+      </div>
+
+      <div className={styles.field}>
+        <input
+          type="text"
+          placeholder="Author"
+          {...register("author", author)}
+        />
+        {errors.author && (
+          <p className={styles.error}>{errors.author.message}</p>
+        )}
+      </div>
+
+      <div className={styles.field}>
+        <input
+          type="number"
+          placeholder="Year"
+          {...register("year", year)}
+        />
+        {errors.year && <p className={styles.error}>{errors.year.message}</p>}
+      </div>
+
+      <button type="submit">{editingBook ? "Edit Book" : "Add Book"}</button>
+    </form>
   )
 }
 
@@ -111,4 +106,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(NoteForm)
+export default connect(mapStateToProps)(BookForm)
