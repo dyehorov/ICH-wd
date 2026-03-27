@@ -42,7 +42,7 @@ export default function BasicCard({
   const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()
   const fullName = `${firstName} ${lastName}`.trim()
 
-  const roleLabel = roles.find(item => item.value === role)?.label || ""
+  const roleLabel = roles.find(item => item.value === role).label || ""
 
   const currentColor = colorMap[color]
 

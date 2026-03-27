@@ -41,7 +41,9 @@ export default function ProfileCard({
   }
 
   const handleOfferClick = () => {
-    const isConfirmed = window.confirm(`Do you want to offer a job to ${fullName}?`)
+    const isConfirmed = window.confirm(
+      `Do you want to offer a job to ${fullName}?`,
+    )
 
     if (isConfirmed) {
       window.alert(`Application sent! ${fullName} will receive the offer`)
@@ -142,7 +144,11 @@ export default function ProfileCard({
           <Alert
             severity="warning"
             action={
-              <Button color="inherit" size="small" onClick={handleReminderClick}>
+              <Button
+                color="inherit"
+                size="small"
+                onClick={handleReminderClick}
+              >
                 Got it
               </Button>
             }
