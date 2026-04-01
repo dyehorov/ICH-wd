@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import counterSlice from "./slices/counterSlice"
+import expenseSlice from "./slices/expenseSlice"
 
 const store = configureStore({
   reducer: {
-    counter: counterSlice.reducer,
+    expenses: expenseSlice.reducer,
   },
 })
 
