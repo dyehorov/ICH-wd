@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import styles from "./styles.module.css"
 
 const links = [
-  { id: 1, title: "Main", path: "/main" },
+  { id: 1, title: "Main", path: "/" },
   { id: 2, title: "Cart", path: "/cart" },
   { id: 3, title: "Contacts", path: "/contacts" },
 ]

@@ -64,3 +64,15 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+@media (max-width: 960px) {
+  .cartListWrapper {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .summary {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

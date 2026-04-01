@@ -15,7 +15,7 @@ export default function App() {
       <main className="main">
         <ProductsProvider>
           <Routes>
-            <Route path="/main" element={<MainPage />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
           </Routes>

@@ -89,3 +89,61 @@
   height: 24px;
   display: block;
 }
+
+@media (max-width: 960px) {
+  .card {
+    grid-template-columns: 160px 1fr auto;
+    gap: 20px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .priceBlock {
+    grid-column: 2;
+  }
+
+  .deleteButton {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    margin-left: 0;
+    align-self: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: auto;
+    grid-column: 1 / -1;
+  }
+
+  .title {
+    grid-column: 1;
+    font-size: 18px;
+  }
+
+  .priceBlock {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .deleteButton {
+    width: 48px;
+    height: 48px;
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    justify-self: end;
+  }
+}

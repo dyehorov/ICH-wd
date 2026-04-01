@@ -39,7 +39,7 @@ export default function ProductsProvider({ children }) {
 
   const deleteFromCart = async id => {
     try {
-      const response = await axios.delete(`${BASE_URL}/cartData/${id}`)
+      await axios.delete(`${BASE_URL}/cartData/${id}`)
 
       fetchCartData()
     } catch (error) {
