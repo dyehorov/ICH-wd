@@ -33,3 +33,10 @@
   text-decoration: line-through;
   color: gray;
 }
+
+@media screen and (width <= 550px) {
+  .listItem {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

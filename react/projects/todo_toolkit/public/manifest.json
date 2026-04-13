@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Todo Extension",
+  "version": "1.0.0",
+  "description": "Todo app built with React",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["storage"]
+}
