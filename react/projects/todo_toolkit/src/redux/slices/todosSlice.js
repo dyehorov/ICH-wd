@@ -20,7 +20,7 @@ const todosSlice = createSlice({
     },
     toggleCompleted: (state, action) => {
       state.todos = state.todos.map(todo => {
-        if (todo.id !== action.payload) return
+        if (todo.id !== action.payload) return todo
 
         todo.completed = !todo.completed
 
@@ -29,5 +29,7 @@ const todosSlice = createSlice({
     },
   },
 })
+
+export const { addTodo, deleteTodo, toggleCompleted } = todosSlice.actions
 
 export default todosSlice

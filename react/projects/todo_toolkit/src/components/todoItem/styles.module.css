@@ -1,0 +1,35 @@
+.listItem {
+  border-bottom: 1px solid gray;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.listItemActions {
+  display: flex;
+  gap: 8px;
+}
+
+.listItemActions button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2862ce;
+  color: white;
+  cursor: pointer;
+}
+
+.listItemActions button:last-child {
+  background-color: #d60b0b;
+}
+
+.listItemActions button:hover {
+  opacity: 0.8;
+}
+
+.todoCompleted {
+  text-decoration: line-through;
+  color: gray;
+}

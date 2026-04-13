@@ -31,7 +31,9 @@ export default function App() {
   return (
     <>
       <h1>{isPlaying ? "Playing" : "On pause"}</h1>
-      <button onClick={() => dispatch(playPause())}>Play/Pause</button>
+      <button onClick={() => dispatch(playPause())}>
+        {isPlaying ? "Pause" : "Play"}
+      </button>
 
       <div style={{ marginTop: 16 }}>
         <div>{`${currentTime} / ${maxTime}`}</div>
