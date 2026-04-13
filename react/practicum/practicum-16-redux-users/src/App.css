@@ -1,0 +1,16 @@
+.container {
+  max-width: 500px;
+  margin: 10vh auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.container > form {
+  display: flex;
+  gap: 8px;
+}
+
+.container > ul {
+  list-style: none;
+}
