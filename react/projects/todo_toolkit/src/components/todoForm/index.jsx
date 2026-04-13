@@ -15,6 +15,8 @@ function TodoForm({}) {
   } = useForm()
 
   const onSubmit = data => {
+    if (data.todoText.trim().length === 0) return
+
     dispatch(addTodo(data.todoText))
 
     reset()
