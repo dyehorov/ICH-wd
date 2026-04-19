@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  background-color: #007bff;
+  padding: 1rem;
+}
+
+.navLink {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.navLink.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #69ffbe;
+}
