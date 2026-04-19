@@ -1,0 +1,9 @@
+.header {
+  padding: 12px 24px;
+}
+
+.header h1 {
+  color: #ffde2c;
+  font-family: "Rowdies", sans-serif;
+  font-weight: 700;
+}
