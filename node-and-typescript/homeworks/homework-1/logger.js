@@ -4,6 +4,8 @@ function logMessage(message) {
   fs.appendFile("log.txt", message, err => {
     if (err) {
       console.error("There was and error adding log to log.txt:", err)
+
+      return
     }
 
     console.log("Log is added to log.txt!")
