@@ -10,8 +10,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "nodemon": "^3.1.14"
-  }
+  "type": "module"
 }
