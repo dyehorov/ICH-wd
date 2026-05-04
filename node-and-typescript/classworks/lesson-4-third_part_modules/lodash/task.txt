@@ -1,0 +1,18 @@
+Инициализировать новый проект Node.js с помощью команды `npm init`:
+Перейдите в терминале в папку вашего проекта.
+Запустите команду `npm init` и следуйте инструкциям, чтобы создать файл `package.json`.
+
+Установить пакет `lodash` и добавить его в `package.json`:
+Введите команду `npm install lodash`.
+
+Создать простой скрипт, использующий одну из функций `lodash`:
+Создайте файл `index.js` и добавьте в него следующий код:
+                             const _ = require('lodash');
+
+                             const numbers = [1, 2, 3, 4, 5];
+                             const shuffled = _.shuffle(numbers);
+
+                             console.log('Original array:', numbers);
+                             console.log('Shuffled array:', shuffled);
+
+Запустите скрипт командой `node index.js` и убедитесь, что он работает.
