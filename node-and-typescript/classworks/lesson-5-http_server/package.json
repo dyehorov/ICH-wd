@@ -1,0 +1,18 @@
+{
+  "name": "lesson-5-http_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "serverCors": "nodemon serverCors.js",
+    "serverAuthorization": "nodemon serverAuthorization.js",
+    "serverErrorLog": "nodemon serverErrorLog.js",
+    "serverPutDelete": "nodemon serverPutDelete.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
