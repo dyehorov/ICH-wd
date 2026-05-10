@@ -1,0 +1,5 @@
+Error: Special error
+    at Server.<anonymous> (file:///Users/danyloyehorov/Desktop/Dev/ItCareerHub/node-and-typescript/homeworks/homework-5/second_task/server.js:9:11)
+    at Server.emit (node:events:509:28)
+    at parserOnIncoming (node:_http_server:1213:12)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17)
