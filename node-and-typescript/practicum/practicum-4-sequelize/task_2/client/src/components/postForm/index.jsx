@@ -16,14 +16,16 @@ export default function PostForm() {
 
   const { title, description, author } = postFormValidator
 
-  const createPost = async data => {
+  const createPost = async formData => {
     try {
       const response = await axios.post(
         "http://127.0.0.1:3333/post/create",
-        data,
+        formData,
       )
 
-      setPostMessage(response.data.message)
+      setPostMessage(
+        `Post with id: ${response.data.id} was successfully created`,
+      )
       reset()
     } catch (error) {
       console.error(`There was an error creating a post: ${error}`)
@@ -41,12 +43,12 @@ export default function PostForm() {
         {errors.title && <p>{errors.title.message}</p>}
 
         <label>
-          Author <input {...register("author", author)} />
+          Author <input {...register("userId", author)} />
         </label>
         {errors.author && <p>{errors.author.message}</p>}
 
         <label>
-          Description <textarea {...register("description", description)} />
+          Description <textarea {...register("content", description)} />
         </label>
         {errors.description && <p>{errors.description.message}</p>}
       </div>

@@ -20,12 +20,10 @@ export async function up(queryInterface, Sequelize) {
     },
     createdAt: {
       type: Sequelize.DATE,
-      allowNull: false,
-      defaultValues: Sequelize.fn("NOW"),
+      defaultValue: Sequelize.NOW,
     },
   })
 }
-
 export async function down(queryInterface, Sequelize) {
   await queryInterface.dropTable("users")
 }

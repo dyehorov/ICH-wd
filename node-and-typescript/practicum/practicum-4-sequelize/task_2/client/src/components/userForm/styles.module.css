@@ -1,7 +1,6 @@
 form {
   width: 100%;
   max-width: 400px;
-  margin: 100px auto;
   padding: 32px;
   display: flex;
   flex-direction: column;
@@ -68,4 +67,9 @@ button:disabled {
 .successMessage {
   margin-top: 12px;
   color: green;
+}
+
+.error {
+  margin-top: 12px;
+  color: red;
 }

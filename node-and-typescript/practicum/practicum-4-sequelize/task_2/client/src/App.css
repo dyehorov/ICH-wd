@@ -1,0 +1,37 @@
+.container {
+  padding-top: 80px;
+}
+
+.forms {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+.userList {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+.userListItem {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 4px 8px;
+  transition: all 0.3s ease;
+}
+
+.userListItem:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.userListItem p {
+  color: black;
+}

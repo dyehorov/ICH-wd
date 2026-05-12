@@ -6,6 +6,7 @@ import { useState } from "react"
 
 export default function UserForm() {
   const [registerMessage, setRegisterMessage] = useState("")
+  const [error, setError] = useState(false)
 
   const {
     register,
@@ -17,16 +18,25 @@ export default function UserForm() {
   const { name, email } = userFormValidator
 
   const registerUser = async data => {
+    setRegisterMessage("")
+    setError(false)
+
     try {
       const response = await axios.post(
         "http://127.0.0.1:3333/user/create",
         data,
       )
 
-      setRegisterMessage(response.data.message)
+      setRegisterMessage("User created successfully")
       reset()
     } catch (error) {
-      console.error(`There was an error registering a user: ${error}`)
+      if (error.response) {
+        setRegisterMessage(error.response.data.message)
+        setError(true)
+      } else {
+        setRegisterMessage("Server error")
+        setError(true)
+      }
     }
   }
 
@@ -47,7 +57,9 @@ export default function UserForm() {
         Register
       </button>
       {registerMessage && (
-        <p className={styles.successMessage}>{registerMessage}</p>
+        <p className={error ? styles.error : styles.successMessage}>
+          {registerMessage}
+        </p>
       )}
     </form>
   )
