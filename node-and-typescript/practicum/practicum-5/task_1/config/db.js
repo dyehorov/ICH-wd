@@ -1,4 +1,4 @@
-import { db_config } from "./config.js"
+import db_config from "./config.js"
 import { Sequelize } from "sequelize"
 import dotenv from "dotenv"
 

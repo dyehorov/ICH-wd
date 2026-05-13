@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-export const db_config = {
+const db_config = {
   development: {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
@@ -25,3 +25,5 @@ export const db_config = {
     dialect: "",
   },
 }
+
+export default db_config
