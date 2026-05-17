@@ -171,6 +171,24 @@ async function deleteUser(id) {
   }
 }
 
+async function updateUserFullInfo(id, name, email, age) {
+  try {
+    const user = await getUserById(id)
+
+    if (!user) {
+      throw new Error("User not found")
+    }
+
+    const affectedRows = User.update({
+      where: { id },
+    })
+  } catch (error) {
+    console.error(`Failed to update user: ${error.message}`)
+
+    return null
+  }
+}
+
 app.listen(port, () => {
   console.log(`Server is running on http://127.0.0.1:${port}`)
 })
