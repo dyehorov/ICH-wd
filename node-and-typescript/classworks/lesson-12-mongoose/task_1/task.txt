@@ -1,0 +1,44 @@
+Создайте проект mongooseCoursePlatform и установите mongoose
+
+Создайте схему Category:
+name – строка, обязательное, уникальное, minlength: 3, maxlength: 50
+description – строка, maxlength: 200
+**slug – строка, уникальное, автоматически генерируется из name (pre-save middleware)
+parentCategory – ссылка на другую категорию (для иерархии), может быть null
+
+Создайте схему Instructor:
+fullName – строка, обязательное, minlength: 5
+email – строка, обязательное, уникальное, валидация на формат email
+bio – строка, maxlength: 500
+specialization – массив строк (до 3 specialization)
+rating – число, min: 0, max: 5, default: 0
+totalStudents – число, default: 0, min: 0
+isVerified – булево, default: false
+socialLinks – объект с полями: youtube, telegram, website (все строки, необязательные) 
+joinedAt – дата, default: Date.now
+
+Создайте схему Course:
+title – строка, обязательное, minlength: 10, maxlength: 100
+description – строка, обязательное, minlength: 20
+shortDescription – строка, maxlength: 100
+price – число, обязательное, min: 0
+discountPrice – число, валидация: должно быть меньше price (если указано)
+*level – строка, enum: ['beginner', 'intermediate', 'advanced', 'expert']
+duration – число (в часах), обязательное, min: 1, max: 500
+instructor – ObjectId, ref: 'Instructor', обязательное
+categories – массив ObjectId, ref: 'Category' (связь многие-ко-многим)
+tags – массив строк, не более 5 тегов
+
+lessons – массив объектов:
+ - title – строка, обязательное
+ - duration – число (в минутах), min: 1
+ - videoUrl – строка, валидация на URL формат
+ - isFree – булево, default: false
+
+requirements – массив строк
+whatYouWillLearn – массив строк
+totalEnrolled – число, default: 0
+rating – число, min: 0, max: 5, default: 0
+*status – строка, enum: ['draft', 'published', 'archived'], default: 'draft'
+publishedAt – дата (только если статус published)
+createdAt – дата, default: Date.now
