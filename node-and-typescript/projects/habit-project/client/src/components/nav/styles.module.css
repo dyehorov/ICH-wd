@@ -1,0 +1,8 @@
+.menu {
+  list-style: none;
+}
+
+.activeLink {
+  background-color: #f5f1fe;
+  color: #4900c7;
+}
