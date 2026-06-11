@@ -139,4 +139,35 @@ router.post("/add-expense", async (req, res) => {
   }
 })
 
+router.get("/balance", async (req, res) => {
+  try {
+    const { id } = req.body
+
+    if (!id)
+      return res.status(400).json({
+        success: false,
+        message: "User ID is required",
+      })
+
+    const user = await User.findById(id).select("currentBalance")
+
+    if (!user)
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      })
+
+    return res.status(200).json({
+      success: true,
+      currentBalance: user.currentBalance,
+    })
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error while getting balance",
+      error: error.message,
+    })
+  }
+})
+
 export default router
