@@ -10,10 +10,22 @@ const userSchema = new mongoose.Schema({
     type: Number,
     min: [0, "Current balance cannot be negative"],
   },
-  transactions: {
-    type: [Number],
-    default: [],
-  },
+  transactions: [
+    {
+      time: {
+        type: Date,
+        default: Date.now,
+      },
+      value: {
+        type: Number,
+        required: true,
+      },
+      type: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   dateAdded: {
     type: Date,
     default: Date.now,
