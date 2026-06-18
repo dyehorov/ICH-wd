@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import authRouter from "./routes/auth.js"
+import taskRouter from "./routes/task.js"
 import connectDb from "./db/index.js"
 
 dotenv.config()
@@ -11,6 +12,7 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 app.use("/auth", authRouter)
+app.use("/api", taskRouter)
 
 app.get("/", (req, res) => {
   res.status(200).send("Mini project 4.1")

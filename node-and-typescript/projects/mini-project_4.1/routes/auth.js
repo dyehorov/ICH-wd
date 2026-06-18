@@ -38,15 +38,15 @@ router.post("/register", async (req, res) => {
 // POST /auth/login - login a user
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body
+    const { username, password } = req.body
 
-    if (!email || !password) {
+    if (!username || !password) {
       return res
         .status(400)
-        .json({ success: false, message: "Email and password are required" })
+        .json({ success: false, message: "Username and password are required" })
     }
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ username })
 
     if (!user) {
       return res
